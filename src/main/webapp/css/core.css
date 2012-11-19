@@ -1,0 +1,68 @@
+/*!
+ * noday.net
+ *
+ * Copyright 2012 Noday, Inc
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * 
+ * 覆盖bootstrap中的样式
+ */
+*+html body,body {
+	/* padding-top: 60px;
+	padding-bottom: 40px; */
+	overflow-y:scroll;
+	*overflow-y:hidden;
+}
+/** 重设容器边框 **/
+.body-container {
+  padding: 10px 20px 20px 20px;
+  border: 1px solid #CCC;
+  box-shadow: 0 5px 20px #CCC;
+  margin-top: 13px;
+  margin-bottom: 20px;
+}
+/** 重设导航中qq消息 **/
+.navbar .nav > li > a.qq-link {
+  padding: 9px 10px 7px;
+}
+/** 改变导航重心 **/
+.navbar .nav > li > a {
+  padding: 9px 10px 11px;
+}
+.navbar .brand {
+  padding: 8px 20px 12px;
+}
+.navbar-search {
+  margin-top: 6px;
+}
+.navbar-search .search-query {
+  margin-bottom: 0;
+}
+/** 缩小间隔 **/
+.navbar {
+  margin-bottom: 10px;
+}
+.alert {
+  margin-bottom: 10px;
+}
+.breadcrumb {
+  margin: 0 0 10px;
+}
+/** 单条提示 **/
+.line-alert {
+  padding: 3px 25px 3px 14px;
+}
+/** 分页条 **/
+.table .pagination {
+height: 30px;
+margin: 0 0;
+}
+.table .pagination ul > li > a, .table .pagination ul > li > span {
+	padding: 0 11px;
+	line-height: 28px;
+}
+/** grid **/
+.table {
+	margin-bottom: 10px;
+}
