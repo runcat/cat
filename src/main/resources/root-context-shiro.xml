@@ -19,7 +19,7 @@
 	<!-- Shiro Filter -->
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager" />
-		<property name="loginUrl" value="/user_login.action" />
+		<property name="loginUrl" value="/login" />
 		<property name="successUrl" value="/" />
 		<property name="filters">
 			<map>
@@ -30,10 +30,8 @@
 		</property>
 		<property name="filterChainDefinitions">
 			<value>
-				/user_regPage.action = anon
-				/user_reg.action = anon
-				/user_login.action = authc
-				/user_logout.action = logout
+				/login = authc
+				/logout = logout
 				/css/** = anon
 				/img/** = anon
 				/js/** = anon

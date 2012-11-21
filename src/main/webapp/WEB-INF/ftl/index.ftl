@@ -1,4 +1,4 @@
-<#include "/WEB-INF/ftl/macro-head.ftl">
+<#include "macro-head.ftl">
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,16 +9,16 @@
 </head>
 <body>
 	<div class="container body-container">
-		<#include "/WEB-INF/ftl/header.ftl">
+		<#include "header.ftl">
 		<div class="row">
 			<div class="span9">
-				<#include "/WEB-INF/ftl/content.ftl">
+				<#include "content.ftl">
 			</div>
 			<div class="span3">
-				<#include "/WEB-INF/ftl/side.ftl">
+				<#include "side.ftl">
 			</div>
 		</div>
-		<#include "/WEB-INF/ftl/footer.ftl">
+		<#include "footer.ftl">
 	</div>
 </body>
 </html>
