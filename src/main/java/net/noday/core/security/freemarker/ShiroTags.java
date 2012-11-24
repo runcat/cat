@@ -18,7 +18,7 @@ package net.noday.core.security.freemarker;
 import freemarker.template.SimpleHash;
 
 /**
- * industrywords ShiroTags
+ * cat ShiroTags
  *
  * @author <a href="http://www.noday.net">Noday</a>
  * @version , 2013-2-8

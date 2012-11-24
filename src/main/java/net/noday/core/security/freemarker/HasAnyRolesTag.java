@@ -18,7 +18,7 @@ package net.noday.core.security.freemarker;
 import org.apache.shiro.subject.Subject;
 
 /**
- * industrywords HasAnyRolesTag
+ * cat HasAnyRolesTag
  *
  * @author <a href="http://www.noday.net">Noday</a>
  * @version , 2013-2-8

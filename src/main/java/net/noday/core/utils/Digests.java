@@ -21,7 +21,7 @@ import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.apache.shiro.util.ByteSource;
 
 /**
- * industrywords Digests
+ * cat Digests
  *
  * @author <a href="http://www.noday.net">Noday</a>
  * @version , 2013-2-8

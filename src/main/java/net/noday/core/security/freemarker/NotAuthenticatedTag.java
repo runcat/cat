@@ -25,7 +25,7 @@ import freemarker.template.TemplateException;
 import freemarker.template.TemplateModel;
 
 /**
- * industrywords NotAuthenticatedTag
+ * cat NotAuthenticatedTag
  *
  * @author <a href="http://www.noday.net">Noday</a>
  * @version , 2013-2-8

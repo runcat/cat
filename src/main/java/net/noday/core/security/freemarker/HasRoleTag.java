@@ -16,7 +16,7 @@
 package net.noday.core.security.freemarker;
 
 /**
- * industrywords HasRoleTag
+ * cat HasRoleTag
  *
  * @author <a href="http://www.noday.net">Noday</a>
  * @version , 2013-2-8

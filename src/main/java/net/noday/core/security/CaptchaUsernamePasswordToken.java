@@ -18,7 +18,7 @@ package net.noday.core.security;
 import org.apache.shiro.authc.UsernamePasswordToken;
 
 /**
- * industrywords CaptchaUsernamePasswordToken
+ * cat CaptchaUsernamePasswordToken
  *
  * @author <a href="http://www.noday.net">Noday</a>
  * @version , 2012-10-28

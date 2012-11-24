@@ -16,7 +16,7 @@
 package net.noday.core.web;
 
 /**
- * industrywords ResponseMsg
+ * cat AjaxMsg
  *
  * @author <a href="http://www.noday.net">Noday</a>
  * @version , 2012-10-18

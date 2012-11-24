@@ -22,7 +22,7 @@ import java.util.List;
 import net.noday.core.enumeration.Gender;
 
 /**
- * industrywords User
+ * cat User
  *
  * @author <a href="http://www.noday.net">Noday</a>
  * @version , 2012-10-21

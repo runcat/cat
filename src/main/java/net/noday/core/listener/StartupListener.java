@@ -26,7 +26,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 /**
- * industrywords StartupListener
+ * cat StartupListener
  *
  * @author <a href="http://www.noday.net">Noday</a>
  * @version , 2012-10-20
