@@ -58,10 +58,10 @@
                 -->
                 <@shiro.guest>
                 <li>
-                  <a href="${contextPath}/user_regPage.action">注册</a>
+                  <a href="${contextPath}/regist">注册</a>
                 </li>
                 <li>
-                  <a id="loginHref" href="${contextPath}/user_login.action">登录</a>
+                  <a id="loginHref" href="${contextPath}/login">登录</a>
                 </li>
                 </@shiro.guest>
                 <@shiro.user>

@@ -31,7 +31,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 /**
- * industrywords UserDao
+ * cat SecurityDao
  *
  * @author <a href="http://www.noday.net">Noday</a>
  * @version , 2012-10-24

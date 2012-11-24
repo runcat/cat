@@ -43,6 +43,13 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 
+/**
+ * cat ShiroDbRealm
+ *
+ * @author <a href="http://www.noday.net">Noday</a>
+ * @version , 2012-11-24
+ * @since 
+ */
 public class ShiroDbRealm extends AuthorizingRealm {
 
 	protected SecurityService service;

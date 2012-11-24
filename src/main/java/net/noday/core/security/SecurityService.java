@@ -26,7 +26,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * industrywords UserService
+ * cat SecurityService
  *
  * @author <a href="http://www.noday.net">Noday</a>
  * @version , 2012-10-21
