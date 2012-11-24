@@ -69,7 +69,7 @@
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="label label-inverse">noday</span><span class="caret"></span></a>
                   <ul class="dropdown-menu">
                     <li><a href="${contextPath}/admin/home.action">管理后台</a></li>
-                    <li><a href="${contextPath}/user_logout.action">退出</a></li>
+                    <li><a href="${contextPath}/logout">退出</a></li>
                     <li class="divider"></li>
                     <li><a href="#">清除本页缓存</a></li>
                     <li><a href="#">清除所有页面缓存</a></li>

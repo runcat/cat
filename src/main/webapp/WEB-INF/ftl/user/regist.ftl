@@ -1,4 +1,4 @@
-<#include "/WEB-INF/ftl/macro-head.ftl">
+<#include "macro-head.ftl">
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,11 +9,11 @@
 </head>
 <body>
 	<div class="container body-container">
-		<#include "/WEB-INF/ftl/header.ftl">
+		<#include "header.ftl">
 		<div class="row">
 			<br>
 			<div class="span8 offset2">
-				<form class="form-horizontal" action="${contextPath}/user_reg.action" method="post">
+				<form class="form-horizontal" action="${contextPath}/regist" method="post">
 					<legend>用户注册</legend>
 				  <div class="control-group">
 				    <label class="control-label" for="inputEmail">邮箱</label>
@@ -72,13 +72,13 @@
 				  </div>
 				  <div class="control-group">
 				    <div class="controls">
-				      <h4>已注册?去<a href="${contextPath}/user_loginPage.action">登录</a></h4>
+				      <h4>已注册?去<a href="${contextPath}/login">登录</a></h4>
 				    </div>
 				  </div>
 				</form>
 			</div>
 		</div>
-		<#include "/WEB-INF/ftl/footer.ftl">
+		<#include "footer.ftl">
 	</div>
 <script type="text/javascript">
 $(".form-horizontal input").tooltip();

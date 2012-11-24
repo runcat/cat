@@ -24,8 +24,16 @@
 			<mvc:mapping path="/**" />
 			<bean class="com.yonyou.bamboo.interceptor.SigninInterceptor" />
 		</mvc:interceptor>
-	</mvc:interceptors> -->
+	</mvc:interceptors>
 
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter"></bean>
+			</list>
+		</property>
+	</bean>
+ -->
 	<bean id="ftlViewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
 		<property name="cache" value="true" />
 		<property name="suffix" value=".ftl" />

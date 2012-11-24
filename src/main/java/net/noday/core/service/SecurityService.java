@@ -13,10 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.noday.core.security;
+package net.noday.core.service;
 
 import net.noday.core.model.User;
 import net.noday.core.pagination.Page;
+import net.noday.core.security.SecurityDao;
+import net.noday.core.security.ShiroDbRealm;
 import net.noday.core.security.ShiroDbRealm.ShiroUser;
 import net.noday.core.utils.Digests;
 

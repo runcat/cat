@@ -25,6 +25,7 @@ import java.io.IOException;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
+import javax.imageio.stream.ImageInputStream;
 
 import org.apache.shiro.session.Session;
 
@@ -41,19 +42,26 @@ import org.apache.commons.lang3.StringUtils;
 public class Captcha {
 
 	private static final Random random = new Random();
-	private static final String CAPTCHAKEY = "_key_of_captch";
+	public static final String CAPTCHAKEY = "_key_of_captch";
 	
 	public static boolean validate(Session s, String captcha) {
 		String text = (String) s.getAttribute(CAPTCHAKEY);
 		return StringUtils.equalsIgnoreCase(text, captcha);
 	}
 	
-	public static ByteArrayInputStream captch(Session s, int width, int height) throws IOException {
+	public static ByteArrayInputStream captchInputStream(Session s, int width, int height) throws IOException {
 		String text = randText();
 		s.setAttribute(CAPTCHAKEY, text);
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		ImageIO.write(gen(text, width, height), "png", out);
 		return new ByteArrayInputStream(out.toByteArray());
+	}
+	
+	public static ImageInputStream captcha(Session s, int width, int height) throws IOException {
+		String text = randText();
+		s.setAttribute(CAPTCHAKEY, text);
+		BufferedImage bi = gen(text, width, height);
+		return ImageIO.createImageInputStream(bi);
 	}
 	public static BufferedImage gen(String text, int width, int height) throws IOException {
 		BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_INT_BGR);

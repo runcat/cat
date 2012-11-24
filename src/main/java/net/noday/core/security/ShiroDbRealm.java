@@ -25,6 +25,8 @@ import javax.annotation.PostConstruct;
 import net.noday.core.model.User;
 import net.noday.core.security.CaptchaUsernamePasswordToken;
 import net.noday.core.security.IncorrectCaptchaException;
+import net.noday.core.service.SecurityService;
+import net.noday.core.utils.Captcha;
 import net.noday.core.utils.Digests;
 
 import org.apache.commons.lang3.StringUtils;
@@ -40,7 +42,9 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.codec.Base64;
 import org.apache.shiro.realm.AuthorizingRealm;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.ByteSource;
 
 /**
@@ -52,6 +56,8 @@ import org.apache.shiro.util.ByteSource;
  */
 public class ShiroDbRealm extends AuthorizingRealm {
 
+	public static final String LOGINFAILEDCOUNTKEY = "longin_failed_count";
+	
 	protected SecurityService service;
 
 	public void setService(SecurityService service) {
@@ -64,16 +70,16 @@ public class ShiroDbRealm extends AuthorizingRealm {
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException {
 		CaptchaUsernamePasswordToken token = (CaptchaUsernamePasswordToken) authcToken;
-//		String captcha = null;
-//		Object s_count = SecurityUtils.getSubject().getSession().getAttribute("longin_failed_count");
-//		
-//		Object s_captcha = SecurityUtils.getSubject().getSession().getAttribute("captch");
-//		if (s_captcha != null && s_captcha instanceof String) {
-//			captcha = (String) s_captcha;
-//		}
-//		if (!StringUtils.equalsIgnoreCase(captcha, token.getCaptcha())) {
-//			throw new IncorrectCaptchaException("验证码错误");
-//		}
+		String captcha = null;
+//		Object s_count = getSession().getAttribute(LOGINFAILEDCOUNTKEY);
+		
+		Object s_captcha = getSession().getAttribute(Captcha.CAPTCHAKEY);
+		if (s_captcha != null && s_captcha instanceof String) {
+			captcha = (String) s_captcha;
+		}
+		if (!StringUtils.equalsIgnoreCase(captcha, token.getCaptcha())) {
+			throw new IncorrectCaptchaException("验证码错误");
+		}
 		
 		User user = service.findUserByLoginName(token.getUsername());
 		if (user != null) {
@@ -107,6 +113,14 @@ public class ShiroDbRealm extends AuthorizingRealm {
 		matcher.setStoredCredentialsHexEncoded(false);
 //		matcher.setHashSalted(true);
 		setCredentialsMatcher(matcher);
+	}
+	
+	protected Session getSession() {
+		return getSubject().getSession();
+	}
+	
+	protected Subject getSubject() {
+		return SecurityUtils.getSubject();
 	}
 
 	/**

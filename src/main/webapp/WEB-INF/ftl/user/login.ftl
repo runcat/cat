@@ -1,4 +1,4 @@
-<#include "/WEB-INF/ftl/macro-head.ftl">
+<#include "macro-head.ftl">
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,11 +9,11 @@
 </head>
 <body>
 	<div class="container body-container">
-		<#include "/WEB-INF/ftl/header.ftl">
+		<#include "header.ftl">
 		<div class="row">
 			<br>
 	      <div class="span8 offset2">
-				<form class="form-horizontal" action="${contextPath}/user_login.action" method="post">
+				<form class="form-horizontal" action="${contextPath}/login" method="post">
 					<legend>用户登录</legend>
 				  <div class="control-group">
 				    <label class="control-label" for="username">邮箱</label>
@@ -33,7 +33,7 @@
 				    <label class="control-label" for="captcha">验证码</label>
 				    <div class="controls">
 				      <input type="text" name="captcha" class="span1" placeholder="随便">
-				      <img src="${contextPath}/captcha_image.action" class="img-rounded" style="width:60px;height:30px;padding:0 15px;" />
+				      <img src="${contextPath}/captcha" class="img-rounded" style="width:60px;height:30px;padding:0 15px;" />
 				      <a href="#">换一张吧!</a>
 				      <span class="help-inline"></span>
 				    </div>
@@ -53,13 +53,13 @@
 				  </div>
 				  <div class="control-group">
 				    <div class="controls">
-				      <h4>没有帐号?去<a href="${contextPath}/user_regPage.action">注册</a></h4>
+				      <h4>没有帐号?去<a href="${contextPath}/regist">注册</a></h4>
 				    </div>
 				  </div>
 				</form>
 	      </div><!--/span-->
 		</div>
-		<#include "/WEB-INF/ftl/footer.ftl">
+		<#include "footer.ftl">
 	</div>
 <script type="text/javascript">
 $(".form-horizontal input").tooltip();

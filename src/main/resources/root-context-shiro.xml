@@ -39,7 +39,7 @@
 				/** = anon
 			</value>
 		</property>
-	</bean>
+	</bean><!-- 登录抛出异常后应该回登录页面并显示异常信息，现在却回到了首页 -->
 	
 	<!-- 用户授权信息Cache, 采用EhCache -->
 	<bean id="shiroEhcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
