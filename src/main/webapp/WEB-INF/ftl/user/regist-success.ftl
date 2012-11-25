@@ -1,4 +1,4 @@
-<#include "/WEB-INF/ftl/macro-head.ftl">
+<#include "macro-head.ftl">
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div class="container body-container">
-		<#include "/WEB-INF/ftl/header.ftl">
+		<#include "header.ftl">
 		<div class="row">
 			<br>
 			<div class="span8 offset2">
@@ -29,7 +29,7 @@
 	      	</div>
 			</div>
 		</div>
-		<#include "/WEB-INF/ftl/footer.ftl">
+		<#include "footer.ftl">
 	</div>
 <script type="text/javascript">
 var email = "${u.email}";

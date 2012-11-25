@@ -52,7 +52,7 @@
 		</property>
 	</bean>
 
-	<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+<!-- 	<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
 		<property name="defaultErrorView">
 			<value>error</value>
 		</property>
@@ -62,7 +62,7 @@
 		<property name="warnLogCategory">
 			<value>org.springframework.web.servlet.handler.SimpleMappingExceptionResolver</value>
 		</property>
-	</bean>
+	</bean> -->
 
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basename" value="message" />
