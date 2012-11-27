@@ -1,6 +1,6 @@
 /*
 SQLyog v10.2 
-MySQL - 5.5.28 : Database - cat
+MySQL - 5.5.28-log : Database - cat
 *********************************************************************
 */
 
@@ -27,6 +27,8 @@ CREATE TABLE `app_config` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+/*Data for the table `app_config` */
+
 /*Table structure for table `article` */
 
 DROP TABLE IF EXISTS `article`;
@@ -43,6 +45,8 @@ CREATE TABLE `article` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+/*Data for the table `article` */
+
 /*Table structure for table `role` */
 
 DROP TABLE IF EXISTS `role`;
@@ -54,6 +58,10 @@ CREATE TABLE `role` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+/*Data for the table `role` */
+
+insert  into `role`(`id`,`name`,`code`,`status`) values (1,'???','admin',2);
 
 /*Table structure for table `user` */
 
@@ -78,6 +86,10 @@ CREATE TABLE `user` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
+/*Data for the table `user` */
+
+insert  into `user`(`id`,`email`,`password`,`name`,`sex`,`organization`,`visits`,`downloads`,`regist_time`,`regist_ip`,`last_time`,`last_ip`,`status`,`salt`,`role`) values (1,'admin@noday.net','K50paAp6XRU6xMt5VmmQvEVfe33hfgxHDRx1gYYxNTU=',NULL,NULL,NULL,0,0,'2012-11-05 12:28:07','127.0.0.1',NULL,NULL,1,'0VSG15LOUN4=','admin');
+
 /*Table structure for table `user_role` */
 
 DROP TABLE IF EXISTS `user_role`;
@@ -90,6 +102,10 @@ CREATE TABLE `user_role` (
   CONSTRAINT `user_role_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   CONSTRAINT `user_role_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `user_role` */
+
+insert  into `user_role`(`user_id`,`role_id`) values (1,1);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
