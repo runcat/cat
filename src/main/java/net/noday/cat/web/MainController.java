@@ -72,18 +72,18 @@ public class MainController {
 		return "user/regist-success";
 	}
 	
-	@RequestMapping(value = "login", method = RequestMethod.GET)
+	@RequestMapping(value = "login")
 	public String preLogin() {
 		
 		return "user/login";
 	}
 	
-	@Deprecated
-	@RequestMapping(value = "login", method = RequestMethod.POST)
-	public String login() {
-		
-		return "redirect:/";
-	}
+//	@Deprecated //如果有这个方法，登录失败后就不会回到登录页
+//	@RequestMapping(value = "login", method = RequestMethod.POST)
+//	public String login() {
+//		
+//		return "redirect:/";
+//	}
 	
 	@RequestMapping(value = "captcha", method = RequestMethod.GET) @ResponseBody
 	public byte[] loginCaptcha() throws IOException {

@@ -39,7 +39,7 @@
 				/** = anon
 			</value>
 		</property>
-	</bean><!-- 登录抛出异常后应该回登录页面并显示异常信息，现在却回到了首页 -->
+	</bean>
 	
 	<!-- 用户授权信息Cache, 采用EhCache -->
 	<bean id="shiroEhcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
@@ -53,4 +53,11 @@
 	<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
 	    <property name="securityManager" ref="securityManager"/>
 	</bean>
+<!-- 
+使用shiro，springMVC不能阻碍登录的post方法，也不能映射post方法
+
+
+
+
+ -->
 </beans>
