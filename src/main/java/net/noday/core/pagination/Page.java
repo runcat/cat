@@ -26,10 +26,15 @@ import java.util.List;
  */
 public class Page<M> {
 
+	public static final int DEFAULTSIZE = 15;
 	private List<M> rows;
-	private int index = 1;
+	private int pageIndex = 1;
+	private int pageCount = 0;
 	private int size = 15;
-	private int count;
+	private int rowCount = 0;
+	
+	private int pageBegin = 1;
+	private int pageEnd;
 	
 	/**
 	 * 
@@ -37,11 +42,13 @@ public class Page<M> {
 	public Page() {
 		super();
 	}
-	/**
-	 * @param size
-	 */
 	public Page(int size) {
 		super();
+		this.size = size;
+	}
+	public Page(int pageIndex, int size) {
+		super();
+		this.pageIndex = pageIndex;
 		this.size = size;
 	}
 	public List<M> getRows() {
@@ -50,11 +57,17 @@ public class Page<M> {
 	public void setRows(List<M> rows) {
 		this.rows = rows;
 	}
-	public int getIndex() {
-		return index;
+	public int getPageIndex() {
+		return pageIndex;
 	}
-	public void setIndex(int index) {
-		this.index = index;
+	public void setPageIndex(int pageIndex) {
+		this.pageIndex = pageIndex;
+	}
+	public int getPageCount() {
+		return pageCount;
+	}
+	public void setPageCount(int pageCount) {
+		this.pageCount = pageCount;
 	}
 	public int getSize() {
 		return size;
@@ -62,15 +75,43 @@ public class Page<M> {
 	public void setSize(int size) {
 		this.size = size;
 	}
-	public int getCount() {
-		return count;
+	public int getRowCount() {
+		return rowCount;
 	}
-	public void setCount(int count) {
-		this.count = count;
+	public void setRowCount(int rowCount) {
+		this.rowCount = rowCount;
+		int _count = rowCount/size;
+		pageCount = (rowCount%size == 0) ? _count : (_count + 1);
+		if (pageIndex > pageCount) {
+			pageIndex = pageCount;
+		}
+		// TODO 计算 pageBegin pageEnd 前四后五 待测
+		if(pageIndex < 6) {
+			pageBegin = 1;
+			pageEnd = pageCount<10?pageCount:10;
+		} else {
+			int _end = pageIndex + 5;
+			if (pageCount > _end) {
+				pageBegin = pageIndex - 4;
+				pageEnd = _end;
+			} else {
+				int _begin = pageCount - 9;
+				pageEnd = pageCount;
+				pageBegin = _begin>1?_begin:1;
+			}
+		}
 	}
-	//-------------------------------
-	public void setI(int i) {
-		this.index = i;
+	public int getPageBegin() {
+		return pageBegin;
+	}
+	public void setPageBegin(int pageBegin) {
+		this.pageBegin = pageBegin;
+	}
+	public int getPageEnd() {
+		return pageEnd;
+	}
+	public void setPageEnd(int pageEnd) {
+		this.pageEnd = pageEnd;
 	}
 	
 }

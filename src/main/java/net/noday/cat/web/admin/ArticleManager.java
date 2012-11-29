@@ -22,9 +22,12 @@ import net.noday.cat.service.ArticleService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * cat ArticleController
@@ -48,5 +51,11 @@ public class ArticleManager {
 	public String create(@Valid @ModelAttribute Article article) {
 		service.save(article);
 		return "admin/article/add";
+	}
+	
+	@RequestMapping(value = "/p/{index}", method = RequestMethod.GET)
+	public String list(@PathVariable("index") int index, Model model) {
+		model.addAttribute(service.listPage(index));
+		return "admin/article/list";
 	}
 }

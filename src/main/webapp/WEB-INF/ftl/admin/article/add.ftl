@@ -35,7 +35,7 @@
 		<#include "footer.ftl">
 	</div>
 <script type="text/javascript">
-$("#nav-article").addClass("active");
+$("#nav-article-new").addClass("active");
 </script>
 </body>
 </html>

@@ -15,6 +15,8 @@
  */
 package net.noday.cat.dao;
 
+import java.util.List;
+
 import net.noday.cat.model.Article;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,5 +52,17 @@ public class ArticleDao {
 		String sql = "select * from article a where a.id=?";
 		Article a = jdbc.queryForObject(sql, new BeanPropertyRowMapper<Article>(Article.class), id);
 		return a;
+	}
+	
+	public List<Article> findByPage(int index, int size) {
+		String sql = "select * from article a limit ?,?";
+		List<Article> list = jdbc.query(sql, new BeanPropertyRowMapper<Article>(Article.class), (index-1)*size, size);
+		return list;
+	}
+	
+	public int findCount() {
+		String sql = "select count(a.id) from article a";
+		int count = jdbc.queryForInt(sql);
+		return count;
 	}
 }

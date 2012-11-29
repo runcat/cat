@@ -17,6 +17,7 @@ package net.noday.cat.service;
 
 import net.noday.cat.dao.ArticleDao;
 import net.noday.cat.model.Article;
+import net.noday.core.pagination.Page;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,7 +35,13 @@ public class ArticleService {
 	@Autowired private ArticleDao dao;
 	
 	public long save(Article article) {
-		Article a = dao.get(4);
 		return dao.save(article);
+	}
+	
+	public Page<Article> listPage(int index) {
+		Page<Article> page = new Page<Article>(index, Page.DEFAULTSIZE);
+		page.setRowCount(dao.findCount());
+		page.setRows(dao.findByPage(page.getPageIndex(), page.getSize()));
+		return page;
 	}
 }

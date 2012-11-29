@@ -18,7 +18,6 @@ package net.noday.core.service;
 import net.noday.core.model.User;
 import net.noday.core.pagination.Page;
 import net.noday.core.security.SecurityDao;
-import net.noday.core.security.ShiroDbRealm;
 import net.noday.core.security.ShiroDbRealm.ShiroUser;
 import net.noday.core.utils.Digests;
 
@@ -40,8 +39,8 @@ public class SecurityService {
 	@Autowired private SecurityDao dao;
 	
 	public void findPage(User condition, Page<User> pageData) {
-		pageData.setCount(dao.findCount(condition));
-		pageData.setRows(dao.findPage(condition, pageData.getIndex(), pageData.getSize()));
+		pageData.setPageCount(dao.findCount(condition));
+		pageData.setRows(dao.findPage(condition, pageData.getPageIndex(), pageData.getSize()));
 	}
 	
 	public void regist(User u) {
@@ -68,14 +67,14 @@ public class SecurityService {
 	/**
 	 * 判断是否超级管理员.
 	 */
-	private boolean isSupervisor(Long id) {
+	protected boolean isSupervisor(Long id) {
 		return id == 1;
 	}
 
 	/**
 	 * 取出Shiro中的当前用户LoginName.
 	 */
-	private String getCurrentUserName() {
+	protected String getCurrentUserName() {
 		ShiroUser user = (ShiroUser) SecurityUtils.getSubject().getPrincipal();
 		return user.loginName;
 	}
