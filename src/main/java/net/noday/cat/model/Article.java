@@ -18,6 +18,9 @@ package net.noday.cat.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+
 /**
  * cat Article
  *
@@ -33,8 +36,10 @@ public class Article implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
+	@NotEmpty @Length(max = 40)
 	private String title;
 	private String description;
+	@NotEmpty
 	private String content;
 	private Date createTime;
 	private Date modifyTime;
