@@ -1,31 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xmlns="http://www.springframework.org/schema/beans"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+                http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+                http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.1.xsd" >
 
-	xsi:schemaLocation="
-        http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
-        http://www.springframework.org/schema/mvc
-        http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
-        http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context-3.1.xsd
-        http://www.springframework.org/schema/aop 
-        http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
-        http://www.springframework.org/schema/tx
-        http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
-
+	<mvc:default-servlet-handler />
+	
 	<context:component-scan base-package="net.noday.core.web,net.noday.cat.web">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
-	<mvc:annotation-driven />
-	<mvc:default-servlet-handler />
-<!-- 	<mvc:interceptors>
-		<mvc:interceptor>
-			<mvc:mapping path="/**" />
-			<bean class="com.yonyou.bamboo.interceptor.SigninInterceptor" />
-		</mvc:interceptor>
-	</mvc:interceptors>
-
+    <!--
+    扫描controller 可以配置多个包 DefaultAnnotationHandlerMapping和AnnotationMethodHandlerAdapter分别处理类级别和 
+    方法级别上的@RequestMapping注解，是默认在web应用上下文中注册好的。 当显式的注册了其他处理程序映射或处理程序适配器后就不会自动注册了， 
+    上面定义了过滤静态资源的处理程序，需要主动注册 
+   <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
+   <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 		<property name="messageConverters">
 			<list>
@@ -33,14 +27,103 @@
 			</list>
 		</property>
 	</bean>
- -->
-	<bean id="ftlViewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
-		<property name="cache" value="true" />
-		<property name="suffix" value=".ftl" />
-		<property name="contentType" value="text/html; charset=utf-8" />
-	</bean>
+    -->
+	<mvc:annotation-driven />
 
-	<bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+   <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+   	<description></description>
+       <property name="order" value="0" /><!-- 设置最高优先级 -->
+       <property name="defaultContentType" value="text/html" /><!--  -->
+       <property name="favorPathExtension" value="true" /><!-- 默认true，根据扩展名确定MIME类型 -->
+       <property name="favorParameter" value="false" /><!-- 默认false，通过请求参数确定MIME类型 ，默认参数是formate，可通过parameterName属性改变 -->
+       <property name="ignoreAcceptHeader" value="true" /><!-- 默认false，若以上步骤没确定MIME类型则根据请求报文头确定 -->
+       <property name="mediaTypes">
+           <description>favorPathExtension, favorParameter是true时才起作用 </description>
+           <map>
+               <entry key="html" value="text/html" />
+               <entry key="json" value="application/json" />
+               <entry key="xml" value="application/xml" />
+               <entry key="atom" value="application/atom+xml" />
+           </map>
+       </property>
+       <property name="defaultViews" >
+           <list>
+               <bean class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
+                   <property name="objectMapper" >
+                       <bean class="org.codehaus.jackson.map.ObjectMapper" >
+                           <property name="dateFormat" >
+                               <bean class="java.text.SimpleDateFormat" >
+                                   <constructor-arg value="yyyy-MM-dd hh:mm:ss" />
+                               </bean>
+                           </property>
+                       </bean>
+                   </property>
+               </bean>
+               <bean class="org.springframework.web.servlet.view.xml.MarshallingView">
+                   <property name="marshaller">
+                       <bean class="org.springframework.oxm.xstream.XStreamMarshaller">
+                           <property name="autodetectAnnotations" value="true" />
+                       </bean>
+                   </property>
+               </bean>
+           </list>
+       </property>
+       <!-- 
+       <property name="viewResolvers" >
+           <list>
+               <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
+               <ref bean="viewResolver" />
+           </list>
+       </property>
+        -->
+   </bean>
+	<bean id="ftlViewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+	    <property name="order" value="100" />
+	    <property name="cache" value="true" />
+	    <property name="prefix" value="" />
+	    <property name="suffix" value=".ftl" />
+	    <property name="contentType" value="text/html; charset=utf-8" />
+	</bean>
+   <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+       <property name="order" value="200" />
+       <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+       <property name="prefix" value="/WEB-INF/jsp/" />
+       <property name="suffix" value=".jsp" />
+   </bean>
+
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="classpath:i18n/messages" />
+		<property name="useCodeAsDefaultMessage" value="true" />
+	</bean>
+	
+   <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" >
+       <property name="maxUploadSize" value="2097152" />
+       <property name="uploadTempDir" value="/temp/" />
+   </bean>
+
+<!-- 	
+
+	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+	<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="defaultErrorView">
+			<value>error</value>
+		</property>
+		<property name="defaultStatusCode">
+			<value>500</value>
+		</property>
+		<property name="warnLogCategory">
+			<value>org.springframework.web.servlet.handler.SimpleMappingExceptionResolver</value>
+		</property>
+        <property name="exceptionMappings" >
+            <props>
+                <prop key="org.springframework.dao.DataAccessException">dataAccessFailure</prop>
+                <prop key="java.lang.Exception">error_all</prop>
+            </props>
+        </property>
+	</bean>
+	
+	//用这个和@ResponseBody时，当入参Model序列化为json时出错
+ 	<bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
 		<property name="objectMapper">
 			<bean class="org.codehaus.jackson.map.ObjectMapper">
 				<property name="dateFormat">
@@ -51,24 +134,26 @@
 			</bean>
 		</property>
 	</bean>
+ 	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean class="com.yonyou.bamboo.interceptor.SigninInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+-->
 
-<!-- 	<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
-		<property name="defaultErrorView">
-			<value>error</value>
-		</property>
-		<property name="defaultStatusCode">
-			<value>500</value>
-		</property>
-		<property name="warnLogCategory">
-			<value>org.springframework.web.servlet.handler.SimpleMappingExceptionResolver</value>
-		</property>
-	</bean> -->
+    <!-- 用于定义ParameterizableViewController。根据路径找到相应的视图 -->
+    <!--
+ Convenient way to map URLs to JSPs w/o having a Controller
+        <mvc:view-controller path="/dd" view-name="redirect:index.html" />
+    <mvc:view-controller path="/admin/activeUsers" view-name="admin/activeUsers"/>
+    <mvc:view-controller path="/mainMenu" view-name="mainMenu"/>
+    -->
 
-	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
-		<property name="basename" value="message" />
-		<property name="useCodeAsDefaultMessage" value="true" />
-	</bean>
-
-	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
-
+    <!--
+        Handles HTTP GET requests for /resources/** by efficiently serving 
+                up static resources in the ${webappRoot}/resources directory
+        <mvc:resources mapping="/resources/**" location="/resources/" />
+    -->
+<!--   -->
 </beans>
