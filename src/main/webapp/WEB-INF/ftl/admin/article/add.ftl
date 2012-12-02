@@ -60,7 +60,15 @@ $('#article-form').ajaxForm({
 			$(".control-group").removeClass("error");
 			for ( var i = 0; i < data.fieldErrorList.length; i++) {
 				var error = data.fieldErrorList[i];
-				$("#msg-"+error.field).html(error.defaultMessage).parent().addClass("error");
+				$("[name='"+error.field+"']")
+					.tooltip({title:error.defaultMessage,placement:"left"})
+					.tooltip('show')
+					.keypress(function(){
+						$(this).tooltip("destroy").unbind();
+						$(this).parent().removeClass("error");
+					})
+					.parent().addClass("error");
+				//$("#msg-"+error.field).html(error.defaultMessage).parent().addClass("error");
 			}
 		} else if (data) {
 
