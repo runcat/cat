@@ -84,4 +84,22 @@ public class ArticleManager {
 		model.addAttribute(service.listPage(index));
 		return "admin/article/list";
 	}
+	
+	@RequestMapping(value = "/{id}/edit")
+	public String edit(@PathVariable("id") long id) {
+		
+		return "";
+	}
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	public String modify(@Valid Article article, BindingResult result, ModelMap model) {
+		
+		return "";
+	}
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public String delete(@PathVariable("id") long id, Model model) {
+		model.addAttribute(true);
+		return "";
+	}
 }
