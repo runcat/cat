@@ -53,27 +53,28 @@
 	              <tfoot>
 	                <tr>
 	                  <td colspan="5">
-			            	<div class="pagination pagination-right">
+			            	<div class="pagination pagination-small pagination-right">
 			            		<ul>
 			            			<li><a href="${contextPath}/admin/article/p/1">首页</a></li>
 			            			<#if 1 == page.pageIndex>
-			            				<li class="prev disabled"><a>«</a></li>
+			            				<li class="disabled"><a>«</a></li>
 			            			<#else>
-			            				<li class="prev"><a href="${contextPath}/admin/article/p/${page.pageIndex - 1}">«</a></li>
+			            				<li><a href="${contextPath}/admin/article/p/${page.pageIndex - 1}">«</a></li>
 			            			</#if>
 			            			<#list page.pageBegin..page.pageEnd as i>
 			            			<#if i == page.pageIndex>
-			            				<li class="active"><a>${i}</a></li>
+			            				<!-- <li class="active"><a>${i}</a></li> -->
+			            				<li class="active"><a><input type="text" value="${i}"></a></li>
 			            			<#else>
 				            			<li><a href="${contextPath}/admin/article/p/${i}">${i}</a></li>
 				            		</#if>
 			            			</#list>
 			            			<#if page.pageCount == page.pageIndex>
-			            				<li class="next disabled"><a>»</a></li>
+			            				<li class="disabled"><a>»</a></li>
 			            			<#else>
-			            				<li class="next"><a href="${contextPath}/admin/article/p/${page.pageIndex + 1}">»</a></li>
+			            				<li><a href="${contextPath}/admin/article/p/${page.pageIndex + 1}">»</a></li>
 			            			</#if>
-			            			<li><a href="${contextPath}/admin/article/p/${page.pageCount}">末页</a></li>
+			            			<li><a href="${contextPath}/admin/article/p/${page.pageCount}">末页[${page.pageCount}]</a></li>
 			            		</ul>
 			            	</div>
             			</td>

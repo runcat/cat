@@ -55,12 +55,16 @@
 }
 /** 分页条 **/
 .table .pagination {
-height: 30px;
 margin: 0 0;
 }
-.table .pagination ul > li > a, .table .pagination ul > li > span {
-	padding: 0 11px;
-	line-height: 28px;
+.pagination input {
+	margin: 0 0;
+	padding: 0 0;
+	width: 30px;
+	height: 14px;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
 }
 /** grid **/
 .table {
