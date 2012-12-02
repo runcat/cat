@@ -33,11 +33,8 @@
 					<input type="text" name="tag" placeholder="随便" class="span9">
 					<span id="msg-tag" class="help-block"></span>
 					</div>
-					<button type="submit" class="btn btn-primary">发布</button>
+					<button type="submit" class="btn btn-primary">发布</button><span id="msg-submit" class="help-inline"></span>
 				</form>
-			</section>
-			<section>
-				<div class="alert"></div>
 			</section>
 		</div>
 	</div>
@@ -50,10 +47,8 @@ $("#nav-article-new").addClass("active");
 $('#article-form').ajaxForm({
 	dataType:"json",
 	beforeSerialize:function($form, options) {
-		$(".alert").html("beforeSerialize");
 	},
 	beforeSubmit:function(formData, jqForm, options) {
-		$(".alert").append("<br>beforeSubmit");
 	},
 	success:function(data) {
 		if (data && data.fieldErrorList) {
@@ -75,7 +70,7 @@ $('#article-form').ajaxForm({
 		}
 	},
 	error:function(jqXHR, textStatus, errorThrown) {
-		$(".alert").append("<br>error:"+jqXHR.responseText);
+		$("#msg-submit").html(textStatus+jqXHR.responseText);
 	}
 });
 </script>
