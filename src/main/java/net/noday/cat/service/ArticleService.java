@@ -34,6 +34,10 @@ public class ArticleService {
 
 	@Autowired private ArticleDao dao;
 	
+	public Article get(long id) {
+		return dao.get(id);
+	}
+	
 	public long save(Article article) {
 		return dao.save(article);
 	}

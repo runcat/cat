@@ -15,13 +15,10 @@
  */
 package net.noday.cat.web.admin;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import net.noday.cat.model.Article;
 import net.noday.cat.service.ArticleService;
-import net.noday.core.web.AjaxMsg;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,14 +26,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
-import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * cat ArticleController
@@ -61,12 +55,7 @@ public class ArticleManager {
 	@RequestMapping(method = RequestMethod.POST)
 	public String create(@Valid Article article, BindingResult result, ModelMap model) {
 		if (result.hasErrors()) {
-//			model.addAllAttributes(result.getFieldErrors());
 			model.addAttribute(result.getFieldErrors());
-//			List<FieldError> errors = result.getFieldErrors();
-//			for (FieldError error : errors) {
-//				model.addAttribute(error.getField(), error.getDefaultMessage())
-//			}
 		} else {
 			try {
 				service.save(article);
@@ -86,13 +75,13 @@ public class ArticleManager {
 	}
 	
 	@RequestMapping(value = "/{id}/edit")
-	public String edit(@PathVariable("id") long id) {
-		
-		return "";
+	public String edit(@PathVariable("id") long id, Model model) {
+		model.addAttribute(service.get(id));
+		return "admin/article/edit";
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public String modify(@Valid Article article, BindingResult result, ModelMap model) {
+	public String modify(@PathVariable("id") long id, @Valid Article article, BindingResult result, ModelMap model) {
 		
 		return "";
 	}
