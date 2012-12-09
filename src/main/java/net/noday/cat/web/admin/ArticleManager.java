@@ -68,7 +68,7 @@ public class ArticleManager {
 		return "admin/article/add-success";
 	}
 	
-	@RequestMapping(value = "/p/{index}", method = RequestMethod.GET)
+	@RequestMapping(value = "s/{index}", method = RequestMethod.GET)
 	public String list(@PathVariable("index") int index, Model model) {
 		model.addAttribute(service.listPage(index));
 		return "admin/article/list";

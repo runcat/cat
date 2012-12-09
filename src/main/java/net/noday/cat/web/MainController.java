@@ -17,6 +17,7 @@ package net.noday.cat.web;
 
 import java.io.IOException;
 
+import net.noday.cat.service.ArticleService;
 import net.noday.core.model.User;
 import net.noday.core.security.IncorrectCaptchaException;
 import net.noday.core.utils.Captcha;
@@ -29,8 +30,11 @@ import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -42,12 +46,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @version , 2012-11-24
  * @since 
  */
-@Controller @RequestMapping("/")
+@Controller
 public class MainController {
 
-	@RequestMapping(method = RequestMethod.GET)
-	public String index() {
+	@Autowired private ArticleService articleService;
+	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String index(Model model) {
 		
+		return page(1, model);
+	}
+	
+	@RequestMapping(value = "/p/{index}", method = RequestMethod.GET)
+	public String page(@PathVariable("index") int index, Model model) {
+		model.addAttribute(articleService.listPage(index));
 		return "index";
 	}
 	
@@ -56,7 +68,7 @@ public class MainController {
 	 * 注册页
 	 * @return
 	 */
-	@RequestMapping(value = "regist", method = RequestMethod.GET)
+	@RequestMapping(value = "/regist", method = RequestMethod.GET)
 	public String preRegist() {
 		
 		return "user/regist";
@@ -66,13 +78,13 @@ public class MainController {
 	 * @param u
 	 * @return
 	 */
-	@RequestMapping(value = "regist", method = RequestMethod.POST)
+	@RequestMapping(value = "/regist", method = RequestMethod.POST)
 	public String regist(User u) {
 		
 		return "user/regist-success";
 	}
 	
-	@RequestMapping(value = "login")
+	@RequestMapping(value = "/login")
 	public String preLogin() {
 		
 		return "user/login";
@@ -85,7 +97,7 @@ public class MainController {
 //		return "redirect:/";
 //	}
 	
-	@RequestMapping(value = "captcha", method = RequestMethod.GET) @ResponseBody
+	@RequestMapping(value = "/captcha", method = RequestMethod.GET) @ResponseBody
 	public byte[] loginCaptcha() throws IOException {
 		return FileCopyUtils.copyToByteArray(Captcha.captchInputStream(getSession(), 60, 30));
 	}

@@ -72,7 +72,33 @@ margin: 0 0;
 	font-size: 11.9px;
 }
 **/
+/**  **/
+.article h3 {
+	margin: 0px 0;
+}
+.article > div {
+	min-height: 83px;
+}
+/** TODO 带图片文章 **/
+.article h4 {
+	margin: 2px 0;
+}
 /** grid **/
 .table {
 	margin-bottom: 10px;
+}
+.small {
+	font-size: 85%;
+}
+.small [class^="icon-"], .small  [class*=" icon-"] {
+	margin-top: 0px;
+}
+.article ul, .article ol {
+	margin-bottom: 5px;
+}
+.articles hr {
+	margin: 5px 0;
+}
+.articles .row-fluid {
+	margin-top: 5px;
 }

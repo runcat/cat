@@ -11,9 +11,7 @@
 	<div class="container body-container">
 		<#include "header.ftl">
 		<div class="row">
-			<div class="span9">
-				<#include "content.ftl">
-			</div>
+			<#include "content.ftl">
 			<div class="span3">
 				<#include "side.ftl">
 			</div>

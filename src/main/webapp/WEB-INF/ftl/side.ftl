@@ -1,6 +1,6 @@
         <div class="thumbnail">
           <h6>avg power</h6>
-          <img src="http://placehold.it/260x180" alt="">
+          <img src="holder.js/190x140" alt="">
         </div>
         <div class="alert alert-info">
           <strong>Warning!</strong> Best check yo self, you're not looking too good.
