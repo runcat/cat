@@ -65,8 +65,10 @@
 			            			</#if>
 			            			<#list page.pageBegin..page.pageEnd as i>
 			            			<#if i == page.pageIndex>
-			            				<!-- <li class="active"><a>${i}</a></li> -->
+			            				<!-- TODO 
 			            				<li class="active"><a><input type="text" value="${i}"></a></li>
+			            				 -->
+			            				<li class="active"><a>${i}</a></li>
 			            			<#else>
 				            			<li><a href="${contextPath}/admin/article/p/${i}">${i}</a></li>
 				            		</#if>

@@ -1,9 +1,10 @@
     <header class="jumbotron subhead" id="overview">
       <div class="row">
         <div class="span6">
-          <h1>Scaffolding</h1>
-          <p class="lead">Bootstrap is built on a responsive 12-column grid. We've also included fixed- and fluid-width layouts based on that system.</p>
+          <h1>Noday.net</h1>
+          <p>分享…</p>
         </div>
+        <!-- 
         <div class="span3">
           <div class="well">
             <h3>Hello, world!</h3>
@@ -12,6 +13,7 @@
         <div class="span3">
             <h3>Hello, world!</h3>
         </div>
+         -->
       </div>
       <div class="navbar" id="main-navbar">
         <div class="navbar-inner">
@@ -24,7 +26,7 @@
             <a class="brand" href="#">Project name</a>
             <div class="nav-collapse">
               <ul class="nav">
-                <li class="active"><a href="${contextPath}/">Home</a></li>
+                <li class="active"><a href="${contextPath}/"><i class="icon-home"></i>Home</a></li>
                 <li><a href="#">Link</a></li>
                 <li><a href="#">Link</a></li>
                 <li><a href="#">Link</a></li>
