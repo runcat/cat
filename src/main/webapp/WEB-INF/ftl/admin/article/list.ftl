@@ -46,7 +46,7 @@
 	                  <td>
 							  	<a title="置顶" data-id="${row.id }" class="icon-arrow-up" href="javascript:void(0)" rel="tooltip"></a>
 							  	<a title="查看评论" data-id="${row.id }" class="icon-comment" href="javascript:void(0)" rel="tooltip"></a>
-							  	<a title="编辑" class="icon-edit" href="${contextPath}/admin/article/${row.id }/edit" rel="tooltip"></a>
+							  	<a title="编辑" class="icon-edit" href="${contextPath}/admin/articles/${row.id }/edit" rel="tooltip"></a>
 							  	<a title="删除" data-id="${row.id }" class="delete icon-remove" href="javascript:void(0)" rel="tooltip"></a>
 						  </td>
 	                </tr>
