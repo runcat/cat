@@ -74,7 +74,7 @@ public class ArticleManager {
 		return "admin/article/list";
 	}
 	
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
 	public String edit(@PathVariable("id") long id, Model model) {
 		model.addAttribute(service.get(id));
 		return "admin/article/edit";
