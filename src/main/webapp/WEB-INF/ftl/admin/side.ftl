@@ -1,8 +1,8 @@
 <div class="well sidebar-nav">
  <ul class="nav nav-list">
    <li class="nav-header">文章</li>
-   <li id="nav-article-new"><a href="${contextPath}/admin/article/create">发布文章</a></li>
-   <li id="nav-article-list"><a href="${contextPath}/admin/article/p/1">文章管理</a></li>
+   <li id="nav-article-new"><a href="${contextPath}/admin/articles/create">发布文章</a></li>
+   <li id="nav-article-list"><a href="${contextPath}/admin/articles/p/1">文章管理</a></li>
    <li class="nav-header">管理功能</li>
    <li id="nav-blog"><a href="${contextPath}/admin/blog">文章管理</a></li>
    <li id="nav-file"><a href="${contextPath}/admin/file.action">文件管理</a></li>

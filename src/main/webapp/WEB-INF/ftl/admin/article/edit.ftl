@@ -17,7 +17,7 @@
 		<div class="span9">
 			<section>
 				<legend>文章发布</legend>
-				<form id="article-form" action="${contextPath}/admin/articles/${article.id}" method="put">
+				<form id="article-form" action="${contextPath}/admin/articles/${article.id}.json" method="put">
 					<div class="control-group">
 					<label class="control-label" for="title">标题</label>
 					<input type="text" name="title" placeholder="文章标题" value='${(article.title)!""}' class="span9">
@@ -45,7 +45,7 @@
 <script type="text/javascript">
 $("#nav-article-new").addClass("active");
 $('#article-form').ajaxForm({
-	dataType:"json",
+	//dataType:"json",
 	beforeSerialize:function($form, options) {
 	},
 	beforeSubmit:function(formData, jqForm, options) {
