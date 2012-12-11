@@ -39,7 +39,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @version , 2012-11-24
  * @since 
  */
-@Controller @RequestMapping("/admin/article")
+@Controller @RequestMapping("/admin/articles")
 public class ArticleManager {
 
 	private static final Logger log = Logger.getLogger(ArticleManager.class);
@@ -68,13 +68,13 @@ public class ArticleManager {
 		return "admin/article/add-success";
 	}
 	
-	@RequestMapping(value = "s/{index}", method = RequestMethod.GET)
+	@RequestMapping(value = "p/{index}", method = RequestMethod.GET)
 	public String list(@PathVariable("index") int index, Model model) {
 		model.addAttribute(service.listPage(index));
 		return "admin/article/list";
 	}
 	
-	@RequestMapping(value = "/{id}/edit")
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public String edit(@PathVariable("id") long id, Model model) {
 		model.addAttribute(service.get(id));
 		return "admin/article/edit";

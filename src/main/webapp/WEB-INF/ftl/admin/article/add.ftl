@@ -17,7 +17,7 @@
 		<div class="span9">
 			<section>
 				<legend>文章发布</legend>
-				<form id="article-form" action="${contextPath}/admin/article.json" method="post">
+				<form id="article-form" action="${contextPath}/admin/articles.json" method="post">
 					<div class="control-group">
 					<label class="control-label" for="title">标题</label>
 					<input type="text" name="title" placeholder="文章标题" value='${(article.title)!""}' class="span9">
