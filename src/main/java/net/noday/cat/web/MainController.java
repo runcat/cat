@@ -22,6 +22,7 @@ import net.noday.core.model.User;
 import net.noday.core.security.IncorrectCaptchaException;
 import net.noday.core.utils.Captcha;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -31,6 +32,7 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -60,7 +62,7 @@ public class MainController {
 	@RequestMapping(value = "/p/{index}", method = RequestMethod.GET)
 	public String page(@PathVariable("index") int index, Model model) {
 		model.addAttribute(articleService.listPage(index));
-		return "index";
+		return skinTemplate("index");
 	}
 	
 
@@ -100,6 +102,14 @@ public class MainController {
 	@RequestMapping(value = "/captcha", method = RequestMethod.GET) @ResponseBody
 	public byte[] loginCaptcha() throws IOException {
 		return FileCopyUtils.copyToByteArray(Captcha.captchInputStream(getSession(), 60, 30));
+	}
+	private String skinName;
+	public String skinTemplate(String template) {
+		return "skins/".concat(skinName).concat("/").concat(template);
+	}
+	@Value("#{appConfigs.skin}")
+	public void setSkinName(String skinName) {
+		this.skinName = skinName;
 	}
 	
 	protected Subject getSubject() {

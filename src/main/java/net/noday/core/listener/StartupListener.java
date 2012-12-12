@@ -15,6 +15,8 @@
  */
 package net.noday.core.listener;
 
+import java.util.Map;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -38,14 +40,18 @@ public class StartupListener implements ServletContextListener {
 
     private ServletContext context;
     private ApplicationContext ctx;
+    Map<String, Object> appConfigs;
     
 	/* (non-Javadoc)
 	 * @see javax.servlet.ServletContextListener#contextInitialized(javax.servlet.ServletContextEvent)
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
     public void contextInitialized(ServletContextEvent sce) {
         ctx = WebApplicationContextUtils.getRequiredWebApplicationContext(context = sce.getServletContext());
+        appConfigs = ctx.getBean("appConfigs", Map.class);
         initMysql();
+        // load config
         setWebProperty();
     }
 	
@@ -56,10 +62,12 @@ public class StartupListener implements ServletContextListener {
 
     private void setWebProperty() {
         setAttribute("contextPath", context.getContextPath());
+        setAttribute("skin", "default");
     }
 
     private void setAttribute(String key, Object value) {
         context.setAttribute(key, value);
+        appConfigs.put(key, value);
         log.info("ServletContext add " + key + ":" + value);
     }
 
