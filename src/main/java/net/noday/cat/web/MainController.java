@@ -22,7 +22,6 @@ import net.noday.core.model.User;
 import net.noday.core.security.IncorrectCaptchaException;
 import net.noday.core.utils.Captcha;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -62,7 +61,7 @@ public class MainController {
 	@RequestMapping(value = "/p/{index}", method = RequestMethod.GET)
 	public String page(@PathVariable("index") int index, Model model) {
 		model.addAttribute(articleService.listPage(index));
-		return skinTemplate("index");
+		return "index";
 	}
 	
 

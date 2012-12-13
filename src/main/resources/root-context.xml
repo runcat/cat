@@ -60,7 +60,7 @@
 		<entry key="skin" value="huihui" />
 	</util:map>
 	<bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
-		<property name="templateLoaderPath" value="/" />
+		<property name="templateLoaderPaths" value="/skins/#{appConfigs.skin}/,/WEB-INF/ftl/" />
 		<property name="defaultEncoding" value="UTF-8" />
 		<property name="freemarkerSettings">
 			<props>

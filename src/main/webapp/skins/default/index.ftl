@@ -1,4 +1,4 @@
-<#include "skins/${skin}/macro-head.ftl">
+<#include "macro-head.ftl">
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,14 +9,14 @@
 </head>
 <body>
 	<div class="container body-container">
-		<#include "skins/${skin}/header.ftl">
+		<#include "header.ftl">
 		<div class="row">
-			<#include "skins/${skin}/content.ftl">
+			<#include "content.ftl">
 			<div class="span3">
-				<#include "skins/${skin}/side.ftl">
+				<#include "side.ftl">
 			</div>
 		</div>
-		<#include "skins/${skin}/footer.ftl">
+		<#include "footer.ftl">
 	</div>
 </body>
 </html>
