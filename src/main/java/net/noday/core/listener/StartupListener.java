@@ -26,7 +26,6 @@ import net.noday.core.dao.AppDao;
 import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
-import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 
 /**
  * cat StartupListener
