@@ -26,6 +26,7 @@ import net.noday.core.dao.AppDao;
 import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
+import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 
 /**
  * cat StartupListener
@@ -51,6 +52,7 @@ public class StartupListener implements ServletContextListener {
         ctx = WebApplicationContextUtils.getRequiredWebApplicationContext(context = sce.getServletContext());
         appConfigs = ctx.getBean("appConfigs", Map.class);
         initMysql();
+        loadSkinMessage();
         // load config
         setWebProperty();
     }
@@ -58,6 +60,10 @@ public class StartupListener implements ServletContextListener {
 	private void initMysql() {
 		AppDao appDao = ctx.getBean(AppDao.class);
 		appDao.initMysql();
+	}
+	
+	private void loadSkinMessage() {
+		
 	}
 
     private void setWebProperty() {
