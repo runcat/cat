@@ -31,7 +31,6 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -101,14 +100,6 @@ public class MainController {
 	@RequestMapping(value = "/captcha", method = RequestMethod.GET) @ResponseBody
 	public byte[] loginCaptcha() throws IOException {
 		return FileCopyUtils.copyToByteArray(Captcha.captchInputStream(getSession(), 60, 30));
-	}
-	private String skinName;
-	public String skinTemplate(String template) {
-		return "skins/".concat(skinName).concat("/").concat(template);
-	}
-	@Value("#{appConfigs.skin}")
-	public void setSkinName(String skinName) {
-		this.skinName = skinName;
 	}
 	
 	protected Subject getSubject() {
