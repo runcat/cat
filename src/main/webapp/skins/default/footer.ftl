@@ -10,4 +10,7 @@
 <script src="https://raw.github.com/imsky/holder/master/holder.js"></script>
 <script src="${contextPath}/js/utils.js"></script>
 <script type="text/javascript">
+$(function() {
+	$('.carousel').carousel()
+});
 </script>

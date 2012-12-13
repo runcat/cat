@@ -49,6 +49,13 @@
 .breadcrumb {
   margin: 0 0 10px;
 }
+/** 侧栏容器 **/
+.well-side {
+	padding: 8px 0;
+}
+.well-side .media {
+	padding: 2px 0;
+}
 /** 单条提示 **/
 .line-alert {
   padding: 3px 25px 3px 14px;

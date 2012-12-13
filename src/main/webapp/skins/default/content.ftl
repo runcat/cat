@@ -8,14 +8,12 @@
 			 -->
 		<#list page.rows as row>
 		<#if row_index < 3>
-        <div class="row-fluid">
-          <div class="span3">
-            <div class="thumbnail">
-              <img src="holder.js/190x140" alt="">
-            </div>
-          </div>
-          <div class="span9 article">
-            <h4><a href="#">${row.title }</a></h4>
+		<div class="media article">
+			<a class="pull-left thumbnail">
+				<img src="holder.js/190x140" alt="">
+			</a>
+			<div class="media-body">
+				<h4 class="media-heading muted"><a href="#">${row.title }</a></h4>
             <ul class="inline small">
             	<li><i class="icon-user"></i><a>admin</a></li>
             	<li><i class="icon-time"></i><a>${row.createTime }</a></li>
@@ -25,8 +23,8 @@
 				<ul class="inline small">
 					<li><i class="icon-tags"></i><a>tag</a></li>
 				</ul>
-          </div>
-        </div>
+			</div>
+		</div>
         <hr>
         <#elseif row_index < 9 >
         	<#if row_index%2==1 >
