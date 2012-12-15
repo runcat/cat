@@ -15,6 +15,16 @@
  */
 package net.noday.cat.web;
 
+import net.noday.cat.service.ArticleService;
+
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 /**
  * cat ArticleController
  *
@@ -22,6 +32,16 @@ package net.noday.cat.web;
  * @version , 2012-11-24
  * @since 
  */
+@Controller @RequestMapping("/articles")
 public class ArticleController {
 
+	private static Logger log = Logger.getLogger(ArticleController.class);
+	
+	@Autowired private ArticleService service;
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public String edit(@PathVariable("id") long id, Model model) {
+		model.addAttribute(service.get(id));
+		return "article/detail";
+	}
 }

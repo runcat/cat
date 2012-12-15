@@ -1,3 +1,4 @@
+<#--
         <div class="thumbnail">
           <h6>avg power</h6>
           <img src="holder.js/190x140" alt="">
@@ -29,6 +30,7 @@
         	<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
         	<a class="carousel-control right" href="#myCarousel" data-slide="next">&lsaquo;</a>
         </div>
+        -->
         <div class="alert alert-info">
           <strong>Warning!</strong> Best check yo self, you're not looking too good.
         </div>

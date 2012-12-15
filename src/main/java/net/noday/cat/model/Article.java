@@ -45,6 +45,7 @@ public class Article implements Serializable{
 	private Date modifyTime;
 	private String primaryLink;
 	private long viewCount;
+	private long authorId;
 	public Long getId() {
 		return id;
 	}
@@ -92,5 +93,11 @@ public class Article implements Serializable{
 	}
 	public void setViewCount(long viewCount) {
 		this.viewCount = viewCount;
+	}
+	public long getAuthorId() {
+		return authorId;
+	}
+	public void setAuthorId(long authorId) {
+		this.authorId = authorId;
 	}
 }
