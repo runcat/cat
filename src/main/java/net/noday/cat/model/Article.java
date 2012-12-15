@@ -43,9 +43,12 @@ public class Article implements Serializable{
 	private String content;
 	private Date createTime;
 	private Date modifyTime;
-	private String primaryLink;
+	private String alias;
+	private String url;
 	private long viewCount;
 	private long authorId;
+	private String cover;
+	private int categoryId;
 	public Long getId() {
 		return id;
 	}
@@ -82,12 +85,6 @@ public class Article implements Serializable{
 	public void setModifyTime(Date modifyTime) {
 		this.modifyTime = modifyTime;
 	}
-	public String getPrimaryLink() {
-		return primaryLink;
-	}
-	public void setPrimaryLink(String primaryLink) {
-		this.primaryLink = primaryLink;
-	}
 	public long getViewCount() {
 		return viewCount;
 	}
@@ -99,5 +96,29 @@ public class Article implements Serializable{
 	}
 	public void setAuthorId(long authorId) {
 		this.authorId = authorId;
+	}
+	public String getAlias() {
+		return alias;
+	}
+	public void setAlias(String alias) {
+		this.alias = alias;
+	}
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	public String getCover() {
+		return cover;
+	}
+	public void setCover(String cover) {
+		this.cover = cover;
+	}
+	public int getCategoryId() {
+		return categoryId;
+	}
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
 	}
 }

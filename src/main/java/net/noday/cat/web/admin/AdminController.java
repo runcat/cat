@@ -15,7 +15,12 @@
  */
 package net.noday.cat.web.admin;
 
+import net.noday.cat.model.Article;
+import net.noday.cat.service.ArticleService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -28,10 +33,28 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller @RequestMapping("/admin")
 public class AdminController {
+	
+	@Autowired private ArticleService service;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String main() {
 		
 		return "admin/index";
+	}
+	
+	@RequestMapping("dev/gen/article/{count}")
+	public String genArticles(@PathVariable("count") int count) {
+		for (int i = 0; i < count; i++) {
+			Article a = new Article();
+			a.setTitle("生产的文章" + i);
+			a.setDescription("生成的文章摘要，摘要用于描述文章主题，生产编号：" + i);
+			a.setContent("生成的文章内容，内容是文章的具体体现，通常使用大量的文字、图片，并有较好的排版。<br><br><br><br><br><br><br><br><br><br><br><br><br>生产编号：" + i);
+			a.setAlias("gen-article-for-dev-" + i);
+			a.setAuthorId(1);
+			a.setCover("");
+			a.setCategoryId(1);
+			service.save(a);
+		}
+		return "redirect:/";
 	}
 }

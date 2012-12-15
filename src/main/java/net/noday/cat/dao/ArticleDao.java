@@ -42,7 +42,8 @@ public class ArticleDao {
 	@Autowired private NamedParameterJdbcTemplate namedJdbc;
 	
 	public long save(Article article) {
-		String sql = "insert into article(title,description,content,primary_link) values(:title,:description,:content,:primaryLink)";
+		String sql = "insert into article(title,description,content,alias,url,author_id,cover,category_id)" +
+				" values(:title,:description,:content,:alias,:url,:authorId,:cover,:categoryId)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         namedJdbc.update(sql, new BeanPropertySqlParameterSource(article), keyHolder);
         return keyHolder.getKey().longValue();
