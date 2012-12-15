@@ -64,7 +64,7 @@ CREATE TABLE `article` (
   PRIMARY KEY (`id`),
   KEY `pk_article_user` (`author_id`),
   CONSTRAINT `pk_article_user` FOREIGN KEY (`author_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3619 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 /*Data for the table `article` */
 
