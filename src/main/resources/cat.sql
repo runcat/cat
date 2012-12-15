@@ -58,6 +58,7 @@ CREATE TABLE `article` (
   `alias` varchar(100) DEFAULT NULL COMMENT '别名',
   `url` varchar(100) DEFAULT NULL COMMENT '链接',
   `view_count` int(11) NOT NULL DEFAULT '0' COMMENT '访问数',
+  `comment_count` INT(11) DEFAULT 0  NOT NULL  COMMENT '评论数',
   `author_id` int(11) DEFAULT NULL COMMENT '编辑',
   `cover` varchar(100) DEFAULT NULL COMMENT '封面',
   `category_id` int(11) DEFAULT NULL COMMENT '分类id',
