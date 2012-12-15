@@ -61,6 +61,7 @@ CREATE TABLE `article` (
   `author_id` int(11) DEFAULT NULL COMMENT '编辑',
   `cover` varchar(100) DEFAULT NULL COMMENT '封面',
   `category_id` int(11) DEFAULT NULL COMMENT '分类id',
+  `tags` TINYTEXT NULL  COMMENT '标签',
   PRIMARY KEY (`id`),
   KEY `pk_article_user` (`author_id`),
   CONSTRAINT `pk_article_user` FOREIGN KEY (`author_id`) REFERENCES `user` (`id`)
