@@ -32,7 +32,7 @@
 		</pluginRepository>
 	</pluginRepositories>
 	<properties>
-		<version.spring>3.1.2.RELEASE</version.spring>
+		<version.spring>3.2.0.RELEASE</version.spring>
 	  	<version.struts2>2.3.4.1</version.struts2>
 	  	<version.hibernate>4.1.7.Final</version.hibernate>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
