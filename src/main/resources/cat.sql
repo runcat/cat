@@ -43,6 +43,7 @@ CREATE TABLE `app_config` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `app_config` */
+insert  into `app_config`(`id`,`version`,`web_title`,`side_new_article_count`,`side_most_view_article_count`,`side_new_comment_count`,`side_most_reply_article_count`,`side_tag_count`,`web_sub_title`,`web_host`,`meta_keywords`,`meta_description`,`billboard`,`bottom_hide`,`skin`,`registable`,`commentable`,`main_list_count`) values (1,'1','疯狂的猫',5,5,5,5,15,NULL,NULL,NULL,NULL,NULL,NULL,'default',1,1,15);
 
 /*Table structure for table `article` */
 
