@@ -69,6 +69,7 @@
 		<property name="freemarkerSettings">
 			<props>
 				<prop key="classic_compatible">true</prop>
+				<prop key="number_format">#</prop>
 			</props>
 		</property>
 		<property name="freemarkerVariables">
