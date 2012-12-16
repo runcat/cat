@@ -55,8 +55,13 @@ public class ArticleDao {
 		return a;
 	}
 	
+	public void updateViewCount(long id) {
+		String sql = "update article set viewCount=viewCount+1";
+		jdbc.execute(sql);
+	}
+	
 	public List<Article> findByPage(int index, int size) {
-		String sql = "select * from article a limit ?,?";
+		String sql = "select * from article a order by create_time desc limit ?,?";
 		List<Article> list = jdbc.query(sql, new BeanPropertyRowMapper<Article>(Article.class), (index-1)*size, size);
 		return list;
 	}
@@ -65,5 +70,21 @@ public class ArticleDao {
 		String sql = "select count(a.id) from article a";
 		int count = jdbc.queryForInt(sql);
 		return count;
+	}
+	
+	public List<Article> findMostView(int amount) {
+		String sql = "select * from article a order by a.view_count desc limit 0,?";
+		List<Article> list = jdbc.query(sql, new BeanPropertyRowMapper<Article>(Article.class), amount);
+		return list;
+	}
+	public List<Article> findRecent(int amount) {
+		String sql = "select * from article a order by a.create_time desc limit 0,?";
+		List<Article> list = jdbc.query(sql, new BeanPropertyRowMapper<Article>(Article.class), amount);
+		return list;
+	}
+	public List<Article> findMostReply(int amount) {
+		String sql = "select * from article a order by a.comment_count desc limit 0,?";
+		List<Article> list = jdbc.query(sql, new BeanPropertyRowMapper<Article>(Article.class), amount);
+		return list;
 	}
 }

@@ -41,7 +41,7 @@ public class ArticleController {
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public String edit(@PathVariable("id") long id, Model model) {
-		model.addAttribute(service.get(id));
+		model.addAttribute(service.show(id));
 		return "article/detail";
 	}
 }

@@ -15,6 +15,8 @@
  */
 package net.noday.cat.service;
 
+import java.util.List;
+
 import net.noday.cat.dao.ArticleDao;
 import net.noday.cat.model.Article;
 import net.noday.core.pagination.Page;
@@ -38,6 +40,16 @@ public class ArticleService {
 		return dao.get(id);
 	}
 	
+	/**
+	 * 显示文章，会增加阅读量
+	 * @param id
+	 * @return
+	 */
+	public Article show(long id) {
+		dao.updateViewCount(id);
+		return dao.get(id);
+	}
+	
 	public long save(Article article) {
 		return dao.save(article);
 	}
@@ -47,5 +59,31 @@ public class ArticleService {
 		page.setRowCount(dao.findCount());
 		page.setRows(dao.findByPage(page.getPageIndex(), page.getSize()));
 		return page;
+	}
+	
+
+	/**
+	 * 浏览量最多
+	 * @param amount
+	 * @return
+	 */
+	public List<Article> findMostView(int amount) {
+		return dao.findMostView(amount);
+	}
+	/**
+	 * 最新
+	 * @param amount
+	 * @return
+	 */
+	public List<Article> findRecent(int amount) {
+		return dao.findRecent(amount);
+	}
+	/**
+	 * 回复最多
+	 * @param amount
+	 * @return
+	 */
+	public List<Article> findMostReply(int amount) {
+		return dao.findMostReply(amount);
 	}
 }

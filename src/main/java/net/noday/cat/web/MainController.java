@@ -16,8 +16,12 @@
 package net.noday.cat.web;
 
 import java.io.IOException;
+import java.util.Map;
+
+import javax.annotation.Resource;
 
 import net.noday.cat.service.ArticleService;
+import net.noday.core.model.App;
 import net.noday.core.model.User;
 import net.noday.core.security.IncorrectCaptchaException;
 import net.noday.core.utils.Captcha;
@@ -50,6 +54,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class MainController {
 
 	@Autowired private ArticleService articleService;
+	@Resource private Map<String, Object> appCache;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(Model model) {
@@ -60,6 +65,9 @@ public class MainController {
 	@RequestMapping(value = "/p/{index}", method = RequestMethod.GET)
 	public String page(@PathVariable("index") int index, Model model) {
 		model.addAttribute(articleService.listPage(index));
+		model.addAttribute("mostView", articleService.findMostView(getCfgs().getMostViewArticles()));
+		model.addAttribute("mostView", articleService.findMostReply(getCfgs().getMostReplyArticles()));
+		model.addAttribute("mostView", articleService.findRecent(getCfgs().getRecentArticles()));
 		return "index";
 	}
 	
@@ -100,6 +108,10 @@ public class MainController {
 	@RequestMapping(value = "/captcha", method = RequestMethod.GET) @ResponseBody
 	public byte[] loginCaptcha() throws IOException {
 		return FileCopyUtils.copyToByteArray(Captcha.captchInputStream(getSession(), 60, 30));
+	}
+	
+	protected App getCfgs() {
+		return (App) appCache.get("cfg");
 	}
 	
 	protected Subject getSubject() {
