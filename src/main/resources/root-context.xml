@@ -53,12 +53,15 @@
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 	
+	<bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor" />
+	
+	<util:map id="appCache" />
+<!-- 
+	<bean factory-bean="appDao" factory-method="getAppConfig" />
 	<util:map id="appConfigs">
 		<entry key="skin" value="huihui" />
 	</util:map>
-	
-	<bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor" />
-<!-- 	<aop:aspectj-autoproxy />
+	<aop:aspectj-autoproxy />
 	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>

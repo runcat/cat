@@ -1,51 +1,28 @@
-/*
-SQLyog v10.2 
-MySQL - 5.5.28-log : Database - cat
-*********************************************************************
-*/
-
-/*!40101 SET NAMES utf8 */;
-
-/*!40101 SET SQL_MODE=''*/;
-
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`cat` /*!40100 DEFAULT CHARACTER SET utf8 */;
-
-USE `cat`;
-
-/*Table structure for table `app_config` */
-
 DROP TABLE IF EXISTS `app_config`;
 
 CREATE TABLE `app_config` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `version` varchar(16) DEFAULT NULL,
   `web_title` varchar(20) DEFAULT NULL COMMENT '标题',
-  `side_new_article_count` tinyint(2) DEFAULT '5' COMMENT '侧边栏最新文章数',
-  `side_most_view_article_count` tinyint(2) DEFAULT '5' COMMENT '侧边栏浏览最多文章数',
-  `side_new_comment_count` tinyint(2) DEFAULT '5' COMMENT '侧边栏最新评论数',
-  `side_most_reply_article_count` tinyint(2) DEFAULT '5' COMMENT '侧边栏回复最多文章数',
-  `side_tag_count` tinyint(2) DEFAULT '15' COMMENT '侧边栏tag数',
-  `web_sub_title` varchar(100) DEFAULT NULL COMMENT '子标题',
-  `web_host` varchar(50) DEFAULT NULL COMMENT '地址',
+  `sub_title` varchar(100) DEFAULT NULL COMMENT '子标题',
+  `host_url` varchar(50) DEFAULT NULL COMMENT '地址',
   `meta_keywords` varchar(100) DEFAULT NULL COMMENT 'meta keywords',
   `meta_description` varchar(200) DEFAULT NULL COMMENT 'meta description',
-  `billboard` text COMMENT '公告',
-  `bottom_hide` text COMMENT '底部隐藏-统计代码',
+  `board_source` text COMMENT '公告',
+  `hidden_source` text COMMENT '底部隐藏-统计代码',
   `skin` varchar(20) DEFAULT 'default' COMMENT '皮肤',
+  `recent_articles` tinyint(2) DEFAULT '5' COMMENT '侧边栏最新文章数',
+  `most_view_articles` tinyint(2) DEFAULT '5' COMMENT '侧边栏浏览最多文章数',
+  `most_reply_articles` tinyint(2) DEFAULT '5' COMMENT '侧边栏回复最多文章数',
+  `recent_comments` tinyint(2) DEFAULT '5' COMMENT '侧边栏最新评论数',
+  `most_used_tags` tinyint(2) DEFAULT '15' COMMENT '侧边栏tag数',
+  `list_articles` tinyint(2) DEFAULT '15' COMMENT '首页文章列表文章数',
   `registable` tinyint(1) DEFAULT '1' COMMENT '是否开放注册',
   `commentable` tinyint(1) DEFAULT '1' COMMENT '是否开放评论',
-  `main_list_count` tinyint(2) DEFAULT '15' COMMENT '首页文章列表文章数',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*Data for the table `app_config` */
-insert  into `app_config`(`id`,`version`,`web_title`,`side_new_article_count`,`side_most_view_article_count`,`side_new_comment_count`,`side_most_reply_article_count`,`side_tag_count`,`web_sub_title`,`web_host`,`meta_keywords`,`meta_description`,`billboard`,`bottom_hide`,`skin`,`registable`,`commentable`,`main_list_count`) values (1,'1','疯狂的猫',5,5,5,5,15,NULL,NULL,NULL,NULL,NULL,NULL,'default',1,1,15);
-
-/*Table structure for table `article` */
+insert  into `app_config`(`id`,`version`,`web_title`,`sub_title`,`host_url`,`meta_keywords`,`meta_description`,`board_source`,`hidden_source`,`skin`,`recent_articles`,`most_view_articles`,`most_reply_articles`,`recent_comments`,`most_used_tags`,`list_articles`,`registable`,`commentable`) values (1,'1','蓄势待发','come on',NULL,NULL,NULL,NULL,NULL,'default',5,5,5,5,15,15,1,1);
 
 DROP TABLE IF EXISTS `article`;
 
@@ -64,19 +41,13 @@ CREATE TABLE `article` (
   `cover` varchar(100) DEFAULT NULL COMMENT '封面',
   `category_id` int(11) DEFAULT NULL COMMENT '分类id',
   `tags` TINYTEXT NULL  COMMENT '标签',
-  PRIMARY KEY (`id`),
-  KEY `pk_article_user` (`author_id`),
-  CONSTRAINT `pk_article_user` FOREIGN KEY (`author_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*Data for the table `article` */
-
-insert  into `article`(`title`,`description`,`content`,`alias`,`author_id`,`cover`,`category_id`) values
-('欢迎加入noday的网络世界','这是一段简介，简要介绍这篇文章的内容。不需要太长，说个大概就行。而这篇文章就是本系统的介绍，'
+insert  into `article`(`id`,`title`,`description`,`content`,`alias`,`author_id`,`cover`,`category_id`) values
+(1,'欢迎加入noday的网络世界','这是一段简介，简要介绍这篇文章的内容。不需要太长，说个大概就行。而这篇文章就是本系统的介绍，'
 ,'文章可设置封面图片、别名、url、分类和标签，封面可以用在列表和详细页；别名美化文章的访问链接；url会访问文章的默认访问地址；文章必须且只能选择一个分类，但可以有多个标签。'
 ,'system-description',1,'',1);
-
-/*Table structure for table `category` */
 
 DROP TABLE IF EXISTS `category`;
 
@@ -91,12 +62,9 @@ CREATE TABLE `category` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*Data for the table `category` */
 insert into `category`(`id`,`name`,`alias`,`type`,`description`) value 
 (1,'默认文章分类','article-category',1,'文章默认分类'),
 (2,'默认友链分类','link-category',2,'链接默认分类');
-
-/*Table structure for table `link` */
 
 DROP TABLE IF EXISTS `link`;
 
@@ -109,11 +77,8 @@ CREATE TABLE `link` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*Data for the table `link` */
 insert into `link`(`id`,`name`,`url`,`description`,`category_id`) value 
 (1,'noday','http://www.noday.net','作者的博客',2);
-
-/*Table structure for table `role` */
 
 DROP TABLE IF EXISTS `role`;
 
@@ -123,13 +88,9 @@ CREATE TABLE `role` (
   `code` varchar(18) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
-/*Data for the table `role` */
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 insert  into `role`(`id`,`name`,`code`,`status`) values (1,'超管','admin',2);
-
-/*Table structure for table `tag` */
 
 DROP TABLE IF EXISTS `tag`;
 
@@ -140,10 +101,6 @@ CREATE TABLE `tag` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*Data for the table `tag` */
-
-/*Table structure for table `tag_ref` */
-
 DROP TABLE IF EXISTS `tag_ref`;
 
 CREATE TABLE `tag_ref` (
@@ -153,10 +110,6 @@ CREATE TABLE `tag_ref` (
   `type` tinyint(1) NOT NULL DEFAULT '1' COMMENT '类型1文章',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/*Data for the table `tag_ref` */
-
-/*Table structure for table `user` */
 
 DROP TABLE IF EXISTS `user`;
 
@@ -177,30 +130,25 @@ CREATE TABLE `user` (
   `salt` varchar(16) NOT NULL,
   `role` tinytext NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
-/*Data for the table `user` */
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 insert  into `user`(`id`,`email`,`password`,`name`,`sex`,`organization`,`visits`,`downloads`,`regist_time`,`regist_ip`,`last_time`,`last_ip`,`status`,`salt`,`role`) values (1,'admin@noday.net','K50paAp6XRU6xMt5VmmQvEVfe33hfgxHDRx1gYYxNTU=',NULL,NULL,NULL,0,0,'2012-11-05 12:28:07','127.0.0.1',NULL,NULL,1,'0VSG15LOUN4=','admin');
-
-/*Table structure for table `user_role` */
 
 DROP TABLE IF EXISTS `user_role`;
 
 CREATE TABLE `user_role` (
   `user_id` int(11) NOT NULL,
-  `role_id` int(11) NOT NULL,
-  KEY `user_id` (`user_id`),
-  KEY `role_id` (`role_id`),
-  CONSTRAINT `user_role_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
-  CONSTRAINT `user_role_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`)
+  `role_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/*Data for the table `user_role` */
 
 insert  into `user_role`(`user_id`,`role_id`) values (1,1);
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+ALTER TABLE `article`  
+  ADD CONSTRAINT `pk_article_user` FOREIGN KEY (`author_id`) REFERENCES `user` (`id`);
+ALTER TABLE `article`  
+  ADD CONSTRAINT `pk_article_category` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`);
+ALTER TABLE `user_role`  
+  ADD CONSTRAINT `user_role_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+ALTER TABLE `user_role`  
+  ADD CONSTRAINT `user_role_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`);

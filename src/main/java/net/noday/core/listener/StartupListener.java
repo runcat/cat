@@ -22,7 +22,7 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 import net.noday.core.dao.AppDao;
-
+import net.noday.core.model.App;
 import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
@@ -40,7 +40,9 @@ public class StartupListener implements ServletContextListener {
 
     private ServletContext context;
     private ApplicationContext ctx;
-    Map<String, Object> appConfigs;
+    private AppDao appDao;
+    private App cfg;
+    private Map<String, Object> appCache;
     
 	/* (non-Javadoc)
 	 * @see javax.servlet.ServletContextListener#contextInitialized(javax.servlet.ServletContextEvent)
@@ -49,16 +51,17 @@ public class StartupListener implements ServletContextListener {
 	@Override
     public void contextInitialized(ServletContextEvent sce) {
         ctx = WebApplicationContextUtils.getRequiredWebApplicationContext(context = sce.getServletContext());
-        appConfigs = ctx.getBean("appConfigs", Map.class);
-        initMysql();
+        appDao = ctx.getBean(AppDao.class);
+        appCache = ctx.getBean("appCache", Map.class);
+        loadAppConfig();
         loadSkinMessage();
         // load config
         setWebProperty();
     }
 	
-	private void initMysql() {
-		AppDao appDao = ctx.getBean(AppDao.class);
-		appDao.initMysql();
+	private void loadAppConfig() {
+		appCache.put("cfg", cfg = appDao.getAppConfig());
+		// TODO 将cfg加入spring容器，不行就放到spring管理的bean里或cache
 	}
 	
 	private void loadSkinMessage() {
@@ -67,12 +70,11 @@ public class StartupListener implements ServletContextListener {
 
     private void setWebProperty() {
         setAttribute("contextPath", context.getContextPath());
-        setAttribute("skin", "default");
+        setAttribute("skin", cfg.getSkin());// TODO 将配置放入context
     }
 
     private void setAttribute(String key, Object value) {
         context.setAttribute(key, value);
-        appConfigs.put(key, value);
         log.info("ServletContext add " + key + ":" + value);
     }
 

@@ -15,11 +15,21 @@
  */
 package net.noday.core.dao;
 
+import java.io.IOException;
+
+import net.noday.core.model.App;
+
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.support.EncodedResource;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.BadSqlGrammarException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.FileCopyUtils;
 
 /**
  * cat AppDao
@@ -30,6 +40,8 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class AppDao {
+	
+	private static final Logger log = Logger.getLogger(AppDao.class);
 	
 	@Autowired private JdbcTemplate jdbc;
 	
@@ -48,5 +60,34 @@ public class AppDao {
 			
 		}
 		
+	}
+	
+	public App getAppConfig() {
+		App cfg = null;
+		try {
+			jdbc.queryForObject("select a.version from app_config a limit 1", String.class);
+		} catch (BadSqlGrammarException e) {
+			log.info("开始重新初始化数据库");
+			Resource sqlRes = new ClassPathResource("cat.sql");
+			EncodedResource encRes = new EncodedResource(sqlRes, "UTF-8");
+			String sqls = null;
+			try {
+				sqls = FileCopyUtils.copyToString(encRes.getReader());
+				String[] sqlArr = sqls.split(";");
+				for (String sql : sqlArr) {
+					log.info(sql);
+					jdbc.execute(sql);
+				}
+			} catch (IOException ioe) {
+				log.error("读取cat.sql文件出错", ioe);
+			} catch (Exception oe) {
+				log.error("好像sql执行阶段出错了", oe);
+			}
+		} catch (DataAccessException e) {
+			log.error("读取配置出错", e);
+		}
+		String sql = "select * from app_config limit 1";
+		cfg = jdbc.queryForObject(sql, new BeanPropertyRowMapper<App>(App.class));
+		return cfg;
 	}
 }

@@ -64,7 +64,7 @@
 			/> <ref bean="viewResolver" /> </list> </property> -->
 	</bean>
 	<bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
-		<property name="templateLoaderPaths" value="/skins/#{appConfigs.skin}/,/WEB-INF/ftl/" />
+		<property name="templateLoaderPaths" value="/skins/#{appCache.cfg.skin}/,/WEB-INF/ftl/" />
 		<property name="defaultEncoding" value="UTF-8" />
 		<property name="freemarkerSettings">
 			<props>
