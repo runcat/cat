@@ -36,21 +36,18 @@
         </div>
         <div class="well well-side">
 	        <ul class="nav nav-list">
-	        	<li class="nav-header">最新文章</li>
-	        	<li><a href="#">一片文章</a></li>
-	        	<li><a href="#">一片文章</a></li>
-	        	<li><a href="#">一片文章</a></li>
-	        	<li><a href="#">一片文章</a></li>
-	        	<li class="nav-header">最新文章</li>
-	        	<li><a href="#">一片文章</a></li>
-	        	<li><a href="#">一片文章</a></li>
-	        	<li><a href="#">一片文章</a></li>
-	        	<li><a href="#">一片文章</a></li>
-	        	<li class="nav-header">最新文章</li>
-	        	<li><a href="#">一片文章</a></li>
-	        	<li><a href="#">一片文章</a></li>
-	        	<li><a href="#">一片文章</a></li>
-	        	<li><a href="#">一片文章</a></li>
+	        	<li class="nav-header">浏览最多文章</li>
+	        	<#list mostViewArticles as row>
+	        	<li><a href="${contextPath}/articles/${row.id }">${row.title }</a></li>
+	        	</#list>
+	        	<li class="nav-header">评论最多文章</li>
+	        	<#list mostReplyArticles as row>
+	        	<li><a href="${contextPath}/articles/${row.id }">${row.title }</a></li>
+	        	</#list>
+	        	<li class="nav-header">最新发布文章</li>
+	        	<#list recentArticles as row>
+	        	<li><a href="${contextPath}/articles/${row.id }">${row.title }</a></li>
+	        	</#list>
 	        	<li class="nav-header">最新文章</li>
 	        	<li>
 					<div class="media">
