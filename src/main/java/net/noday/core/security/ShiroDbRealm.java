@@ -37,6 +37,8 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
+import org.apache.shiro.authc.credential.AllowAllCredentialsMatcher;
+import org.apache.shiro.authc.credential.CredentialsMatcher;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -59,6 +61,8 @@ public class ShiroDbRealm extends AuthorizingRealm {
 	public static final String LOGINFAILEDCOUNTKEY = "longin_failed_count";
 	
 	protected SecurityService service;
+	private CredentialsMatcher  hashedCredentialsMatcher;
+	private CredentialsMatcher  allowAllCredentialsMatcher;
 
 	public void setService(SecurityService service) {
 		this.service = service;
@@ -69,25 +73,31 @@ public class ShiroDbRealm extends AuthorizingRealm {
 	 */
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException {
-		CaptchaUsernamePasswordToken token = (CaptchaUsernamePasswordToken) authcToken;
-		String captcha = null;
+		if (authcToken instanceof CaptchaUsernamePasswordToken) {
+			setCredentialsMatcher(hashedCredentialsMatcher);
+			CaptchaUsernamePasswordToken token = (CaptchaUsernamePasswordToken) authcToken;
+			String captcha = null;
 //		Object s_count = getSession().getAttribute(LOGINFAILEDCOUNTKEY);
-		
-		Object s_captcha = getSession().getAttribute(Captcha.CAPTCHAKEY);
-		if (s_captcha != null && s_captcha instanceof String) {
-			captcha = (String) s_captcha;
-		}
-		if (!StringUtils.equalsIgnoreCase(captcha, token.getCaptcha())) {
-			throw new IncorrectCaptchaException("验证码错误");
-		}
-		
-		User user = service.findUserByLoginName(token.getUsername());
-		if (user != null) {
-			return new SimpleAuthenticationInfo(new ShiroUser(user.getId(), user.getEmail(), user.getName()),
-					user.getPassword(), ByteSource.Util.bytes(Base64.decode(user.getSalt())), getName());
+			
+			Object s_captcha = getSession().getAttribute(Captcha.CAPTCHAKEY);
+			if (s_captcha != null && s_captcha instanceof String) {
+				captcha = (String) s_captcha;
+			}
+			if (!StringUtils.equalsIgnoreCase(captcha, token.getCaptcha())) {
+				throw new IncorrectCaptchaException("验证码错误");
+			}
+			
+			User user = service.findUserByLoginName(token.getUsername());
+			if (user != null) {
+				return new SimpleAuthenticationInfo(new ShiroUser(user.getId(), user.getEmail(), user.getName()),
+						user.getPassword(), ByteSource.Util.bytes(Base64.decode(user.getSalt())), getName());
+			}
 		} else {
+			setCredentialsMatcher(allowAllCredentialsMatcher);
+			
 			return null;
 		}
+		return null;
 	}
 
 	/**
@@ -113,7 +123,11 @@ public class ShiroDbRealm extends AuthorizingRealm {
 		matcher.setHashIterations(Digests.HASH_INTERATIONS);
 		matcher.setStoredCredentialsHexEncoded(false);
 //		matcher.setHashSalted(true);
-		setCredentialsMatcher(matcher);
+		{// 根据不同登录来源选择不同的matcher
+			hashedCredentialsMatcher = matcher;
+			allowAllCredentialsMatcher = new AllowAllCredentialsMatcher();
+		}
+//		setCredentialsMatcher(matcher);
 	}
 	
 	protected Session getSession() {
