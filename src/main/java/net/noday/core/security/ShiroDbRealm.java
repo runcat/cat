@@ -37,6 +37,7 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
+import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authc.credential.AllowAllCredentialsMatcher;
 import org.apache.shiro.authc.credential.CredentialsMatcher;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
@@ -94,8 +95,10 @@ public class ShiroDbRealm extends AuthorizingRealm {
 			}
 		} else {
 			setCredentialsMatcher(allowAllCredentialsMatcher);
-			
-			return null;
+			UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
+			// TODO 验证 根据token
+			User user = service.findUserByLoginName(token.getUsername());
+			return new SimpleAuthenticationInfo(new ShiroUser(user.getId(), user.getEmail(), user.getName()), user.getPassword(), getName());
 		}
 		return null;
 	}
