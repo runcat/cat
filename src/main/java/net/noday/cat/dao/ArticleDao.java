@@ -56,8 +56,8 @@ public class ArticleDao {
 	}
 	
 	public void updateViewCount(long id) {
-		String sql = "update article set viewCount=viewCount+1";
-		jdbc.execute(sql);
+		String sql = "update article set view_count=view_count+1 where id=?";
+		jdbc.update(sql, id);
 	}
 	
 	public List<Article> findByPage(int index, int size) {
