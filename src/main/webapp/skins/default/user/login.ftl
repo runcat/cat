@@ -51,11 +51,13 @@
 				      &nbsp;<a href="#">忘记密码？</a>
 				    </div>
 				  </div>
+				  <#if cfg.registable>
 				  <div class="control-group">
 				    <div class="controls">
 				      <h4>没有帐号?去<a href="${contextPath}/regist">注册</a></h4>
 				    </div>
 				  </div>
+				  </#if>
 				</form>
 	      </div><!--/span-->
 		</div>

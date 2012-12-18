@@ -59,9 +59,11 @@
                 </li>
                 -->
                 <@shiro.guest>
+                <#if cfg.registable>
                 <li>
                   <a href="${contextPath}/regist">注册</a>
                 </li>
+                </#if>
                 <li>
                   <a id="loginHref" href="${contextPath}/login">登录</a>
                 </li>
