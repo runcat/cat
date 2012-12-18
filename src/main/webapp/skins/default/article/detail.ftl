@@ -26,6 +26,8 @@
 							<li><i class="icon-tags"></i><a>tag</a></li>
 						</ul>
 					</div>
+					<div class="ds-thread" data-thread-key="${article.id }" data-title="${article.title }" 
+						data-category="${article.categoryId }" data-author-key="${article.authorId }"></div>
 				</div>
 			</div>
 			<div class="span3">
@@ -34,5 +36,18 @@
 		</div>
 		<#include "footer.ftl">
 	</div>
+<!-- Duoshuo Comment BEGIN -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"noday"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- Duoshuo Comment END -->
 </body>
 </html>
