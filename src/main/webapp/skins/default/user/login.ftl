@@ -16,6 +16,13 @@
 				<form class="form-horizontal" action="${contextPath}/login" method="post">
 					<legend>用户登录</legend>
 				  <div class="control-group">
+				    <label class="control-label" for="">没有帐号直接登录→</label>
+				    <div class="controls">
+				      <div class="ds-login"></div>
+				    </div>
+				  </div>
+				  <br>
+				  <div class="control-group">
 				    <label class="control-label" for="username">邮箱</label>
 				    <div class="controls">
 				      <input type="text" name="username" placeholder="注册时的邮箱" value="${username}">

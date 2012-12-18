@@ -15,11 +15,19 @@
  */
 package net.noday.cat.web;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.annotation.Resource;
 
+import net.noday.cat.model.Duoshuo;
 import net.noday.cat.service.ArticleService;
 import net.noday.core.model.App;
 import net.noday.core.model.User;
@@ -34,6 +42,7 @@ import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,6 +50,7 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -97,6 +107,34 @@ public class MainController {
 	public String preLogin() {
 		
 		return "user/login";
+	}
+	@RequestMapping(value = "/dsLogin")
+	public String duoshuoSsoLogin(@RequestParam("code") String code, Model model) {
+		try {
+			String urlstr = "http://api.duoshuo.com/oauth2/access_token";
+			URL url = new URL(urlstr);
+			URLConnection conn = url.openConnection();
+			conn.setDoOutput(true);
+			OutputStreamWriter out = new OutputStreamWriter(conn.getOutputStream());
+			String param = String.format(Locale.CHINA, "code=%s", code);
+			out.write(param);
+			out.flush();
+			out.close();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			String line = reader.readLine();
+			//{"access_token":"840daa95c5758f04c516b3eca7e352e5","expires_in":7776000,"user_id":"960883","remind_in":7775270,"code":0}
+			ObjectMapper mapper = new ObjectMapper();
+			Duoshuo duoshuo = mapper.readValue(line, Duoshuo.class);
+			// TODO 根据user_id处理登录
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		model.addAttribute("code", code);
+		return "duoshuo/login";
 	}
 	
 //	@Deprecated //如果有这个方法，登录失败后就不会回到登录页
