@@ -22,7 +22,7 @@ CREATE TABLE `app_config` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-insert  into `app_config`(`id`,`version`,`web_title`,`sub_title`,`host_url`,`meta_keywords`,`meta_description`,`board_source`,`hidden_source`,`skin`,`recent_articles`,`most_view_articles`,`most_reply_articles`,`recent_comments`,`most_used_tags`,`list_articles`,`registable`,`commentable`) values (1,'1','蓄势待发','come on',NULL,NULL,NULL,NULL,NULL,'default',5,5,5,5,15,15,1,1);
+insert  into `app_config`(`id`,`version`,`web_title`,`sub_title`,`host_url`,`meta_keywords`,`meta_description`,`board_source`,`hidden_source`,`skin`,`recent_articles`,`most_view_articles`,`most_reply_articles`,`recent_comments`,`most_used_tags`,`list_articles`,`registable`,`commentable`) values (1,'1','蓄势待发','come on',NULL,NULL,NULL,NULL,NULL,'default',5,5,5,5,15,15,0,1);
 
 DROP TABLE IF EXISTS `article`;
 
