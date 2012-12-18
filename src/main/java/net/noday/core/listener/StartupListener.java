@@ -55,13 +55,12 @@ public class StartupListener implements ServletContextListener {
         appCache = ctx.getBean("appCache", Map.class);
         loadAppConfig();
         loadSkinMessage();
-        // load config
         setWebProperty();
     }
 	
 	private void loadAppConfig() {
 		appCache.put("cfg", cfg = appDao.getAppConfig());
-		// TODO 将cfg加入spring容器，不行就放到spring管理的bean里或cache
+		// TODO 正在想更好的实现方式[将cfg加入spring容器，不行就放到spring管理的bean里或cache
 	}
 	
 	private void loadSkinMessage() {
@@ -70,7 +69,10 @@ public class StartupListener implements ServletContextListener {
 
     private void setWebProperty() {
         setAttribute("contextPath", context.getContextPath());
-        setAttribute("skin", cfg.getSkin());// TODO 将配置放入context
+        setAttribute("skin", cfg.getSkin());
+        setAttribute("version", cfg.getVersion());
+        setAttribute("cfg", cfg);// 将配置放入context
+        setAttribute("staticServePath", context.getContextPath());// TODO 待定…上线后修改静态资源方式为<resource…
     }
 
     private void setAttribute(String key, Object value) {
