@@ -129,6 +129,7 @@ CREATE TABLE `user` (
   `status` tinyint(4) NOT NULL DEFAULT '1',
   `salt` varchar(16) NOT NULL,
   `role` tinytext NOT NULL,
+  `duoshuo_id` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
