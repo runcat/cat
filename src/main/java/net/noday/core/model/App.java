@@ -46,6 +46,7 @@ public class App implements Serializable {
 	private int recentComments;
 	private int mostUsedTags;
 	private int listArticles;
+	private int listStyle;
 	private boolean registable;
 	private boolean commentable;
 
@@ -138,6 +139,12 @@ public class App implements Serializable {
 	}
 	public void setListArticles(int listArticles) {
 		this.listArticles = listArticles;
+	}
+	public int getListStyle() {
+		return listStyle;
+	}
+	public void setListStyle(int listStyle) {
+		this.listStyle = listStyle;
 	}
 	public boolean isRegistable() {
 		return registable;
