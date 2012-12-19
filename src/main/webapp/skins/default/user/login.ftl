@@ -15,12 +15,14 @@
 	      <div class="span8 offset2">
 				<form class="form-horizontal" action="${contextPath}/login" method="post">
 					<legend>用户登录</legend>
+					<#if cfg.registable>
 				  <div class="control-group">
 				    <label class="control-label" for="">没有帐号直接登录→</label>
 				    <div class="controls">
 				      <div class="ds-login"></div>
 				    </div>
 				  </div>
+				  </#if>
 				  <br>
 				  <div class="control-group">
 				    <label class="control-label" for="username">邮箱</label>
@@ -55,7 +57,7 @@
 				  <div class="control-group">
 				    <div class="controls">
 				      <button type="submit" class="btn btn-primary">登录</button>
-				      &nbsp;<a href="#">忘记密码？</a>
+				      &nbsp;<a href="">忘记密码？</a>
 				    </div>
 				  </div>
 				  <#if cfg.registable>
