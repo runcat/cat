@@ -17,6 +17,7 @@ CREATE TABLE `app_config` (
   `recent_comments` tinyint(2) DEFAULT '5' COMMENT '侧边栏最新评论数',
   `most_used_tags` tinyint(2) DEFAULT '15' COMMENT '侧边栏tag数',
   `list_articles` tinyint(2) DEFAULT '15' COMMENT '首页文章列表文章数',
+  `list_style` tinyint(2) DEFAULT '1' COMMENT '首页文章列表样式',
   `registable` tinyint(1) DEFAULT '1' COMMENT '是否开放注册',
   `commentable` tinyint(1) DEFAULT '1' COMMENT '是否开放评论',
   PRIMARY KEY (`id`)
