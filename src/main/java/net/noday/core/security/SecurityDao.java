@@ -55,6 +55,16 @@ public class SecurityDao {
 		User u = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<User>(User.class), email);
 		return u;
 	}
+	/**
+	 * 多说id找用户
+	 * @param userId
+	 * @return
+	 */
+	public User findUserByDuoshuo(String userId) {
+		String sql = "select * from user u where u.duoshuo_id=? limit 1";
+		User u = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<User>(User.class), userId);
+		return u;
+	}
 	
 	public List<User> findPage(User condition, int pIndex, int pSize) {
 		StringBuffer sql = new StringBuffer("select * from user u where 1=1");
