@@ -133,6 +133,10 @@ public class ShiroDbRealm extends AuthorizingRealm {
 //		setCredentialsMatcher(matcher);
 	}
 	
+	public void loginWithoutCredentials(AuthenticationToken authcToken) {
+		getSubject().login(authcToken);
+	}
+	
 	protected Session getSession() {
 		return getSubject().getSession();
 	}

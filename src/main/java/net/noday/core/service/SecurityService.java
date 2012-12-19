@@ -54,6 +54,11 @@ public class SecurityService {
 		return u;
 	}
 	
+	public User findUserByDuoshuo(String duoshuoUserId) {
+		User u = dao.findUserByDuoshuo(duoshuoUserId);
+		return u;
+	}
+	
 	public User getUserByToken(String token) {
 		User u = new User();
 		return u;

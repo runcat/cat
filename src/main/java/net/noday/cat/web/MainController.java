@@ -32,6 +32,8 @@ import net.noday.cat.service.ArticleService;
 import net.noday.core.model.App;
 import net.noday.core.model.User;
 import net.noday.core.security.IncorrectCaptchaException;
+import net.noday.core.security.SecurityDao;
+import net.noday.core.security.ShiroDbRealm;
 import net.noday.core.utils.Captcha;
 
 import org.apache.shiro.SecurityUtils;
@@ -64,7 +66,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class MainController {
 
 	@Autowired private ArticleService articleService;
+	@Autowired private SecurityDao securityDao;
 	@Resource private Map<String, Object> appCache;
+	@Autowired private ShiroDbRealm realm;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(Model model) {
@@ -108,6 +112,14 @@ public class MainController {
 		
 		return "user/login";
 	}
+	
+	/**
+	 * 用多说登录
+	 * // TODO 用户注册和登录暂不开发，网站暂不提供注册和登录，评论由多说登录。登录仅留给管理员使用
+	 * @param code
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/dsLogin")
 	public String duoshuoSsoLogin(@RequestParam("code") String code, Model model) {
 		try {
@@ -125,12 +137,17 @@ public class MainController {
 			//{"access_token":"840daa95c5758f04c516b3eca7e352e5","expires_in":7776000,"user_id":"960883","remind_in":7775270,"code":0}
 			ObjectMapper mapper = new ObjectMapper();
 			Duoshuo duoshuo = mapper.readValue(line, Duoshuo.class);
-			// TODO 根据user_id处理登录
+			User u = securityDao.findUserByDuoshuo(duoshuo.getUser_id());
+			if (u != null) {
+				UsernamePasswordToken token = new UsernamePasswordToken(u.getName(), u.getPassword(), true);
+				realm.loginWithoutCredentials(token);
+				// TODO 根据user_id处理登录
+			} else {
+				
+			}
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		model.addAttribute("code", code);

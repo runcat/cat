@@ -21,8 +21,11 @@ import net.noday.core.model.User;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.RowMapperResultSetExtractor;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -62,7 +65,7 @@ public class SecurityDao {
 	 */
 	public User findUserByDuoshuo(String userId) {
 		String sql = "select * from user u where u.duoshuo_id=? limit 1";
-		User u = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<User>(User.class), userId);
+		User u = safeQueryForObject(sql, new BeanPropertyRowMapper<User>(User.class), userId);
 		return u;
 	}
 	
@@ -101,5 +104,15 @@ public class SecurityDao {
 			s.append(" and u.sex like %:sex%");
 		}
 		return s.toString();
+	}
+	
+	///---------------------
+	private User safeQueryForObject(String sql, RowMapper<User> rowMapper, Object... args) {
+		List<User> results = jdbcTemplate.query(sql, args, new RowMapperResultSetExtractor<User>(rowMapper, 1));
+		int size = (results != null ? results.size() : 0);
+		if (results.size() > 1) {
+			throw new IncorrectResultSizeDataAccessException(1, size);
+		}
+		return results.iterator().next();
 	}
 }
