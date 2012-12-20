@@ -53,109 +53,127 @@ public class App implements Serializable {
 	public String getVersion() {
 		return version;
 	}
-	public void setVersion(String version) {
+	public App setVersion(String version) {
 		this.version = version;
+		return this;
 	}
 	public String getWebTitle() {
 		return webTitle;
 	}
-	public void setWebTitle(String webTitle) {
+	public App setWebTitle(String webTitle) {
 		this.webTitle = webTitle;
+		return this;
 	}
 	public String getSubTitle() {
 		return subTitle;
 	}
-	public void setSubTitle(String subTitle) {
+	public App setSubTitle(String subTitle) {
 		this.subTitle = subTitle;
+		return this;
 	}
 	public String getHostUrl() {
 		return hostUrl;
 	}
-	public void setHostUrl(String hostUrl) {
+	public App setHostUrl(String hostUrl) {
 		this.hostUrl = hostUrl;
+		return this;
 	}
 	public String getMetaKeywords() {
 		return metaKeywords;
 	}
-	public void setMetaKeywords(String metaKeywords) {
+	public App setMetaKeywords(String metaKeywords) {
 		this.metaKeywords = metaKeywords;
+		return this;
 	}
 	public String getMetaDescription() {
 		return metaDescription;
 	}
-	public void setMetaDescription(String metaDescription) {
+	public App setMetaDescription(String metaDescription) {
 		this.metaDescription = metaDescription;
+		return this;
 	}
 	public String getBoardSource() {
 		return boardSource;
 	}
-	public void setBoardSource(String boardSource) {
+	public App setBoardSource(String boardSource) {
 		this.boardSource = boardSource;
+		return this;
 	}
 	public String getHiddenSource() {
 		return hiddenSource;
 	}
-	public void setHiddenSource(String hiddenSource) {
+	public App setHiddenSource(String hiddenSource) {
 		this.hiddenSource = hiddenSource;
+		return this;
 	}
 	public String getSkin() {
 		return skin;
 	}
-	public void setSkin(String skin) {
+	public App setSkin(String skin) {
 		this.skin = skin;
+		return this;
 	}
 	public int getRecentArticles() {
 		return recentArticles;
 	}
-	public void setRecentArticles(int recentArticles) {
+	public App setRecentArticles(int recentArticles) {
 		this.recentArticles = recentArticles;
+		return this;
 	}
 	public int getMostViewArticles() {
 		return mostViewArticles;
 	}
-	public void setMostViewArticles(int mostViewArticles) {
+	public App setMostViewArticles(int mostViewArticles) {
 		this.mostViewArticles = mostViewArticles;
+		return this;
 	}
 	public int getMostReplyArticles() {
 		return mostReplyArticles;
 	}
-	public void setMostReplyArticles(int mostReplyArticles) {
+	public App setMostReplyArticles(int mostReplyArticles) {
 		this.mostReplyArticles = mostReplyArticles;
+		return this;
 	}
 	public int getRecentComments() {
 		return recentComments;
 	}
-	public void setRecentComments(int recentComments) {
+	public App setRecentComments(int recentComments) {
 		this.recentComments = recentComments;
+		return this;
 	}
 	public int getMostUsedTags() {
 		return mostUsedTags;
 	}
-	public void setMostUsedTags(int mostUsedTags) {
+	public App setMostUsedTags(int mostUsedTags) {
 		this.mostUsedTags = mostUsedTags;
+		return this;
 	}
 	public int getListArticles() {
 		return listArticles;
 	}
-	public void setListArticles(int listArticles) {
+	public App setListArticles(int listArticles) {
 		this.listArticles = listArticles;
+		return this;
 	}
 	public int getListStyle() {
 		return listStyle;
 	}
-	public void setListStyle(int listStyle) {
+	public App setListStyle(int listStyle) {
 		this.listStyle = listStyle;
+		return this;
 	}
 	public boolean isRegistable() {
 		return registable;
 	}
-	public void setRegistable(boolean registable) {
+	public App setRegistable(boolean registable) {
 		this.registable = registable;
+		return this;
 	}
 	public boolean isCommentable() {
 		return commentable;
 	}
-	public void setCommentable(boolean commentable) {
+	public App setCommentable(boolean commentable) {
 		this.commentable = commentable;
+		return this;
 	}
 }

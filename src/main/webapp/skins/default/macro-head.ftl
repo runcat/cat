@@ -1,6 +1,6 @@
 <#macro head title>
 <meta charset="utf-8" />
-<title>${title}</title>
+<title>${cfg.webTitle}</title>
 <#nested>
 <meta name="author" content="yonyou" />
 <meta name="generator" content="yonyou" />
