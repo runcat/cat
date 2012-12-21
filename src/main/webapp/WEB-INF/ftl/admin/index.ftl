@@ -1,4 +1,4 @@
-<#include "macro-head.ftl">
+<#include "admin/macro-head.ftl">
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +18,7 @@
 				<#include "admin/content.ftl">
 			</div>
 		</div>
-		<#include "footer.ftl">
+		<#include "admin/footer.ftl">
 	</div>
 </body>
 </html>
