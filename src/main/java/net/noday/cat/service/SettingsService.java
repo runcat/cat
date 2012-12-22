@@ -21,6 +21,8 @@ import javax.annotation.Resource;
 
 import net.noday.cat.dao.SettingsDao;
 import net.noday.core.model.App;
+import net.noday.core.model.AppWebInfo;
+import net.noday.core.model.AppWebSetting;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,7 +40,7 @@ public class SettingsService {
 	@Autowired private SettingsDao dao;
 	@Resource private Map<String, Object> appCache;
 
-	public void modifyWebInfo(App app) {
+	public void modifyWebInfo(AppWebInfo app) {
 		dao.updateWebInfo(app);
 		getCfgs().setWebTitle(app.getWebTitle()).setSubTitle(app.getSubTitle())
 			.setHostUrl(app.getHostUrl()).setMetaKeywords(app.getMetaKeywords())
@@ -46,16 +48,22 @@ public class SettingsService {
 			.setHiddenSource(app.getHiddenSource());
 	}
 	
-	public void modifyWebSetting(App app) {
-		
+	public void modifyWebSetting(AppWebSetting app) {
+		dao.updateWebSetting(app);
+		getCfgs().setListArticles(app.getListArticles()).setRecentArticles(app.getRecentArticles())
+			.setMostViewArticles(app.getMostViewArticles()).setMostReplyArticles(app.getMostReplyArticles())
+			.setRecentComments(app.getRecentComments()).setMostUsedTags(app.getMostUsedTags())
+			.setRegistable(app.isRegistable()).setCommentable(app.isCommentable());
 	}
 	
-	public void modifyWebSkin(App app) {
-		
+	public void modifyWebSkin(String skinName) {
+		dao.updateWebSkin(skinName);
+		getCfgs().setSkin(skinName);
 	}
 	
-	public void modifyUserSign(App app) {
-		
+	public void modifyUserSign(Object... sign) {
+		dao.updateUserSign(sign);
+		// TODO 更新缓存签名档
 	}
 	
 	protected App getCfgs() {

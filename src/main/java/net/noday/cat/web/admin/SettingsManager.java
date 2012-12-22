@@ -19,7 +19,10 @@ import javax.validation.Valid;
 
 import net.noday.cat.service.SettingsService;
 import net.noday.core.model.App;
+import net.noday.core.model.AppWebInfo;
+import net.noday.core.model.AppWebSetting;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,6 +30,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * cat SettingsManager
@@ -48,7 +52,7 @@ public class SettingsManager {
 	}
 	
 	@RequestMapping(value = "webInfo", method = RequestMethod.POST)
-	public Model modifyWebInfo(@Valid App settings, BindingResult result, Model m) {
+	public Model modifyWebInfo(@Valid AppWebInfo settings, BindingResult result, Model m) {
 		if (result.hasErrors()) {
 			m.addAttribute(result.getFieldErrors());
 		} else {
@@ -69,9 +73,19 @@ public class SettingsManager {
 	}
 	
 	@RequestMapping(value = "webSetting", method = RequestMethod.POST)
-	public String modifyWebSetting(App settings) {
-		
-		return null;
+	public Model modifyWebSetting(@Valid AppWebSetting settings, BindingResult result, Model m) {
+		if (result.hasErrors()) {
+			m.addAttribute(result.getFieldErrors());
+		} else {
+			try {
+				service.modifyWebSetting(settings);
+				responseResult(m, true);
+			} catch (Exception e) {
+				log.error(e.getMessage(), e);
+				responseMsg(m, false, e.getMessage());
+			}
+		}
+		return m;
 	}
 	
 	@RequestMapping(value = "webSkin", method = RequestMethod.GET)
@@ -80,9 +94,18 @@ public class SettingsManager {
 	}
 	
 	@RequestMapping(value = "webSkin", method = RequestMethod.POST)
-	public String modifyWebSkin(App settings) {
-		
-		return null;
+	public Model modifyWebSkin(@RequestParam("skin") String skinName, Model m) {
+		if (StringUtils.isBlank(skinName)) {
+			skinName = "default";
+		}
+		try {
+			service.modifyWebSkin(skinName);
+			responseResult(m, true);
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			responseMsg(m, false, e.getMessage());
+		}
+		return m;
 	}
 	
 	@RequestMapping(value = "userSign", method = RequestMethod.GET)
@@ -91,9 +114,15 @@ public class SettingsManager {
 	}
 	
 	@RequestMapping(value = "userSign", method = RequestMethod.POST)
-	public String modifyUserSign(App settings) {
-		
-		return null;
+	public Model modifyUserSign(Object[] signs, Model m) {
+		try {
+			service.modifyUserSign(signs);
+			responseResult(m, true);
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			responseMsg(m, false, e.getMessage());
+		}
+		return m;
 	}
 	
 	//-------------------

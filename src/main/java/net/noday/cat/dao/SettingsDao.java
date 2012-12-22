@@ -15,7 +15,8 @@
  */
 package net.noday.cat.dao;
 
-import net.noday.core.model.App;
+import net.noday.core.model.AppWebInfo;
+import net.noday.core.model.AppWebSetting;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -37,22 +38,26 @@ public class SettingsDao {
 	@Autowired private NamedParameterJdbcTemplate namedJdbc;
 	private static final String sql1 = "UPDATE app_config a SET a.web_title=?,a.sub_title=?,a.host_url=?" +
 			",a.meta_keywords=?,a.meta_description=?,a.board_source=?,a.hidden_source=?";
+	private static final String sql2 = "UPDATE app_config a SET a.list_articles=?,a.recent_articles=?" +
+			",a.most_view_articles=?,a.most_reply_articles=?,a.recent_comments=?,a.most_used_tags=?" +
+			",a.registable=?,a.commentable=?";
+	private static final String sql3 = "UPDATE app_config a WHERE a.skin=?";
+	private static final String sql4 = "";
 
-	public void updateWebInfo(App app) {
+	public void updateWebInfo(AppWebInfo app) {
 		jdbc.update(sql1, app.getWebTitle(), app.getSubTitle(), app.getHostUrl(), app.getMetaKeywords()
 				, app.getMetaDescription(), app.getBoardSource(), app.getHiddenSource());
 	}
 	
-	public void updateWebSetting(App app) {
-		String sql = "";
-		namedJdbc.update(sql, new BeanPropertySqlParameterSource(app));
+	public void updateWebSetting(AppWebSetting app) {
+		namedJdbc.update(sql2, new BeanPropertySqlParameterSource(app));
 	}
 	
-	public void updateWebSkin(App app) {
-		
+	public void updateWebSkin(String skinName) {
+		jdbc.update(sql3, skinName);
 	}
 	
-	public void updateUserSign(App app) {
-		
+	public void updateUserSign(Object... sign) {
+		jdbc.update(sql4, sign);
 	}
 }
