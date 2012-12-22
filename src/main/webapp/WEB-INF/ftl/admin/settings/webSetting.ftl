@@ -16,7 +16,7 @@
 		</div>
 		<div class="span9">
 			<section>
-				<legend>网站信息</legend>
+				<legend>网站参数</legend>
 				<form id="webInfo-form" class="form-horizontal" action="${contextPath}/admin/settings/webSetting.json" method="post">
 					<div class="control-group">
 						<label class="control-label" for="listArticles">分页文章数：</label>
