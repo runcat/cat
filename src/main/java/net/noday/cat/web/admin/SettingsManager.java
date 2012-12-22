@@ -18,7 +18,6 @@ package net.noday.cat.web.admin;
 import javax.validation.Valid;
 
 import net.noday.cat.service.SettingsService;
-import net.noday.core.model.App;
 import net.noday.core.model.AppWebInfo;
 import net.noday.core.model.AppWebSetting;
 

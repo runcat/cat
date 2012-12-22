@@ -176,4 +176,25 @@ public class App implements Serializable {
 		this.commentable = commentable;
 		return this;
 	}
+	public App update(AppWebInfo info) {
+		this.setWebTitle(info.getWebTitle())
+			.setSubTitle(info.getSubTitle())
+			.setHostUrl(info.getHostUrl())
+			.setMetaKeywords(info.getMetaKeywords())
+			.setMetaDescription(info.getMetaDescription())
+			.setBoardSource(info.getBoardSource())
+			.setHiddenSource(info.getHiddenSource());
+		return this;
+	}
+	public App update(AppWebSetting setting) {
+		this.setListArticles(setting.getListArticles())
+			.setRecentArticles(setting.getRecentArticles())
+			.setMostViewArticles(setting.getMostViewArticles())
+			.setMostReplyArticles(setting.getMostReplyArticles())
+			.setRecentComments(setting.getRecentComments())
+			.setMostUsedTags(setting.getMostUsedTags())
+			.setRegistable(setting.isRegistable())
+			.setCommentable(setting.isCommentable());
+		return this;
+	}
 }

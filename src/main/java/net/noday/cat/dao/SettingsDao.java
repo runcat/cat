@@ -38,9 +38,10 @@ public class SettingsDao {
 	@Autowired private NamedParameterJdbcTemplate namedJdbc;
 	private static final String sql1 = "UPDATE app_config a SET a.web_title=?,a.sub_title=?,a.host_url=?" +
 			",a.meta_keywords=?,a.meta_description=?,a.board_source=?,a.hidden_source=?";
-	private static final String sql2 = "UPDATE app_config a SET a.list_articles=?,a.recent_articles=?" +
-			",a.most_view_articles=?,a.most_reply_articles=?,a.recent_comments=?,a.most_used_tags=?" +
-			",a.registable=?,a.commentable=?";
+	private static final String sql2 = "UPDATE app_config a SET a.list_articles=:listArticles" +
+			",a.recent_articles=:recentArticles,a.most_view_articles=:mostViewArticles" +
+			",a.most_reply_articles=:mostReplyArticles,a.recent_comments=:recentComments" +
+			",a.most_used_tags=:mostUsedTags,a.registable=:registable,a.commentable=:commentable";
 	private static final String sql3 = "UPDATE app_config a WHERE a.skin=?";
 	private static final String sql4 = "";
 

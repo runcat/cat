@@ -42,18 +42,12 @@ public class SettingsService {
 
 	public void modifyWebInfo(AppWebInfo app) {
 		dao.updateWebInfo(app);
-		getCfgs().setWebTitle(app.getWebTitle()).setSubTitle(app.getSubTitle())
-			.setHostUrl(app.getHostUrl()).setMetaKeywords(app.getMetaKeywords())
-			.setMetaDescription(app.getMetaDescription()).setBoardSource(app.getBoardSource())
-			.setHiddenSource(app.getHiddenSource());
+		getCfgs().update(app);
 	}
 	
 	public void modifyWebSetting(AppWebSetting app) {
 		dao.updateWebSetting(app);
-		getCfgs().setListArticles(app.getListArticles()).setRecentArticles(app.getRecentArticles())
-			.setMostViewArticles(app.getMostViewArticles()).setMostReplyArticles(app.getMostReplyArticles())
-			.setRecentComments(app.getRecentComments()).setMostUsedTags(app.getMostUsedTags())
-			.setRegistable(app.isRegistable()).setCommentable(app.isCommentable());
+		getCfgs().update(app);
 	}
 	
 	public void modifyWebSkin(String skinName) {
