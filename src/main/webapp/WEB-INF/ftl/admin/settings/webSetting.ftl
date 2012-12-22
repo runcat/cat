@@ -17,54 +17,61 @@
 		<div class="span9">
 			<section>
 				<legend>网站信息</legend>
-				<form id="webInfo-form" class="form-horizontal" action="${contextPath}/admin/settings/webInfo.json" method="post">
+				<form id="webInfo-form" class="form-horizontal" action="${contextPath}/admin/settings/webSetting.json" method="post">
 					<div class="control-group">
-						<label class="control-label" for="webTitle">网站标题：</label>
+						<label class="control-label" for="listArticles">分页文章数：</label>
 						<div class="controls">
-						<input type="text" id="webTitle" name="webTitle" value='${cfg.webTitle }'>
-						<span id="msg-webTitle" class="help-inline"></span>
+						<input type="text" id="listArticles" name="listArticles" value='${cfg.listArticles }'>
+						<span id="msg-listArticles" class="help-inline"></span>
 						</div>
 					</div>
 					<div class="control-group">
-						<label class="control-label" for="subTitle">子标题：</label>
+						<label class="control-label" for="recentArticles">最新文章数：</label>
 						<div class="controls">
-						<input type="text" id="subTitle" name="subTitle" value='${cfg.subTitle }'>
-						<span id="msg-subTitle" class="help-inline"></span>
+						<input type="text" id="recentArticles" name="recentArticles" value='${cfg.recentArticles }'>
+						<span id="msg-recentArticles" class="help-inline"></span>
 						</div>
 					</div>
 					<div class="control-group">
-						<label class="control-label" for="hostUrl">网站网址：</label>
+						<label class="control-label" for="mostViewArticles">浏览最多文章数：</label>
 						<div class="controls">
-						<input type="text" id="hostUrl" name="hostUrl" value='${cfg.hostUrl }'>
-						<span id="msg-hostUrl" class="help-inline"></span>
+						<input type="text" id="mostViewArticles" name="mostViewArticles" value='${cfg.mostViewArticles }'>
+						<span id="msg-mostViewArticles" class="help-inline"></span>
 						</div>
 					</div>
 					<div class="control-group">
-						<label class="control-label" for="metaKeywords">Meta Keywords：</label>
+						<label class="control-label" for="mostReplyArticles">回复最多文章数：</label>
 						<div class="controls">
-						<input type="text" id="metaKeywords" name="metaKeywords" value='${cfg.metaKeywords }'>
-						<span id="msg-metaKeywords" class="help-inline"></span>
+						<input type="text" id="mostReplyArticles" name="mostReplyArticles" value='${cfg.mostReplyArticles }'>
+						<span id="msg-mostReplyArticles" class="help-inline"></span>
 						</div>
 					</div>
 					<div class="control-group">
-						<label class="control-label" for="metaDescription">Meta Description：</label>
+						<label class="control-label" for="recentComments">最新评论数：</label>
 						<div class="controls">
-						<input type="text" id="metaDescription" name="metaDescription" value='${cfg.metaDescription }'>
-						<span id="msg-metaDescription" class="help-inline"></span>
+						<input type="text" id="recentComments" name="recentComments" value='${cfg.recentComments }'>
+						<span id="msg-recentComments" class="help-inline"></span>
 						</div>
 					</div>
 					<div class="control-group">
-						<label class="control-label" for="boardSource">公告：</label>
+						<label class="control-label" for="mostUsedTags">使用最多标签数：</label>
 						<div class="controls">
-						<input type="text" id="boardSource" name="boardSource" value='${cfg.boardSource }'>
-						<span id="msg-boardSource" class="help-inline"></span>
+						<input type="text" id="mostUsedTags" name="mostUsedTags" value='${cfg.mostUsedTags }'>
+						<span id="msg-mostUsedTags" class="help-inline"></span>
 						</div>
 					</div>
 					<div class="control-group">
-						<label class="control-label" for="hiddenSource">底部隐藏内容：</label>
+						<label class="control-label" for="registable">开放注册：</label>
 						<div class="controls">
-						<input type="text" id="hiddenSource" name="hiddenSource" value='${cfg.hiddenSource }'>
-						<span id="msg-hiddenSource" class="help-inline"></span>
+						<input type="checkbox" id="registable" name="registable" ${cfg.registable?string("checked","") } value='1'>
+						<span id="msg-registable" class="help-inline"></span>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="commentable">开放评论：</label>
+						<div class="controls">
+						<input type="checkbox" id="commentable" name="commentable" ${cfg.commentable?string("checked","") } value='1'>
+						<span id="msg-commentable" class="help-inline"></span>
 						</div>
 					</div>
 					<div class="control-group">
@@ -87,7 +94,7 @@
 </div>
 <script type="text/javascript" src="${contextPath}/js/form/jquery.form.js"></script>
 <script type="text/javascript">
-$("#nav-settings-webInfo").addClass("active");
+$("#nav-settings-webSetting").addClass("active");
 $("#msg-submit").parent().bind('closed', function () {
 	  $(this).hide();
 });
