@@ -8,7 +8,7 @@
 </@head>
 <style type="text/css">
 a.thumbnail.select {
-    background-color: orange;
+    background-color: #ACCDFD;
 }
 </style>
 </head>
@@ -22,29 +22,19 @@ a.thumbnail.select {
 		<div class="span9">
 			<section>
 				<legend>皮肤</legend>
-            <ul class="thumbnails" style="text-align: center;">
+            <ul class="thumbnails skin" style="text-align: center;">
+              <#list skins as skinName>
               <li>
-                <a class="thumbnail">
-                  <img data-src="holder.js/280x160" alt="280x160" style="width: 280px; height: 160px; " src="data:image/png;base64,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">
-                  <span class="muted">default</span>
+                <a class="thumbnail" title="${skinName}">
+                  <img alt="${skinName}" src="${contextPath}/skins/${skinName}/preview.png">
+                  <span class="muted">${skinName}</span>
                 </a>
               </li>
+              </#list>
               <li>
                 <a class="thumbnail">
-                  <img data-src="holder.js/280x160" alt="280x160" style="width: 280px; height: 160px; " src="data:image/png;base64,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">
-                  <span class="muted">Thumbnail label</span>
-                </a>
-              </li>
-              <li>
-                <a class="thumbnail">
-                  <img data-src="holder.js/280x160" alt="280x160" style="width: 280px; height: 160px; " src="data:image/png;base64,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">
-                  <span class="muted">Thumbnail label</span>
-                </a>
-              </li>
-              <li>
-                <a class="thumbnail">
-                  <img data-src="holder.js/280x160" alt="280x160" style="width: 280px; height: 160px; " src="data:image/png;base64,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">
-                  <span class="muted">Thumbnail label</span>
+                  <img alt="280x160" src="holder.js/280x160">
+                  <span class="muted">更多皮肤等待您的加入</span>
                 </a>
               </li>
             </ul>
@@ -57,42 +47,27 @@ a.thumbnail.select {
 <script type="text/javascript" src="${contextPath}/js/form/jquery.form.js"></script>
 <script type="text/javascript">
 $("#nav-settings-webSkin").addClass("active");
-$("#msg-submit").parent().bind('closed', function () {
-	  $(this).hide();
-});
-$('#webInfo-form').ajaxForm({
-	//dataType:"json",
-	beforeSerialize:function($form, options) {
-	},
-	beforeSubmit:function(formData, jqForm, options) {
-	},
-	success:function(data) {
-		if (data && data.fieldErrorList) {
-			$(".control-group").removeClass("error");
-			for ( var i = 0; i < data.fieldErrorList.length; i++) {
-				var error = data.fieldErrorList[i];
-				$("[name='"+error.field+"']")
-					.tooltip({title:error.defaultMessage,placement:"left"})
-					.tooltip('show')
-					.keypress(function(){
-						$(this).tooltip("destroy").unbind();
-						$(this).parent().removeClass("error");
-					})
-					.parent().addClass("error");
-				//$("#msg-"+error.field).html(error.defaultMessage).parent().addClass("error");
-			}
-		} else if (data) {
-			if (data.result) {
-				// TODO alert有问题，默认点关闭后删除了，下次保存就显示不出来，需要处理一下
-				$("#msg-submit").html("更新成功").parent().show();
-			} else {
-				$("#msg-submit").html(data.message).parent().show();
-			}
-		}
-	},
-	error:function(jqXHR, textStatus, errorThrown) {
-		$("#msg-submit").html(textStatus+jqXHR.responseText).parent().show();
+$('a[title="${cfg.skin}"]').addClass("select");
+$('a[title]').click(function() {
+	var $this = $(this);
+	if ($this.attr("title") == "${cfg.skin}") {
+		return;
 	}
+	$.ajax({
+		url:""
+		,type:""
+		,data:""
+		,dataType:""
+		,success:function() {
+			
+		}
+		,error:function() {
+			
+		}
+	});
+});
+$("section input").click(function() {
+	
 });
 </script>
 </body>

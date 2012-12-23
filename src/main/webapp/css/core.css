@@ -109,3 +109,10 @@ margin: 0 0;
 .articles .row-fluid {
 	margin-top: 5px;
 }
+.controls textarea {
+	width: 406px;
+}
+.skin.thumbnail img {
+	width: 280px;
+	height: 160px;
+}

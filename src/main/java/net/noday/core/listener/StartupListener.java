@@ -55,6 +55,7 @@ public class StartupListener implements ServletContextListener {
         appCache = ctx.getBean("appCache", Map.class);
         loadAppConfig();
         loadSkinMessage();
+        loadSkins();
         setWebProperty();
     }
 	
@@ -65,6 +66,11 @@ public class StartupListener implements ServletContextListener {
 	
 	private void loadSkinMessage() {
 		
+	}
+	
+	private void loadSkins() {
+		String[] skins = new String[]{"default"};
+		setAttribute("skins", skins);
 	}
 
     private void setWebProperty() {
