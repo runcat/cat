@@ -88,9 +88,6 @@
 <script type="text/javascript" src="${contextPath}/js/form/jquery.form.js"></script>
 <script type="text/javascript">
 $("#nav-settings-webInfo").addClass("active");
-$("#msg-submit").parent().bind('closed', function () {
-	  $(this).hide();
-});
 $('#webInfo-form').ajaxForm({
 	//dataType:"json",
 	beforeSerialize:function($form, options) {
@@ -105,11 +102,11 @@ $('#webInfo-form').ajaxForm({
 				$("[name='"+error.field+"']")
 					.tooltip({title:error.defaultMessage,placement:"left"})
 					.tooltip('show')
-					.keypress(function(){
+					.change(function(){
 						$(this).tooltip("destroy").unbind();
-						$(this).parent().removeClass("error");
+						$(this).parent().parent().removeClass("error");
 					})
-					.parent().addClass("error");
+					.parent().parent().addClass("error");
 				//$("#msg-"+error.field).html(error.defaultMessage).parent().addClass("error");
 			}
 		} else if (data) {
