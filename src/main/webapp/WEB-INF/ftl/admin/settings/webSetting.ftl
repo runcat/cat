@@ -17,7 +17,7 @@
 		<div class="span9">
 			<section>
 				<legend>网站参数</legend>
-				<form id="webInfo-form" class="form-horizontal" action="${contextPath}/admin/settings/webSetting.json" method="post">
+				<form id="webSetting-form" class="form-horizontal" action="${contextPath}/admin/settings/webSetting.json" method="post">
 					<div class="control-group">
 						<label class="control-label" for="listArticles">分页文章数：</label>
 						<div class="controls">
@@ -95,10 +95,7 @@
 <script type="text/javascript" src="${contextPath}/js/form/jquery.form.js"></script>
 <script type="text/javascript">
 $("#nav-settings-webSetting").addClass("active");
-$("#msg-submit").parent().bind('closed', function () {
-	  $(this).hide();
-});
-$('#webInfo-form').ajaxForm({
+$('#webSetting-form').ajaxForm({
 	//dataType:"json",
 	beforeSerialize:function($form, options) {
 	},
@@ -114,9 +111,9 @@ $('#webInfo-form').ajaxForm({
 					.tooltip('show')
 					.keypress(function(){
 						$(this).tooltip("destroy").unbind();
-						$(this).parent().removeClass("error");
+						$(this).parent().parent().removeClass("error");
 					})
-					.parent().addClass("error");
+					.parent().parent().addClass("error");
 				//$("#msg-"+error.field).html(error.defaultMessage).parent().addClass("error");
 			}
 		} else if (data) {

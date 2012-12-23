@@ -21,13 +21,13 @@
 					<div class="control-group">
 						<label class="control-label" for="sign1">签名档1：</label>
 						<div class="controls">
-						<textarea id="sign1" name="signs" rows="4">${cfg.listArticles }</textarea>
+						<textarea id="sign1" name="signs" rows="5">还没开发呐</textarea>
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="sign2">签名档2：</label>
 						<div class="controls">
-						<textarea id="sign2" name="signs" rows="4">${cfg.listArticles }</textarea>
+						<textarea id="sign2" name="signs" rows="5">还没开发呐</textarea>
 						</div>
 					</div>
 					<div class="control-group">
@@ -51,9 +51,6 @@
 <script type="text/javascript" src="${contextPath}/js/form/jquery.form.js"></script>
 <script type="text/javascript">
 $("#nav-settings-userSign").addClass("active");
-$("#msg-submit").parent().bind('closed', function () {
-	  $(this).hide();
-});
 $('#signs-form').ajaxForm({
 	//dataType:"json",
 	beforeSerialize:function($form, options) {

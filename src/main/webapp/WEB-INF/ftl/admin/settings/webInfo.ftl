@@ -49,21 +49,21 @@
 					<div class="control-group">
 						<label class="control-label" for="metaDescription">Meta Description：</label>
 						<div class="controls">
-						<input type="text" id="metaDescription" name="metaDescription" value='${cfg.metaDescription }'>
+						<textarea id="metaDescription" name="metaDescription" rows="4">${cfg.metaDescription }</textarea>
 						<span id="msg-metaDescription" class="help-inline"></span>
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="boardSource">公告：</label>
 						<div class="controls">
-						<input type="text" id="boardSource" name="boardSource" value='${cfg.boardSource }'>
+						<textarea id="boardSource" name="boardSource" rows="5">${cfg.boardSource }</textarea>
 						<span id="msg-boardSource" class="help-inline"></span>
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="hiddenSource">底部隐藏内容：</label>
 						<div class="controls">
-						<input type="text" id="hiddenSource" name="hiddenSource" value='${cfg.hiddenSource }'>
+						<textarea id="hiddenSource" name="hiddenSource" rows="5">${cfg.hiddenSource }</textarea>
 						<span id="msg-hiddenSource" class="help-inline"></span>
 						</div>
 					</div>
