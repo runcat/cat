@@ -16,6 +16,8 @@
 package net.noday.core.model;
 
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * cat App
@@ -49,6 +51,7 @@ public class App implements Serializable {
 	private int listStyle;
 	private boolean registable;
 	private boolean commentable;
+	private List<String> skins;// TODO 也许换成skin类
 
 	public String getVersion() {
 		return version;
@@ -174,6 +177,24 @@ public class App implements Serializable {
 	}
 	public App setCommentable(boolean commentable) {
 		this.commentable = commentable;
+		return this;
+	}
+	public List<String> getSkins() {
+		return skins;
+	}
+	public App setSkins(List<String> skins) {
+		this.skins = skins;
+		return this;
+	}
+	public boolean hasSkin(String skinName) {
+		return this.skins.contains(skinName);
+	}
+	public App addSkin(String skinName) {
+		this.skins.add(skinName);
+		return this;
+	}
+	public App addSkins(Collection<String> skins) {
+		this.skins.addAll(skins);
 		return this;
 	}
 	public App update(AppWebInfo info) {

@@ -15,6 +15,16 @@
  */
 package net.noday.cat.service;
 
+import java.util.Map;
+
+import javax.annotation.Resource;
+
+import net.noday.cat.dao.CategoryDao;
+import net.noday.core.model.App;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 /**
  * cat CategoryService
  *
@@ -22,6 +32,14 @@ package net.noday.cat.service;
  * @version , 2012-12-24
  * @since 
  */
+@Service
 public class CategoryService {
 
+	@Autowired private CategoryDao dao;
+	@Resource private Map<String, Object> appCache;
+	
+	
+	protected App getCfgs() {
+		return (App) appCache.get("cfg");
+	}
 }

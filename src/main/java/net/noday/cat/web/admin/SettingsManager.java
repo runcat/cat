@@ -94,12 +94,8 @@ public class SettingsManager {
 	
 	@RequestMapping(value = "webSkin", method = RequestMethod.POST)
 	public Model modifyWebSkin(@RequestParam("skin") String skinName, Model m) {
-		if (StringUtils.isBlank(skinName)) {
-			skinName = "default";
-		}
 		try {
-			service.modifyWebSkin(skinName);
-			responseResult(m, true);
+			responseMsg(m, true, service.modifyWebSkin(skinName));
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 			responseMsg(m, false, e.getMessage());

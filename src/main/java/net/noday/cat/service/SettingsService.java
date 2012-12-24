@@ -50,9 +50,13 @@ public class SettingsService {
 		getCfgs().update(app);
 	}
 	
-	public void modifyWebSkin(String skinName) {
+	public String modifyWebSkin(String skinName) {
+		if (!getCfgs().hasSkin(skinName)) {
+			skinName = getCfgs().getSkins().get(0);
+		}
 		dao.updateWebSkin(skinName);
 		getCfgs().setSkin(skinName);
+		return skinName;
 	}
 	
 	public void modifyUserSign(Object... sign) {

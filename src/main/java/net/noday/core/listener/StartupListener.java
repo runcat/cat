@@ -15,6 +15,7 @@
  */
 package net.noday.core.listener;
 
+import java.util.Arrays;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
@@ -60,7 +61,7 @@ public class StartupListener implements ServletContextListener {
     }
 	
 	private void loadAppConfig() {
-		appCache.put("cfg", cfg = appDao.getAppConfig());
+		appCache.put("cfg", cfg = appDao.getAppConfig());// TODO cfg应该改个名app
 		// TODO 正在想更好的实现方式[将cfg加入spring容器，不行就放到spring管理的bean里或cache
 	}
 	
@@ -70,7 +71,7 @@ public class StartupListener implements ServletContextListener {
 	
 	private void loadSkins() {
 		String[] skins = new String[]{"default"};
-		setAttribute("skins", skins);
+		cfg.setSkins(Arrays.asList(skins));
 	}
 
     private void setWebProperty() {

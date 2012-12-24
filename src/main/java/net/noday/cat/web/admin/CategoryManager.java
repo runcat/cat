@@ -15,6 +15,13 @@
  */
 package net.noday.cat.web.admin;
 
+import net.noday.cat.service.CategoryService;
+
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 /**
  * cat CategoryController
  *
@@ -22,6 +29,11 @@ package net.noday.cat.web.admin;
  * @version , 2012-12-24
  * @since 
  */
-public class CategoryController {
+@Controller @RequestMapping("/admin/category")
+public class CategoryManager {
 
+	private static final Logger log = Logger.getLogger(CategoryManager.class);
+	
+	@Autowired private CategoryService service;
+	
 }

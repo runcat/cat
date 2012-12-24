@@ -15,6 +15,13 @@
  */
 package net.noday.cat.dao;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import net.noday.cat.model.Category;
+
 /**
  * cat CategoryDao
  *
@@ -22,6 +29,13 @@ package net.noday.cat.dao;
  * @version , 2012-12-24
  * @since 
  */
+@Repository
 public class CategoryDao {
 
+	@Autowired private JdbcTemplate jdbc;
+	@Autowired private NamedParameterJdbcTemplate namedJdbc;
+	
+	public void save(Category ca) {
+		String sql = "";
+	}
 }
