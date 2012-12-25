@@ -20,6 +20,7 @@ import javax.validation.Valid;
 import net.noday.cat.service.SettingsService;
 import net.noday.core.model.AppWebInfo;
 import net.noday.core.model.AppWebSetting;
+import net.noday.core.web.BaseController;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @since 
  */
 @Controller @RequestMapping("/admin/settings")
-public class SettingsManager {
+public class SettingsManager extends BaseController {
 
 	private static final Logger log = Logger.getLogger(SettingsManager.class);
 	
@@ -120,20 +121,4 @@ public class SettingsManager {
 	}
 	
 	//-------------------
-	protected void response(Model m, boolean succ, String message, Object data) {
-		m.addAttribute("result", succ);
-		m.addAttribute("message", message);
-		m.addAttribute("data", data);
-	}
-	protected void responseResult(Model m, boolean succ) {
-		m.addAttribute("result", succ);
-	}
-	protected void responseMsg(Model m, boolean succ, String message) {
-		m.addAttribute("result", succ);
-		m.addAttribute("message", message);
-	}
-	protected void responseData(Model m, Object data) {
-		m.addAttribute("result", true);
-		m.addAttribute("data", data);
-	}
 }

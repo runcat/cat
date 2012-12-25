@@ -19,6 +19,7 @@ import javax.validation.Valid;
 
 import net.noday.cat.model.Article;
 import net.noday.cat.service.ArticleService;
+import net.noday.core.web.BaseController;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @since 
  */
 @Controller @RequestMapping("/admin/articles")
-public class ArticleManager {
+public class ArticleManager extends BaseController {
 
 	private static final Logger log = Logger.getLogger(ArticleManager.class);
 	

@@ -16,6 +16,7 @@
 package net.noday.cat.web;
 
 import net.noday.cat.service.ArticleService;
+import net.noday.core.web.BaseController;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @since 
  */
 @Controller @RequestMapping("/articles")
-public class ArticleController {
+public class ArticleController extends BaseController {
 
 	private static Logger log = Logger.getLogger(ArticleController.class);
 	

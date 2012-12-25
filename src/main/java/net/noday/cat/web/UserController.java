@@ -16,6 +16,7 @@
 package net.noday.cat.web;
 
 import net.noday.core.model.User;
+import net.noday.core.web.BaseController;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +30,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @since 
  */
 @Controller @RequestMapping("/u")
-public class UserController {
+public class UserController extends BaseController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public String create(User u) {

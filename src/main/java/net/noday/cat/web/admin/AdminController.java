@@ -17,6 +17,7 @@ package net.noday.cat.web.admin;
 
 import net.noday.cat.model.Article;
 import net.noday.cat.service.ArticleService;
+import net.noday.core.web.BaseController;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,7 +34,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @since 
  */
 @Controller @RequestMapping("/admin")
-public class AdminController {
+public class AdminController extends BaseController {
 	
 	@Autowired private ArticleService service;
 

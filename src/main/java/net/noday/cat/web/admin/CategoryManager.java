@@ -16,6 +16,7 @@
 package net.noday.cat.web.admin;
 
 import net.noday.cat.service.CategoryService;
+import net.noday.core.web.BaseController;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @since 
  */
 @Controller @RequestMapping("/admin/category")
-public class CategoryManager {
+public class CategoryManager extends BaseController {
 
 	private static final Logger log = Logger.getLogger(CategoryManager.class);
 	

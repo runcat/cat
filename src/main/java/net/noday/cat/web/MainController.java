@@ -35,6 +35,7 @@ import net.noday.core.security.IncorrectCaptchaException;
 import net.noday.core.security.SecurityDao;
 import net.noday.core.security.ShiroDbRealm;
 import net.noday.core.utils.Captcha;
+import net.noday.core.web.BaseController;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -63,12 +64,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @since 
  */
 @Controller
-public class MainController {
+public class MainController extends BaseController {
 
 	@Autowired private ArticleService articleService;
-	@Autowired private SecurityDao securityDao;
-	@Resource private Map<String, Object> appCache;
-	@Autowired private ShiroDbRealm realm;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(Model model) {
@@ -166,34 +164,4 @@ public class MainController {
 		return FileCopyUtils.copyToByteArray(Captcha.captchInputStream(getSession(), 60, 30));
 	}
 	
-	protected App getCfgs() {
-		return (App) appCache.get("cfg");
-	}
-	
-	protected Subject getSubject() {
-		return SecurityUtils.getSubject();
-	}
-	protected Session getSession() {
-		return getSubject().getSession();
-	}
-	protected void shiro() {
-		Subject currentUser = SecurityUtils.getSubject();
-		Session session = currentUser.getSession();
-		session.setAttribute("key", "value");
-		if (!currentUser.isAuthenticated()) {
-			UsernamePasswordToken token = new UsernamePasswordToken("username", "password");
-			try {
-				currentUser.login(token);
-				currentUser.getPrincipal();//用户名
-				currentUser.hasRole("admin");//是否有admin角色
-				currentUser.isPermitted("");
-				currentUser.logout();
-			} catch (IncorrectCaptchaException e) {
-			} catch (UnknownAccountException e) {//用户名不存在
-			} catch (IncorrectCredentialsException e) {//密码不正确
-			} catch (LockedAccountException e) {//锁定
-			} catch (AuthenticationException e) {
-			}
-		}
-	}
 }
