@@ -20,6 +20,7 @@ import net.noday.cat.service.ArticleService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -56,5 +57,11 @@ public class AdminController {
 			service.save(a);
 		}
 		return "redirect:/";
+	}
+	
+	@RequestMapping("skins")
+	public String reloadSkins(Model m) {
+		
+		return null;
 	}
 }
