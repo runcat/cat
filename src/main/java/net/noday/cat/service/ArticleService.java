@@ -51,6 +51,7 @@ public class ArticleService {
 	}
 	
 	public long save(Article article) {
+		String tagStr = article.getTags();
 		return dao.save(article);
 	}
 	
