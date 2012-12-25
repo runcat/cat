@@ -3,5 +3,5 @@ ALTER TABLE `user`
 ALTER TABLE `app_config`   
   ADD COLUMN `list_style` TINYINT(2) DEFAULT 1  NULL  COMMENT '文章列表样式' AFTER `list_articles`;
 ALTER TABLE `article`   
-  ADD COLUMN `topable` TINYINT(0) NOT NULL  COMMENT '置顶' AFTER `tags`;
+  ADD COLUMN `topable` TINYINT(0) NOT NULL DEFAULT 0 COMMENT '置顶' AFTER `tags`;
 
