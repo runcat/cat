@@ -21,7 +21,6 @@ import net.noday.cat.service.SettingsService;
 import net.noday.core.model.AppWebInfo;
 import net.noday.core.model.AppWebSetting;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
