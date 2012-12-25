@@ -52,9 +52,9 @@ public class AdminController extends BaseController {
 			a.setDescription("生成的文章摘要，摘要用于描述文章主题，生产编号：" + i);
 			a.setContent("生成的文章内容，内容是文章的具体体现，通常使用大量的文字、图片，并有较好的排版。<br><br><br><br><br><br><br><br><br><br><br><br><br>生产编号：" + i);
 			a.setAlias("gen-article-for-dev-" + i);
-			a.setAuthorId(1);
+			a.setAuthorId(1l);
 			a.setCover("");
-			a.setCategoryId(1);
+			a.setCategoryId(1l);
 			service.save(a);
 		}
 		return "redirect:/";

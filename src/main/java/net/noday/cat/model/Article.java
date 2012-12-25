@@ -47,9 +47,9 @@ public class Article implements Serializable{
 	private String url;
 	private long viewCount;
 	private long commentCount;
-	private long authorId;
+	private Long authorId;
 	private String cover;
-	private int categoryId;
+	private Long categoryId;
 	private String tags;
 	public Long getId() {
 		return id;
@@ -93,10 +93,10 @@ public class Article implements Serializable{
 	public void setViewCount(long viewCount) {
 		this.viewCount = viewCount;
 	}
-	public long getAuthorId() {
+	public Long getAuthorId() {
 		return authorId;
 	}
-	public void setAuthorId(long authorId) {
+	public void setAuthorId(Long authorId) {
 		this.authorId = authorId;
 	}
 	public String getAlias() {
@@ -117,10 +117,10 @@ public class Article implements Serializable{
 	public void setCover(String cover) {
 		this.cover = cover;
 	}
-	public int getCategoryId() {
+	public Long getCategoryId() {
 		return categoryId;
 	}
-	public void setCategoryId(int categoryId) {
+	public void setCategoryId(Long categoryId) {
 		this.categoryId = categoryId;
 	}
 	public long getCommentCount() {

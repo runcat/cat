@@ -23,6 +23,7 @@ import net.noday.core.model.App;
 import net.noday.core.security.IncorrectCaptchaException;
 import net.noday.core.security.SecurityDao;
 import net.noday.core.security.ShiroDbRealm;
+import net.noday.core.security.ShiroDbRealm.ShiroUser;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -31,6 +32,7 @@ import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.session.Session;
+import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -51,12 +53,21 @@ public class BaseController {
 	protected App getCfgs() {
 		return (App) appCache.get("cfg");
 	}
-	
+	protected ShiroUser getUser() {
+		ShiroUser shiroUser = (ShiroUser) getPrimaryPrincipal();
+		return shiroUser;
+	}
 	protected Subject getSubject() {
 		return SecurityUtils.getSubject();
 	}
 	protected Session getSession() {
 		return getSubject().getSession();
+	}
+	protected PrincipalCollection getPrincipals() {
+		return getSubject().getPrincipals();
+	}
+	protected Object getPrimaryPrincipal() {
+		return getPrincipals().getPrimaryPrincipal();
 	}
 	protected void shiro() {
 		Subject currentUser = SecurityUtils.getSubject();

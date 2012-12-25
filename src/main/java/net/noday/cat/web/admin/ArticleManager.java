@@ -52,16 +52,17 @@ public class ArticleManager extends BaseController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public String create(@Valid Article article, BindingResult result, ModelMap model) {
+	public String create(@Valid Article article, BindingResult result, Model m) {
 		if (result.hasErrors()) {
-			model.addAttribute(result.getFieldErrors());
+			m.addAttribute(result.getFieldErrors());
 		} else {
 			try {
+				article.setAuthorId(getUser().getId());
 				service.save(article);
-				model.addAttribute(true);
+				responseResult(m, true);
 			} catch (Exception e) {
 				log.error(e.getMessage(), e);
-				model.addAttribute(false);
+				responseMsg(m, false, e.getMessage());
 			}
 		}
 		return "admin/article/add-success";

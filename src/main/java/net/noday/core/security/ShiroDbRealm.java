@@ -90,7 +90,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
 			
 			User user = service.findUserByLoginName(token.getUsername());
 			if (user != null) {
-				return new SimpleAuthenticationInfo(new ShiroUser(user.getId(), user.getEmail(), user.getName()),
+				return new SimpleAuthenticationInfo(new ShiroUser(user.getId(), user.getEmail(), user.getName()),// 为什么不直接用User呐？
 						user.getPassword(), ByteSource.Util.bytes(Base64.decode(user.getSalt())), getName());
 			}
 		} else {
@@ -162,6 +162,10 @@ public class ShiroDbRealm extends AuthorizingRealm {
 			this.id = id;
 			this.loginName = loginName;
 			this.name = name;
+		}
+		
+		public Long getId() {
+			return this.id;
 		}
 
 		public String getName() {

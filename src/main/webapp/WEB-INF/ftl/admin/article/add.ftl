@@ -33,7 +33,9 @@
 					<input type="text" name="tag" placeholder="随便" class="span9">
 					<span id="msg-tag" class="help-block"></span>
 					</div>
-					<button type="submit" class="btn btn-primary">发布</button><span id="msg-submit" class="help-inline"></span>
+					<button type="submit" class="btn btn-primary">发布</button>
+					<div id="msg-submit" class="alert alert-info line-alert help-inline" style="display: none;">
+				    </div>
 				</form>
 			</section>
 		</div>
@@ -66,11 +68,15 @@ $('#article-form').ajaxForm({
 				//$("#msg-"+error.field).html(error.defaultMessage).parent().addClass("error");
 			}
 		} else if (data) {
-
+			if (data.result) {
+				$("#msg-submit").html("更新成功").show();
+			} else {
+				$("#msg-submit").html(data.message).show();
+			}
 		}
 	},
 	error:function(jqXHR, textStatus, errorThrown) {
-		$("#msg-submit").html(textStatus+jqXHR.responseText);
+		$("#msg-submit").html(textStatus+jqXHR.responseText).show();
 	}
 });
 </script>
