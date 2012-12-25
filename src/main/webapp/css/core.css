@@ -116,3 +116,6 @@ margin: 0 0;
 	width: 280px;
 	height: 160px;
 }
+.label a {
+	color: white;
+}

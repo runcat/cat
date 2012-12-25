@@ -119,13 +119,13 @@ $(".delete").click(function() {
 });
 $(".icon-chevron-up").click(function() {
 	var rowId = $(this).attr("data-id");
-	if (confirm($(this).attr("title")+"?")) {
+	if (confirm("置顶?")) {
 		topable(true, rowId);
 	}
 });
 $(".icon-chevron-down").click(function() {
 	var rowId = $(this).attr("data-id");
-	if (confirm($(this).attr("title")+"?")) {
+	if (confirm("取消置顶吗?")) {
 		topable(false, rowId);
 	}
 });
