@@ -38,7 +38,7 @@ a.thumbnail.select {
                 </a>
               </li>
             </ul>
-            <input type="button" class="btn" value="重新加载可用皮肤">
+            <input type="button" class="btn" value="重新加载可用皮肤" style="display: none;">
 			</section>
 		</div>
 	</div>
@@ -54,15 +54,19 @@ $('a[title]').click(function() {
 		return;
 	}
 	$.ajax({
-		url:""
-		,type:""
-		,data:""
-		,dataType:""
-		,success:function() {
-			
+		url:"${contextPath}/admin/settings/webSkin.json"
+		,type:"post"
+		,data:{"skin":$this.attr("title")}
+		,dataType:"json"
+		,success:function(data) {
+			if (data.result) {
+				$this.addClass("select");
+			} else {
+				alert(data.message);
+			}
 		}
-		,error:function() {
-			
+		,error:function(jqXHR, textStatus, errorThrown) {
+			alert(textStatus+jqXHR.responseText);
 		}
 	});
 });
