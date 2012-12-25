@@ -42,6 +42,7 @@ CREATE TABLE `article` (
   `cover` varchar(100) DEFAULT NULL COMMENT '封面',
   `category_id` int(11) DEFAULT NULL COMMENT '分类id',
   `tags` TINYTEXT NULL  COMMENT '标签',
+  `topable` TINYINT(0) NOT NULL  COMMENT '置顶',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
