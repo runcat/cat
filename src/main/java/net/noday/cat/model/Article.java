@@ -51,6 +51,7 @@ public class Article implements Serializable{
 	private String cover;
 	private Long categoryId;
 	private String tags;
+	private boolean topable;
 	public Long getId() {
 		return id;
 	}
@@ -134,5 +135,11 @@ public class Article implements Serializable{
 	}
 	public void setTags(String tags) {
 		this.tags = tags;
+	}
+	public boolean isTopable() {
+		return topable;
+	}
+	public void setTopable(boolean topable) {
+		this.topable = topable;
 	}
 }
