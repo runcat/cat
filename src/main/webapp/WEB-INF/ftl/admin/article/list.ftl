@@ -22,9 +22,11 @@
 		                <tr>
 		                  <th colspan="5">
 								  <div class="btn-group">
-								  	<a class="btn btn-link btn-small">新增</a>
+								  	<a href="${contextPath}/admin/articles/create" class="btn btn-link btn-small">新增</a>
+								  	<!-- 
 								  	<a class="btn btn-link btn-small">修改</a>
 								  	<a class="btn btn-link btn-small">删除</a>
+								  	 -->
 								  </div>
 		                  </th>
 		                </tr>
@@ -44,11 +46,15 @@
 	                  <td>${row.viewCount }</td>
 	                  <td>${row.createTime }</td>
 	                  <td>
-							  	<a title="置顶" data-id="${row.id }" class="icon-arrow-up" href="javascript:void(0)" rel="tooltip"></a>
-							  	<a title="查看评论" data-id="${row.id }" class="icon-comment" href="javascript:void(0)" rel="tooltip"></a>
-							  	<a title="编辑" class="icon-edit" href="${contextPath}/admin/articles/${row.id }/edit" rel="tooltip"></a>
-							  	<a title="删除" data-id="${row.id }" class="delete icon-remove" href="javascript:void(0)" rel="tooltip"></a>
-						  </td>
+	                  	<#if row.topable>
+	                  	<a title="取消置顶" data-id="${row.id }" class="icon-chevron-down" href="javascript:void(0)" rel="tooltip"></a>
+	                  	<#else>
+					  	<a title="置顶" data-id="${row.id }" class="topable icon-chevron-up" href="javascript:void(0)" rel="tooltip"></a>
+	                  	</#if>
+					  	<a title="查看评论" data-id="${row.id }" class="icon-comment" href="javascript:void(0)" rel="tooltip"></a>
+					  	<a title="编辑" class="icon-edit" href="${contextPath}/admin/articles/${row.id }/edit" rel="tooltip"></a>
+					  	<a title="删除" data-id="${row.id }" class="delete icon-remove" href="javascript:void(0)" rel="tooltip"></a>
+					  </td>
 	                </tr>
 	                </#list>
 	              </tbody>
@@ -96,16 +102,50 @@ $(".delete").click(function() {
 	var rowId = $(this).attr("data-id");
 	if (confirm("真的不想要了吗？")) {
 		$.ajax({
-			url:"${contextPath}/admin/article/"+rowId+".json"
+			url:"${contextPath}/admin/articles/"+rowId+".json"
 			,type:"DELETE"
 			,dataType:"json"
 			,error:function(xhr, status, error){}
 			,success:function(data) {
-				alert(data["boolean"]);
+				if (data.result) {
+					alert("删除成功");
+					window.location.reload();
+				} else {
+					alert(data.message);
+				}
 			}
 		});
 	}
 });
+$(".icon-chevron-up").click(function() {
+	var rowId = $(this).attr("data-id");
+	if (confirm($(this).attr("title")+"?")) {
+		topable(true, rowId);
+	}
+});
+$(".icon-chevron-down").click(function() {
+	var rowId = $(this).attr("data-id");
+	if (confirm($(this).attr("title")+"?")) {
+		topable(false, rowId);
+	}
+});
+function topable(topable, rowId) {
+	$.ajax({
+		url:"${contextPath}/admin/articles/tops.json"
+		,type:"POST"
+		,dataType:"json"
+		,data:{"topable":topable,"id":rowId}
+		,error:function(xhr, status, error){}
+		,success:function(data) {
+			if (data.result) {
+				alert("操作成功");
+				window.location.reload();
+			} else {
+				alert(data.message);
+			}
+		}
+	});
+}
 </script>
 </body>
 </html>

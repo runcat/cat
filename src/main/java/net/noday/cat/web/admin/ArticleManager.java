@@ -30,6 +30,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * cat ArticleController
@@ -86,9 +87,22 @@ public class ArticleManager extends BaseController {
 		return "";
 	}
 	
+	@RequestMapping(value = "tops", method = RequestMethod.POST)
+	public Model topable(@RequestParam("id") Long id, @RequestParam("topable") boolean topable, Model m) {
+		service.updateTopable(id, topable);
+		responseResult(m, true);
+		return m;
+	}
+	
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public String delete(@PathVariable("id") long id, Model model) {
-		model.addAttribute(true);
-		return "";
+	public Model delete(@PathVariable("id") long id, Model m) {
+		try {
+			service.delete(id);
+			responseResult(m, true);
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			responseMsg(m, false, e.getMessage());
+		}
+		return m;
 	}
 }

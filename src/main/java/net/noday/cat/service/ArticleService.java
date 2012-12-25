@@ -54,6 +54,14 @@ public class ArticleService {
 		return dao.save(article);
 	}
 	
+	public void delete(Long id) {
+		dao.delete(id);
+	}
+	
+	public void updateTopable(Long id, boolean topable) {
+		dao.updateTopable(id, topable);
+	}
+	
 	public Page<Article> listPage(int index) {
 		Page<Article> page = new Page<Article>(index, Page.DEFAULTSIZE);
 		page.setRowCount(dao.findCount());

@@ -49,10 +49,20 @@ public class ArticleDao {
         return keyHolder.getKey().longValue();
 	}
 	
-	public Article get(long id) {
+	public Article get(Long id) {
 		String sql = "select * from article a where a.id=?";
 		Article a = jdbc.queryForObject(sql, new BeanPropertyRowMapper<Article>(Article.class), id);
 		return a;
+	}
+	
+	public void delete(Long id) {
+		String sql = "delete from article where id=?";
+		jdbc.update(sql, id);
+	}
+	
+	public void updateTopable(Long id, boolean topable) {
+		String sql = "update article set topable=? where id=?";
+		jdbc.update(sql, topable, id);
 	}
 	
 	public void updateViewCount(long id) {
@@ -61,7 +71,7 @@ public class ArticleDao {
 	}
 	
 	public List<Article> findByPage(int index, int size) {
-		String sql = "select * from article a order by create_time desc limit ?,?";
+		String sql = "select * from article a order by topable desc,create_time desc limit ?,?";
 		List<Article> list = jdbc.query(sql, new BeanPropertyRowMapper<Article>(Article.class), (index-1)*size, size);
 		return list;
 	}
