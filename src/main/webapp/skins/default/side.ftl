@@ -50,6 +50,7 @@
 	        	<#list recentArticles as row>
 	        	<li><a href="${contextPath}/articles/${row.id }">${row.title }</a></li>
 	        	</#list>
+	        	<#--
 	        	<li class="nav-header">带图</li>
 	        	<li>
 					<div class="media">
@@ -62,6 +63,12 @@
 						</div>
 					</div>
 	        	</li>
+	        	-->
+	        </ul>
+        </div>
+        <div class="well well-side">
+	        <ul class="nav nav-list ds-recent-comments">
+	        	<li class="nav-header">最新评论</li>
 	        </ul>
         </div>
         <div class="well well-side">
@@ -116,3 +123,5 @@
 	        	-->
 	        </ul>
         </div>
+<script>if (typeof DUOSHUO !== 'undefined')
+        DUOSHUO.RecentComments('.ds-recent-visitors');</script>

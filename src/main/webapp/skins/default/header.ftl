@@ -18,38 +18,33 @@
       <div class="navbar" id="main-navbar">
         <div class="navbar-inner">
           <div class="container">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </a>
             <a class="brand" href="#"></a>
             <div class="nav-collapse">
               <ul class="nav">
                 <li id="home"><a href="${contextPath}/"><i class="icon-home"></i>Home</a></li>
                 <li id="tags"><a href="${contextPath}/tags">标签墙</a></li>
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
+                <li><a href="http://www.noday.net" target="_blank">我的博客</a></li>
+                <li><a href="http://symphony.b3log.org" target="_blank">B3log社区</a></li>
                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">跟踪我 <b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
+                    <li class="nav-header">微博</li>
+                    <li><a href="#">腾讯微博</a></li>
+                    <li><a href="#">新浪微博</a></li>
                     <li class="divider"></li>
-                    <li class="nav-header">Nav header</li>
-                    <li><a href="#">Separated link</a></li>
-                    <li><a href="#">One more separated link</a></li>
+                    <li class="nav-header">空间</li>
+                    <li><a href="#">开源中国</a></li>
+                    <li><a href="#">百度</a></li>
+                    <li class="nav-header">我都不去了</li>
                   </ul>
                 </li>
               </ul>
-              <form class="navbar-search pull-left" action="">
-                <input type="text" class="search-query span2" placeholder="Search">
-              </form>
               <ul class="nav pull-right">
+              	<#--
                 <li>
                   <a href="#" rel="tooltip" data-original-title="first tooltip">tooltip</a>
                 </li>
+                -->
                 <li class="divider-vertical"></li>
                 <!--
                 <li>
