@@ -30,7 +30,7 @@
 					</div>
 					<div class="control-group">
 					<label class="control-label" for="captcha">标签</label>
-					<input type="text" name="tag" placeholder="随便" class="span9">
+					<input type="text" name="tags" placeholder="随便" class="span9">
 					<span id="msg-tag" class="help-block"></span>
 					</div>
 					<button type="submit" class="btn btn-primary">发布</button>

@@ -22,6 +22,9 @@ import net.noday.cat.model.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -40,5 +43,27 @@ public class TagDao {
 		String sql = "select * from tag order by ref_count desc";
 		List<Tag> list = jdbc.query(sql, new BeanPropertyRowMapper<Tag>(Tag.class));
 		return list;
+	}
+	
+	public List<String> findAllTagName() {
+		String sql = "select name from tag order by ref_count desc";
+		List<String> list = jdbc.queryForList(sql, String.class);
+		return list;
+	}
+	
+	public void updateTagRefCount(String tagName) {
+		String sql = "update tag set ref_count=ref_count+1 where name=?";
+		jdbc.update(sql, tagName);
+	}
+	
+	public long save(String tagName) {
+		String sql = "insert into tag(name) values(?)";
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        namedJdbc.update(sql, new BeanPropertySqlParameterSource(article), keyHolder);
+        return keyHolder.getKey().longValue();
+	}
+	
+	public void saveTagAndRef() {
+		
 	}
 }

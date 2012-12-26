@@ -22,6 +22,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
+import net.noday.cat.dao.TagDao;
 import net.noday.core.dao.AppDao;
 import net.noday.core.model.App;
 import org.apache.log4j.Logger;
@@ -42,6 +43,7 @@ public class StartupListener implements ServletContextListener {
     private ServletContext context;
     private ApplicationContext ctx;
     private AppDao appDao;
+    private TagDao tagDao;
     private App cfg;
     private Map<String, Object> appCache;
     
@@ -53,8 +55,10 @@ public class StartupListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
         ctx = WebApplicationContextUtils.getRequiredWebApplicationContext(context = sce.getServletContext());
         appDao = ctx.getBean(AppDao.class);
+        tagDao = ctx.getBean(TagDao.class);
         appCache = ctx.getBean("appCache", Map.class);
         loadAppConfig();
+        loadTags();
         loadSkinMessage();
         loadSkins();
         setWebProperty();
@@ -65,12 +69,16 @@ public class StartupListener implements ServletContextListener {
 		// TODO 正在想更好的实现方式[将cfg加入spring容器，不行就放到spring管理的bean里或cache
 	}
 	
+	private void loadTags() {
+		appCache.put("tags", tagDao.findAllTagName());
+	}
+	
 	private void loadSkinMessage() {
 		
 	}
 	
 	private void loadSkins() {
-		String[] skins = new String[]{"default"};
+		String[] skins = new String[]{"default"};// TODO 从skin目录中读
 		cfg.setSkins(Arrays.asList(skins));
 	}
 

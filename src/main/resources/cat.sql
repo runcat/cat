@@ -99,7 +99,7 @@ DROP TABLE IF EXISTS `tag`;
 CREATE TABLE `tag` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL COMMENT '标签',
-  `ref_count` int(11) DEFAULT '0' COMMENT '使用数',
+  `ref_count` int(11) DEFAULT '1' COMMENT '使用数',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
