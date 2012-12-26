@@ -23,6 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
@@ -38,6 +39,7 @@ import org.springframework.stereotype.Repository;
 public class TagDao {
 
 	@Autowired private JdbcTemplate jdbc;
+	@Autowired private NamedParameterJdbcTemplate namedJdbc;
 	
 	public List<Tag> findAll() {
 		String sql = "select * from tag order by ref_count desc";
@@ -57,7 +59,7 @@ public class TagDao {
 	}
 	
 	public long save(String tagName) {
-		String sql = "insert into tag(name) values(?)";
+		String sql = "insert into tag(name) values(:name)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         namedJdbc.update(sql, new BeanPropertySqlParameterSource(article), keyHolder);
         return keyHolder.getKey().longValue();
