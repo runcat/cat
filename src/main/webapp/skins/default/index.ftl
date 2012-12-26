@@ -12,9 +12,9 @@
 		<#include "header.ftl">
 		<div class="row">
 			<#if cfg.listStyle==1>
-			<#include "style/content.ftl">
+			<#include "style/simple.ftl">
 			<#elseif cfg.listStyle==2>
-			<#include "style/content1.ftl">
+			<#include "style/content.ftl">
 			</#if>
 			<div class="span3">
 				<#include "side.ftl">
