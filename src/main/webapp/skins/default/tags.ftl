@@ -19,7 +19,9 @@
 		            </ul>
 		            <div style="min-height: 350px;">
 		            <#list tags as tag>
-		            <span class="label label-warning"><a href="${contextPath}/tags/${tag.name}">${tag.name}</a>[${tag.refCount}]</span>
+		            <span class="label label-warning">
+		            	<a href="${contextPath}/tags/${tag.name}">${tag.name}</a>[${tag.refCount}]
+		            </span>
 		            </#list>
 		            </div>
 						<ul class="inline small">
@@ -34,5 +36,8 @@
 		</div>
 		<#include "footer.ftl">
 	</div>
+<script type="text/javascript">
+$("#tags").addClass("active");
+</script>
 </body>
 </html>

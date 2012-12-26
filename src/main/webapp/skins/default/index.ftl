@@ -22,5 +22,8 @@
 		</div>
 		<#include "footer.ftl">
 	</div>
+<script type="text/javascript">
+$("#home").addClass("active");
+</script>
 </body>
 </html>

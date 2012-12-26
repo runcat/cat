@@ -113,7 +113,7 @@ public class ArticleService {
 			if (tags.contains(tag)) {
 				tagDao.updateTagRefCount(tag);
 			} else {
-				
+				tagDao.saveTagAndRef(aid, tag);
 			}
 		}
 	}

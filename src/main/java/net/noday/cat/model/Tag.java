@@ -34,6 +34,19 @@ public class Tag implements Serializable {
 	private Long id;
 	private String name;
 	private int refCount;
+	/**
+	 * 
+	 */
+	public Tag() {
+		super();
+	}
+	/**
+	 * @param name
+	 */
+	public Tag(String name) {
+		super();
+		this.name = name;
+	}
 	public Long getId() {
 		return id;
 	}

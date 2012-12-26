@@ -27,9 +27,11 @@
 						<ul class="inline small">
 							<li>
 								<i class="icon-tags"></i>
+								<#if article.tags!=null>
 								<#list article.tags?split(",") as articleTag>
-								<a href="${contextPath}/tags/${articleTag}">${articleTag}</a>
+								<a href="${contextPath}/tags/${articleTag}">${articleTag}</a><#if articleTag_has_next>, </#if>
 								</#list>
+								</#if>
 							</li>
 						</ul>
 					</div>

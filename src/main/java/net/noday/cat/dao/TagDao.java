@@ -61,11 +61,17 @@ public class TagDao {
 	public long save(String tagName) {
 		String sql = "insert into tag(name) values(:name)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
-        namedJdbc.update(sql, new BeanPropertySqlParameterSource(article), keyHolder);
+        namedJdbc.update(sql, new BeanPropertySqlParameterSource(new Tag(tagName)), keyHolder);
         return keyHolder.getKey().longValue();
 	}
 	
-	public void saveTagAndRef() {
-		
+	public void saveRef(long aid, long targetId, int type) {
+		String sql = "insert into tag_ref(tag_id,target_id) values(?,?)";
+		jdbc.update(sql, aid, targetId);
+	}
+	
+	public void saveTagAndRef(long aid, String tagName) {
+		long tid = save(tagName);
+		saveRef(aid, tid, 1);
 	}
 }

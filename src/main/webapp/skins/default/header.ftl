@@ -26,8 +26,8 @@
             <a class="brand" href="#"></a>
             <div class="nav-collapse">
               <ul class="nav">
-                <li class="active"><a href="${contextPath}/"><i class="icon-home"></i>Home</a></li>
-                <li><a href="${contextPath}/tags">标签墙</a></li>
+                <li id="home"><a href="${contextPath}/"><i class="icon-home"></i>Home</a></li>
+                <li id="tags"><a href="${contextPath}/tags">标签墙</a></li>
                 <li><a href="#">Link</a></li>
                 <li><a href="#">Link</a></li>
                 <li class="dropdown">
