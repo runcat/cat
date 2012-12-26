@@ -17,7 +17,7 @@
 						<blockquote class="media-heading muted"><h3>标签墙</h3></blockquote>
 		            <ul class="inline small">
 		            </ul>
-		            <div>
+		            <div style="min-height: 350px;">
 		            <#list tags as tag>
 		            <span class="label label-warning"><a href="${contextPath}/tags/${tag.name}">${tag.name}</a>[${tag.refCount}]</span>
 		            </#list>

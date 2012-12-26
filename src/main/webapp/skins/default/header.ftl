@@ -85,8 +85,10 @@
           </div>
         </div><!-- /navbar-inner -->
       </div>
+      <#--
       <div class="alert alert-info line-alert">
         <button type="button" class="close" data-dismiss="alert">×</button>
         <strong>Warning!</strong> Best check yo self, you're not looking too good.
       </div>
+      -->
     </header>

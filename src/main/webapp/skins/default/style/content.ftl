@@ -22,7 +22,14 @@
             </ul>
             <div>${row.description}</div>
 				<ul class="inline small">
-					<li><i class="icon-tags"></i><a>tag</a></li>
+					<li>
+						<i class="icon-tags"></i>
+						<#if row.tags!=null>
+						<#list row.tags?split(",") as articleTag>
+						<a href="${contextPath}/tags/${articleTag}">${articleTag}</a><#if articleTag_has_next>,</#if>
+						</#list>
+						</#if>
+					</li>
 				</ul>
 			</div>
 		</div>

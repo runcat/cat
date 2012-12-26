@@ -31,46 +31,26 @@
         	<a class="carousel-control right" href="#myCarousel" data-slide="next">&lsaquo;</a>
         </div>
         -->
+        <#if cfg.boardSource!=null>
         <div class="alert alert-info">
-          <strong>Warning!</strong> Best check yo self, you're not looking too good.
+          ${cfg.boardSource }
         </div>
+        </#if>
         <div class="well well-side">
 	        <ul class="nav nav-list">
-	        	<li class="nav-header">浏览最多文章</li>
+	        	<li class="nav-header"><h5>浏览最多文章</h5></li>
 	        	<#list mostViewArticles as row>
 	        	<li><a href="${contextPath}/articles/${row.id }">${row.title }</a></li>
 	        	</#list>
-	        	<li class="nav-header">评论最多文章</li>
+	        	<li class="nav-header"><h5>评论最多文章</h5></li>
 	        	<#list mostReplyArticles as row>
 	        	<li><a href="${contextPath}/articles/${row.id }">${row.title }</a></li>
 	        	</#list>
-	        	<li class="nav-header">最新发布文章</li>
+	        	<li class="nav-header"><h5>最新发布文章</h5></li>
 	        	<#list recentArticles as row>
 	        	<li><a href="${contextPath}/articles/${row.id }">${row.title }</a></li>
 	        	</#list>
-	        	<li class="nav-header">最新文章</li>
-	        	<li>
-					<div class="media">
-						<a class="pull-left thumbnail">
-							<img src="holder.js/35x35" alt="">
-						</a>
-						<div class="media-body">
-							<h6 class="media-heading muted"><a href="#">w文章标题文章标题</a></h6>
-			            <div>some to show</div>
-						</div>
-					</div>
-	        	</li>
-	        	<li>
-					<div class="media">
-						<a class="pull-left thumbnail">
-							<img src="holder.js/35x35" alt="">
-						</a>
-						<div class="media-body">
-							<h6 class="media-heading muted"><a href="#">w文章标题文章标题</a></h6>
-			            <div>some to show</div>
-						</div>
-					</div>
-	        	</li>
+	        	<li class="nav-header">带图</li>
 	        	<li>
 					<div class="media">
 						<a class="pull-left thumbnail">
@@ -108,6 +88,7 @@
 						</a>
 					</div>
 	        	</li>
+	        	<#--
 	        	<li>
 	        		<ul class="nav nav-pills">
 	        			<li class="active">
@@ -132,5 +113,6 @@
 	              </div>
 	            </div>
 	        	</li>
+	        	-->
 	        </ul>
         </div>

@@ -19,11 +19,18 @@
 		            	<li><i class="icon-time"></i><a>${article.createTime }</a></li>
 		            	<li><i class="icon-user"></i><a>noday</a></li>
 		            	<li><a><i class="icon-eye-open"></i>${article.viewCount}</a></li>
+		            	<!-- 
 		            	<li><a><i class="icon-comment"></i>0</a></li>
+		            	 -->
 		            </ul>
 		            <div>${article.content}</div>
 						<ul class="inline small">
-							<li><i class="icon-tags"></i><a>tag</a></li>
+							<li>
+								<i class="icon-tags"></i>
+								<#list article.tags?split(",") as articleTag>
+								<a href="${contextPath}/tags/${articleTag}">${articleTag}</a>
+								</#list>
+							</li>
 						</ul>
 					</div>
 					<div class="ds-thread" data-thread-key="${article.id }" data-title="${article.title }" 
