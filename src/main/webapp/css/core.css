@@ -86,6 +86,9 @@ margin: 0 0;
 .article > div {
 	min-height: 83px;
 }
+.article .description {
+	margin-left: 5px;
+}
 /** TODO 带图片文章 **/
 .article h4 {
 	margin: 2px 0;

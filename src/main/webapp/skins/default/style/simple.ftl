@@ -16,7 +16,7 @@
             	<li><a><i class="icon-eye-open"></i>${row.viewCount}</a></li>
             	<li><a><i class="icon-comment"></i>0</a></li>
             </ul>
-            <div>${row.description}</div>
+            <div class="description">${row.description}</div>
 				<ul class="inline small">
 					<li>
 						<i class="icon-tags"></i>
