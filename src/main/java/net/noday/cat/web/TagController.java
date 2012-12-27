@@ -15,6 +15,8 @@
  */
 package net.noday.cat.web;
 
+import java.io.UnsupportedEncodingException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,11 +54,16 @@ public class TagController extends BaseController {
 	
 	@RequestMapping(value = "/{name}/{index}", method = RequestMethod.GET)
 	public String show(@PathVariable("name") String name, @PathVariable("index") int index, Model m) {
-		m.addAttribute(articleService.listPage4Tag(index, name));
-		// TODO 下面的多处用到，要处理
-		m.addAttribute("mostViewArticles", articleService.findMostView(getCfgs().getMostViewArticles()));
-		m.addAttribute("mostReplyArticles", articleService.findMostReply(getCfgs().getMostReplyArticles()));
-		m.addAttribute("recentArticles", articleService.findRecent(getCfgs().getRecentArticles()));
+		try {
+			name = new String(name.getBytes("iso8859-1"), "utf-8");
+			m.addAttribute(articleService.listPage4Tag(index, name));
+			// TODO 下面的多处用到，要处理
+			m.addAttribute("mostViewArticles", articleService.findMostView(getCfgs().getMostViewArticles()));
+			m.addAttribute("mostReplyArticles", articleService.findMostReply(getCfgs().getMostReplyArticles()));
+			m.addAttribute("recentArticles", articleService.findRecent(getCfgs().getRecentArticles()));
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 		return "tag-articles";
 	}
 }

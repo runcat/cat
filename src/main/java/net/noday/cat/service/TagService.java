@@ -16,10 +16,6 @@
 package net.noday.cat.service;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import javax.annotation.Resource;
 
 import net.noday.cat.dao.TagDao;
 import net.noday.cat.model.Tag;
@@ -39,34 +35,31 @@ import org.springframework.stereotype.Service;
 public class TagService {
 
 	@Autowired private TagDao dao;
-	@Resource private Map<String, Object> appCache;
 	
 	public List<Tag> findAll() {
 		return dao.findAll();
 	}
 	
 	public void save(long aid, String tagStr) {
-		@SuppressWarnings("unchecked")
-		Set<Tag> tags = (Set<Tag>) appCache.get("tags");
 		String[] ts = StringUtils.split(tagStr, ",");
 		for (String tag : ts) {
-			if (tags.contains(tag)) {
+			Tag obj = dao.getByName(tag);
+			if (obj != null) {
+				dao.saveRef(aid, obj.getId(), 1);
 				dao.updateTagRefCount(tag);
 			} else {
-				tags.add(dao.saveTagAndRef(aid, tag));
+				dao.saveTagAndRef(aid, tag);
 			}
 		}
 	}
 	
 	public void update(long aid, String tagStr) {
-		@SuppressWarnings("unchecked")
-		Set<Tag> tags = (Set<Tag>) appCache.get("tags");
 		String[] ts = StringUtils.split(tagStr, ",");
 		for (String tag : ts) {
-			if (tags.contains(tag)) {
-				dao.updateTagRef(aid, tag);
+			Tag obj = dao.getByName(tag);
+			if (obj != null) {
+				dao.updateTagRef(aid, obj.getId(),tag);
 			} else {
-				tags.add(tag);
 				dao.saveTagAndRef(aid, tag);
 			}
 		}

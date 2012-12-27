@@ -22,7 +22,7 @@
 						<i class="icon-tags"></i>
 						<#if row.tags!=null>
 						<#list row.tags?split(",") as articleTag>
-						<a href="${contextPath}/tags/${articleTag}">${articleTag}</a><#if articleTag_has_next>, </#if>
+						<a href="${contextPath}/tags/${articleTag?url('UTF-8')}">${articleTag}</a><#if articleTag_has_next>, </#if>
 						</#list>
 						</#if>
 					</li>
