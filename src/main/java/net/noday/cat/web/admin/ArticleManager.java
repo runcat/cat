@@ -78,10 +78,10 @@ public class ArticleManager extends BaseController {
 	@RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
 	public String edit(@PathVariable("id") long id, Model model) {
 		model.addAttribute(service.get(id));
-		return "admin/article/edit";
+		return "admin/article/add";
 	}
 	
-	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
 	public String modify(@PathVariable("id") long id, @Valid Article article, BindingResult result, ModelMap model) {
 		
 		return "";

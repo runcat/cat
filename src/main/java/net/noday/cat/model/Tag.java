@@ -49,6 +49,12 @@ public class Tag implements Serializable {
 		super();
 		this.name = name;
 	}
+	public Tag(Long id, String name, int refCount) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.refCount = refCount;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -79,6 +85,8 @@ public class Tag implements Serializable {
 	public boolean equals(Object obj) {
 		if (obj instanceof Tag) {
 			return StringUtils.equalsIgnoreCase(getName(), ((Tag) obj).getName());
+		} else if (obj instanceof String) {
+			return StringUtils.equalsIgnoreCase(getName(), (String) obj);
 		} else {
 			return false;
 		}

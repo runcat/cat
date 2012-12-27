@@ -17,6 +17,7 @@ package net.noday.cat.service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -46,12 +47,26 @@ public class TagService {
 	
 	public void save(long aid, String tagStr) {
 		@SuppressWarnings("unchecked")
-		List<String> tags = (List<String>) appCache.get("tags");
+		Set<Tag> tags = (Set<Tag>) appCache.get("tags");
 		String[] ts = StringUtils.split(tagStr, ",");
 		for (String tag : ts) {
 			if (tags.contains(tag)) {
 				dao.updateTagRefCount(tag);
 			} else {
+				tags.add(dao.saveTagAndRef(aid, tag));
+			}
+		}
+	}
+	
+	public void update(long aid, String tagStr) {
+		@SuppressWarnings("unchecked")
+		Set<Tag> tags = (Set<Tag>) appCache.get("tags");
+		String[] ts = StringUtils.split(tagStr, ",");
+		for (String tag : ts) {
+			if (tags.contains(tag)) {
+				dao.updateTagRef(aid, tag);
+			} else {
+				tags.add(tag);
 				dao.saveTagAndRef(aid, tag);
 			}
 		}

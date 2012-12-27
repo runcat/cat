@@ -59,6 +59,11 @@ public class ArticleService {
 		return aid;
 	}
 	
+	public void update(Article article) {
+		dao.update(article);
+		// TODO 处理tag，去ref里查
+	}
+	
 	public void delete(Long id) {
 		dao.delete(id);
 	}

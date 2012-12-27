@@ -80,8 +80,9 @@ public class TagDao {
 		jdbc.update(sql, tagId, aid);
 	}
 	
-	public void saveTagAndRef(long aid, String tagName) {
+	public Tag saveTagAndRef(long aid, String tagName) {
 		long tid = save(tagName);
 		saveRef(aid, tid, 1);
+		return new Tag(tid, tagName, 1);
 	}
 }

@@ -49,6 +49,11 @@ public class ArticleDao {
         return keyHolder.getKey().longValue();
 	}
 	
+	public void update(Article a) {
+		String sql = "update article set title=?,content=?,tags=? where id=?";
+		jdbc.update(sql, a.getTitle(), a.getContent(), a.getTags(), a.getId());
+	}
+	
 	public Article get(Long id) {
 		String sql = "select * from article a where a.id=?";
 		Article a = jdbc.queryForObject(sql, new BeanPropertyRowMapper<Article>(Article.class), id);

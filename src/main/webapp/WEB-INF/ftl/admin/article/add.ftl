@@ -17,20 +17,20 @@
 		<div class="span9">
 			<section>
 				<legend>文章发布</legend>
-				<form id="article-form" action="${contextPath}/admin/articles.json" method="post">
+				<form id="article-form" action='${contextPath}/admin/articles<#if (article.id)??>/${article.id}</#if>.json' method="post">
 					<div class="control-group">
 					<label class="control-label" for="title">标题</label>
-					<input type="text" name="title" placeholder="文章标题" value='${(article.title)!""}' class="span9">
+					<input type="text" name="title" placeholder="文章标题" value='${(article.title)!}' class="span9">
 					<span id="msg-title" class="help-block"></span>
 					</div>
 					<div class="control-group">
 					<label class="control-label" for="content">内容</label>
-					<textarea id="aeditor" name="content" placeholder="你想说的东西" rows="20" class="span9">${(article.content)!""}</textarea>
+					<textarea id="aeditor" name="content" placeholder="你想说的东西" rows="20" class="span9">${(article.content)!}</textarea>
 					<span id="msg-content" class="help-block"></span>
 					</div>
 					<div class="control-group">
 					<label class="control-label" for="captcha">标签</label>
-					<input type="text" name="tags" placeholder="随便" class="span9">
+					<input type="text" name="tags" placeholder="随便" class="span9" value="${(article.tags)!}">
 					<span id="msg-tag" class="help-block"></span>
 					</div>
 					<button type="submit" class="btn btn-primary">发布</button>
