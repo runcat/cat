@@ -47,13 +47,23 @@ public class TagDao {
 		return list;
 	}
 	
-	public List<String> findAllTagName() {
-		String sql = "select name from tag order by ref_count desc";
-		List<String> list = jdbc.queryForList(sql, String.class);
+	public List<Tag> findAllTag() {
+		String sql = "select * from tag order by ref_count desc";
+		List<Tag> list = jdbc.queryForList(sql, Tag.class);
 		return list;
 	}
 	
 	public void updateTagRefCount(String tagName) {
+		String sql = "update tag set ref_count=ref_count+1 where name=?";
+		jdbc.update(sql, tagName);
+	}
+	
+	public void updateTagRef(long aid, String tagName) {
+		String csql = "select count(a.id) from ref_count a,tag b where a.tag_id=b.id and a.target_id=? and b.name=?";
+		int count = jdbc.queryForInt(csql, aid, tagName);
+		if (count == 0) {
+			
+		}
 		String sql = "update tag set ref_count=ref_count+1 where name=?";
 		jdbc.update(sql, tagName);
 	}

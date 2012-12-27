@@ -17,6 +17,8 @@ package net.noday.cat.model;
 
 import java.io.Serializable;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * cat Tag
  *
@@ -64,5 +66,21 @@ public class Tag implements Serializable {
 	}
 	public void setRefCount(int refCount) {
 		this.refCount = refCount;
+	}
+	@Override
+	public int hashCode() {
+		return getName().hashCode();
+	}
+	@Override
+	public String toString() {
+		return getName();
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Tag) {
+			return StringUtils.equalsIgnoreCase(getName(), ((Tag) obj).getName());
+		} else {
+			return false;
+		}
 	}
 }

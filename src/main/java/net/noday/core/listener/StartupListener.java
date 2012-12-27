@@ -24,6 +24,7 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 import net.noday.cat.dao.TagDao;
+import net.noday.cat.model.Tag;
 import net.noday.core.dao.AppDao;
 import net.noday.core.model.App;
 import org.apache.log4j.Logger;
@@ -71,7 +72,7 @@ public class StartupListener implements ServletContextListener {
 	}
 	
 	private void loadTags() {
-		appCache.put("tags", new HashSet<String>(tagDao.findAllTagName()));
+		appCache.put("tags", new HashSet<Tag>(tagDao.findAllTag()));
 	}
 	
 	private void loadSkinMessage() {
