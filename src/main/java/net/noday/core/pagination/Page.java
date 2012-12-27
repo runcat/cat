@@ -82,10 +82,10 @@ public class Page<M> {
 		this.rowCount = rowCount;
 		int _count = rowCount/size;
 		pageCount = (rowCount%size == 0) ? _count : (_count + 1);
-		if (pageIndex > pageCount) {
+		if (pageIndex > pageCount && pageCount != 0) {
 			pageIndex = pageCount;
 		}
-		// TODO 计算 pageBegin pageEnd 前四后五 待测
+		// 计算 pageBegin pageEnd 前四后五 待测
 		if(pageIndex < 6) {
 			pageBegin = 1;
 			pageEnd = pageCount<10?pageCount:10;
