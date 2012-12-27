@@ -25,7 +25,7 @@
 					</div>
 					<div class="control-group">
 					<label class="control-label" for="content">内容</label>
-					<textarea name="content" placeholder="你想说的东西" rows="20" class="span9">${(article.content)!""}</textarea>
+					<textarea id="aeditor" name="content" placeholder="你想说的东西" rows="20" class="span9">${(article.content)!""}</textarea>
 					<span id="msg-content" class="help-block"></span>
 					</div>
 					<div class="control-group">
@@ -43,28 +43,55 @@
 	<#include "footer.ftl">
 </div>
 <script type="text/javascript" src="${contextPath}/js/form/jquery.form.js"></script>
+<script type="text/javascript" charset="utf-8" src="${contextPath}/js/kindeditor/kindeditor.js"></script>
+<script type="text/javascript" charset="utf-8" src="${contextPath}/js/kindeditor/lang/zh_CN.js"></script>
 <!-- <script type="text/javascript" src="${contextPath}/js/admin.article.add.js"></script> -->
 <script type="text/javascript">
 $("#nav-article-new").addClass("active");
+var editor;
+KindEditor.ready(function(K) {
+        editor = K.create('#aeditor', {
+			resizeType : 1,
+			allowPreviewEmoticons : false,
+			allowImageUpload : false,
+			items : [
+				'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+				'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+				'insertunorderedlist', '|', 'emoticons', 'image', 'link']
+		});
+});
 $('#article-form').ajaxForm({
 	dataType:"json",
 	beforeSerialize:function($form, options) {
 	},
 	beforeSubmit:function(formData, jqForm, options) {
+		formData[1].value = editor.html();
 	},
 	success:function(data) {
 		if (data && data.fieldErrorList) {
 			$(".control-group").removeClass("error");
 			for ( var i = 0; i < data.fieldErrorList.length; i++) {
 				var error = data.fieldErrorList[i];
-				$("[name='"+error.field+"']")
-					.tooltip({title:error.defaultMessage,placement:"left"})
-					.tooltip('show')
-					.keypress(function(){
-						$(this).tooltip("destroy").unbind();
-						$(this).parent().removeClass("error");
-					})
-					.parent().addClass("error");
+				if (error.field=="content") {
+					$("#msg-submit").html("文章内容"+error.defaultMessage).show();
+					/*$('[for="content"]').next().find(".ke-edit")
+						.tooltip({title:error.defaultMessage,placement:"left"})
+						.tooltip('show')
+						.find("iframe").find("html").keypress(function(){//监听不到键盘事件
+							$(this).tooltip("destroy").unbind();
+							$(this).parent().removeClass("error");
+						});
+					$('[for="content"]').parent().addClass("error");*/
+				} else {
+					$('[name="'+error.field+'"]')
+						.tooltip({title:error.defaultMessage,placement:"left"})
+						.tooltip('show')
+						.keypress(function(){
+							$(this).tooltip("destroy").unbind();
+							$(this).parent().removeClass("error");
+						})
+						.parent().addClass("error");
+				}
 				//$("#msg-"+error.field).html(error.defaultMessage).parent().addClass("error");
 			}
 		} else if (data) {
