@@ -16,16 +16,11 @@
 package net.noday.cat.service;
 
 import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Resource;
 
 import net.noday.cat.dao.ArticleDao;
-import net.noday.cat.dao.TagDao;
 import net.noday.cat.model.Article;
 import net.noday.core.pagination.Page;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,8 +35,8 @@ import org.springframework.stereotype.Service;
 public class ArticleService {
 
 	@Autowired private ArticleDao dao;
-	@Autowired private TagDao tagDao;
-	@Resource private Map<String, Object> appCache;
+	@Autowired private TagService tagService;
+//	@Resource private Map<String, Object> appCache;
 	
 	public Article get(long id) {
 		return dao.get(id);
@@ -60,7 +55,7 @@ public class ArticleService {
 	public long save(Article article) {
 		long aid = dao.save(article);
 		String tagStr = article.getTags();
-		save(aid, tagStr);
+		tagService.save(aid, tagStr);
 		return aid;
 	}
 	
@@ -76,6 +71,13 @@ public class ArticleService {
 		Page<Article> page = new Page<Article>(index, Page.DEFAULTSIZE);
 		page.setRowCount(dao.findCount());
 		page.setRows(dao.findByPage(page.getPageIndex(), page.getSize()));
+		return page;
+	}
+	
+	public Page<Article> listPage4Tag(int index, String tagName) {
+		Page<Article> page = new Page<Article>(index, Page.DEFAULTSIZE);
+		page.setRowCount(dao.findCount4Tag(tagName));
+		page.setRows(dao.findByPage4Tag(page.getPageIndex(), page.getSize(), tagName));
 		return page;
 	}
 	
@@ -103,18 +105,5 @@ public class ArticleService {
 	 */
 	public List<Article> findMostReply(int amount) {
 		return dao.findMostReply(amount);
-	}
-	
-	@SuppressWarnings("unchecked")
-	private void save(long aid, String tagStr) {
-		List<String> tags = (List<String>) appCache.get("tags");
-		String[] ts = StringUtils.split(tagStr, ",");
-		for (String tag : ts) {
-			if (tags.contains(tag)) {
-				tagDao.updateTagRefCount(tag);
-			} else {
-				tagDao.saveTagAndRef(aid, tag);
-			}
-		}
 	}
 }

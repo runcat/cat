@@ -18,9 +18,11 @@ package net.noday.cat.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import net.noday.cat.service.ArticleService;
 import net.noday.cat.service.TagService;
 import net.noday.core.web.BaseController;
 
@@ -35,10 +37,26 @@ import net.noday.core.web.BaseController;
 public class TagController extends BaseController {
 
 	@Autowired private TagService service;
+	@Autowired private ArticleService articleService;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String list(Model m) {
 		m.addAttribute("tags", service.findAll());
 		return "tags";
+	}
+	
+	@RequestMapping(value = "/{name}", method = RequestMethod.GET)
+	public String show(@PathVariable("name") String name, Model m) {
+		return show(name, 1, m);
+	}
+	
+	@RequestMapping(value = "/{name}/{index}", method = RequestMethod.GET)
+	public String show(@PathVariable("name") String name, @PathVariable("index") int index, Model m) {
+		m.addAttribute(articleService.listPage4Tag(index, name));
+		// TODO 下面的多处用到，要处理
+		m.addAttribute("mostViewArticles", articleService.findMostView(getCfgs().getMostViewArticles()));
+		m.addAttribute("mostReplyArticles", articleService.findMostReply(getCfgs().getMostReplyArticles()));
+		m.addAttribute("recentArticles", articleService.findRecent(getCfgs().getRecentArticles()));
+		return "tag-articles";
 	}
 }

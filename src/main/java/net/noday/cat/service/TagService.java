@@ -16,10 +16,14 @@
 package net.noday.cat.service;
 
 import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
 
 import net.noday.cat.dao.TagDao;
 import net.noday.cat.model.Tag;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,8 +38,22 @@ import org.springframework.stereotype.Service;
 public class TagService {
 
 	@Autowired private TagDao dao;
+	@Resource private Map<String, Object> appCache;
 	
 	public List<Tag> findAll() {
 		return dao.findAll();
+	}
+	
+	public void save(long aid, String tagStr) {
+		@SuppressWarnings("unchecked")
+		List<String> tags = (List<String>) appCache.get("tags");
+		String[] ts = StringUtils.split(tagStr, ",");
+		for (String tag : ts) {
+			if (tags.contains(tag)) {
+				dao.updateTagRefCount(tag);
+			} else {
+				dao.saveTagAndRef(aid, tag);
+			}
+		}
 	}
 }

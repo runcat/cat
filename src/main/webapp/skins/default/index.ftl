@@ -11,11 +11,13 @@
 	<div class="container body-container">
 		<#include "header.ftl">
 		<div class="row">
-			<#if cfg.listStyle==1>
-			<#include "style/simple.ftl">
-			<#elseif cfg.listStyle==2>
-			<#include "style/content.ftl">
-			</#if>
+			<div class="span9">
+				<#if cfg.listStyle==1>
+				<#include "style/simple.ftl">
+				<#elseif cfg.listStyle==2>
+				<#include "style/content.ftl">
+				</#if>
+			</div>
 			<div class="span3">
 				<#include "side.ftl">
 			</div>

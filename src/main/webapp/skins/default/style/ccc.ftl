@@ -1,4 +1,3 @@
-		<div class="span9 articles">
 			<!-- 
         <ul class="breadcrumb"> TODO 面包屑导航
           <li><a href="#">Home</a> <span class="divider">/</span></li>
@@ -108,4 +107,3 @@
         		</ul>
         	</div>
         </div>
-       </div>

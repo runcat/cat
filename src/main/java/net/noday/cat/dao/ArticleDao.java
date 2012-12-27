@@ -82,6 +82,18 @@ public class ArticleDao {
 		return count;
 	}
 	
+	public List<Article> findByPage4Tag(int index, int size, String tagName) {
+		String sql = "select * from article a,tag_ref b,tag c where a.id=b.target_id and b.tag_id=c.id and c.name=? order by topable desc,create_time desc limit ?,?";
+		List<Article> list = jdbc.query(sql, new BeanPropertyRowMapper<Article>(Article.class), tagName, (index-1)*size, size);
+		return list;
+	}
+	
+	public int findCount4Tag(String tagName) {
+		String sql = "select count(a.id) from article a,tag_ref b,tag c where a.id=b.target_id and b.tag_id=c.id and c.name=?";
+		int count = jdbc.queryForInt(sql, tagName);
+		return count;
+	}
+	
 	public List<Article> findMostView(int amount) {
 		String sql = "select * from article a order by a.view_count desc limit 0,?";
 		List<Article> list = jdbc.query(sql, new BeanPropertyRowMapper<Article>(Article.class), amount);
