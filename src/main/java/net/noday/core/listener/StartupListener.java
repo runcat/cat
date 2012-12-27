@@ -16,7 +16,9 @@
 package net.noday.core.listener;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
@@ -70,7 +72,7 @@ public class StartupListener implements ServletContextListener {
 	}
 	
 	private void loadTags() {
-		appCache.put("tags", tagDao.findAllTagName());
+		appCache.put("tags", new HashSet<String>(tagDao.findAllTagName()));
 	}
 	
 	private void loadSkinMessage() {
