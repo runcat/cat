@@ -65,9 +65,9 @@ public class TagDao {
         return keyHolder.getKey().longValue();
 	}
 	
-	public void saveRef(long aid, long targetId, int type) {
+	public void saveRef(long aid, long tagId, int type) {
 		String sql = "insert into tag_ref(tag_id,target_id) values(?,?)";
-		jdbc.update(sql, aid, targetId);
+		jdbc.update(sql, tagId, aid);
 	}
 	
 	public void saveTagAndRef(long aid, String tagName) {
