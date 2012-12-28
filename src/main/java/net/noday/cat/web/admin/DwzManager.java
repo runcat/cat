@@ -39,7 +39,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * cat DwzManager
  *
  * @author <a href="http://www.noday.net">Noday</a>
- * @version , 2012-12-24
+ * @version , 2012-12-28
  * @since 
  */
 @Controller @RequestMapping("/admin/tools/dwz")
