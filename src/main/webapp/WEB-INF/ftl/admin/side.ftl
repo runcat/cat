@@ -8,5 +8,7 @@
    <li id="nav-settings-webSetting"><a href="${contextPath}/admin/settings/webSetting">网站参数</a></li>
    <li id="nav-settings-webSkin"><a href="${contextPath}/admin/settings/webSkin">皮肤</a></li>
    <li id="nav-settings-userSign"><a href="${contextPath}/admin/settings/userSign">签名档</a></li>
+   <li class="nav-header">工具</li>
+   <li id="nav-tools-dwz"><a href="${contextPath}/admin/tools/dwz">短网址</a></li>
  </ul>
 </div>
