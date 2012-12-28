@@ -83,7 +83,7 @@ public class ArticleManager extends BaseController {
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
 	public String modify(@PathVariable("id") long id, @Valid Article article, BindingResult result, ModelMap model) {
-		
+		service.update(article);
 		return "";
 	}
 	
