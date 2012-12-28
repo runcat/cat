@@ -24,7 +24,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * cat CategoryController
+ * cat CategoryManager
  *
  * @author <a href="http://www.noday.net">Noday</a>
  * @version , 2012-12-24
