@@ -44,7 +44,7 @@ import org.springframework.ui.Model;
  * @version , 2012-12-25
  * @since 
  */
-public class BaseController {
+public abstract class BaseController {
 
 	@Autowired protected SecurityDao securityDao;
 	@Resource protected Map<String, Object> appCache;
