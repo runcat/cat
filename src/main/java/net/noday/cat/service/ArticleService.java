@@ -52,16 +52,16 @@ public class ArticleService {
 		return dao.get(id);
 	}
 	
-	public long save(Article article) {
-		long aid = dao.save(article);
-		String tagStr = article.getTags();
+	public long save(Article a) {
+		long aid = dao.save(a);
+		String tagStr = a.getTags();
 		tagService.save(aid, tagStr);
 		return aid;
 	}
 	
-	public void update(Article article) {
-		dao.update(article);
-		// TODO 处理tag，去ref里查
+	public void update(Article a) {
+		dao.update(a);
+		tagService.update(a.getId(), a.getTags());
 	}
 	
 	public void delete(Long id) {

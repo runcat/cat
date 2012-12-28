@@ -59,8 +59,8 @@ public class ArticleManager extends BaseController {
 		} else {
 			try {
 				article.setAuthorId(getUser().getId());
-				service.save(article);
-				responseResult(m, true);
+				long id = service.save(article);
+				responseData(m, id);
 			} catch (Exception e) {
 				log.error(e.getMessage(), e);
 				responseMsg(m, false, e.getMessage());
