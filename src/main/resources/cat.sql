@@ -76,6 +76,7 @@ CREATE TABLE `link` (
   `url` varchar(100) DEFAULT NULL COMMENT '链接地址',
   `description` varchar(100) DEFAULT NULL COMMENT '描述',
   `category_id` int(11) DEFAULT NULL COMMENT '分类',
+  `rank` TINYINT DEFAULT 0  NOT NULL  COMMENT '排序',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
