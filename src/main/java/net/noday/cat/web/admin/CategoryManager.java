@@ -15,12 +15,16 @@
  */
 package net.noday.cat.web.admin;
 
+import net.noday.cat.model.Category;
 import net.noday.cat.service.CategoryService;
 import net.noday.core.web.BaseController;
+import net.noday.core.web.GeneralController;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -31,10 +35,64 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @since 
  */
 @Controller @RequestMapping("/admin/category")
-public class CategoryManager extends BaseController {
+public class CategoryManager extends GeneralController<Category> {
 
 	private static final Logger log = Logger.getLogger(CategoryManager.class);
 	
 	@Autowired private CategoryService service;
+
+	/* (non-Javadoc)
+	 * @see net.noday.core.web.GeneralController#create()
+	 */
+	@Override
+	public String create() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see net.noday.core.web.GeneralController#save(java.lang.Object, org.springframework.validation.BindingResult, org.springframework.ui.Model)
+	 */
+	@Override
+	public String save(Category obj, BindingResult result, Model m) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see net.noday.core.web.GeneralController#delete(long, org.springframework.ui.Model)
+	 */
+	@Override
+	public String delete(long id, Model m) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see net.noday.core.web.GeneralController#edit(long, org.springframework.ui.Model)
+	 */
+	@Override
+	public String edit(long id, Model m) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see net.noday.core.web.GeneralController#modify(long, java.lang.Object, org.springframework.validation.BindingResult, org.springframework.ui.Model)
+	 */
+	@Override
+	public String modify(long id, Category obj, BindingResult result, Model m) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see net.noday.core.web.GeneralController#list(int, org.springframework.ui.Model)
+	 */
+	@Override
+	public String list(int index, Model m) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

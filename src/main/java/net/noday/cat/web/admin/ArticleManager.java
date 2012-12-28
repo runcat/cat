@@ -25,7 +25,6 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -82,9 +81,15 @@ public class ArticleManager extends BaseController {
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
-	public String modify(@PathVariable("id") long id, @Valid Article article, BindingResult result, ModelMap model) {
-		service.update(article);
-		return "";
+	public String modify(@PathVariable("id") long id, @Valid Article article, BindingResult result, Model m) {
+		try {
+			service.update(article);
+			responseData(m, id);
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			responseMsg(m, false, e.getMessage());
+		}
+		return "admin/article/add-success";
 	}
 	
 	@RequestMapping(value = "tops", method = RequestMethod.POST)

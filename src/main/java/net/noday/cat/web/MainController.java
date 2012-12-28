@@ -23,28 +23,14 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Locale;
-import java.util.Map;
-
-import javax.annotation.Resource;
 
 import net.noday.cat.model.Duoshuo;
 import net.noday.cat.service.ArticleService;
-import net.noday.core.model.App;
 import net.noday.core.model.User;
-import net.noday.core.security.IncorrectCaptchaException;
-import net.noday.core.security.SecurityDao;
-import net.noday.core.security.ShiroDbRealm;
 import net.noday.core.utils.Captcha;
 import net.noday.core.web.BaseController;
 
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.IncorrectCredentialsException;
-import org.apache.shiro.authc.LockedAccountException;
-import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.session.Session;
-import org.apache.shiro.subject.Subject;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

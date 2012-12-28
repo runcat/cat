@@ -59,12 +59,10 @@ public class TagDao {
 	}
 	
 	public void updateTagRef(long aid, long tid, String tagName) {
-		String csql = "select count(a.id) from ref_count a,tag b where a.tag_id=b.id and a.target_id=? and b.name=?";
+		String csql = "select count(a.id) from tag_ref a,tag b where a.tag_id=b.id and a.target_id=? and b.name=?";
 		int count = jdbc.queryForInt(csql, aid, tagName);
 		if (count == 0) {
 			saveRef(aid, tid, 1);
-		} else {
-			updateTagRefCount(tagName);
 		}
 	}
 	
@@ -88,7 +86,7 @@ public class TagDao {
 	
 	public Tag getByName(String name) {
 		String sql = "select * from tag where name=?";
-		List<Tag> list = jdbc.queryForList(sql, Tag.class, name);
+		List<Tag> list = jdbc.query(sql, new BeanPropertyRowMapper<Tag>(Tag.class), name);
 		if (list!=null && list.size()>0) {
 			return list.get(0);
 		} else {
