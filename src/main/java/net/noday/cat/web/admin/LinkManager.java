@@ -51,7 +51,7 @@ public class LinkManager extends GeneralController<Link> {
 	@Override
 	public String save(@Valid Link obj, BindingResult result, Model m) {
 		if (result.hasErrors()) {
-			m.addAttribute(result.getFieldErrors());
+			responseValidError(m, result);
 		} else {
 			try {
 				long id = service.save(obj);
@@ -85,7 +85,7 @@ public class LinkManager extends GeneralController<Link> {
 	@Override
 	public String modify(@PathVariable("id") long id, @Valid Link obj, BindingResult result, Model m) {
 		if (result.hasErrors()) {
-			m.addAttribute(result.getFieldErrors());
+			responseValidError(m, result);
 		} else {
 			try {
 				service.update(obj);
