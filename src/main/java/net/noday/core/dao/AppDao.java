@@ -101,4 +101,8 @@ public class AppDao {
 		}
 		return cfg;
 	}
+	
+	public void resetData() {
+		executeSql("db/demo.sql");
+	}
 }

@@ -112,6 +112,9 @@ public class ShiroDbRealm extends AuthorizingRealm {
 		User user = service.findUserByLoginName(shiroUser.loginName);
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 		info.addRole(user.getRole());
+		if ("admin@noday.net".equalsIgnoreCase(user.getEmail())) {
+			info.addStringPermission("oper");
+		}
 //		info.addRoles(user.getRoles());
 //		info.addStringPermissions(user.getPermissions());
 		return info;
