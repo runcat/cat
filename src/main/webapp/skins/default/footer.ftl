@@ -1,4 +1,11 @@
- <hr>
+<ul class="breadcrumb">
+	<#list links as link>
+	<li>
+		<a href="${link.url}" target="_blank">${link.name}</a>
+		<#if link_has_next><span class="divider">|</span></#if>
+	</li>
+	</#list>
+</ul>
  <footer class="footer">
    <p class="pull-right"><a href="#">Back to top</a></p>
    <p>
