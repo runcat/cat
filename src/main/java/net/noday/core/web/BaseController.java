@@ -36,6 +36,7 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 
 /**
  * cat BaseController
@@ -105,5 +106,8 @@ public abstract class BaseController {
 	protected void responseData(Model m, Object data) {
 		m.addAttribute("result", true);
 		m.addAttribute("data", data);
+	}
+	protected void responseValidError(Model m, BindingResult r) {
+		m.addAttribute(r.getFieldErrors());
 	}
 }
