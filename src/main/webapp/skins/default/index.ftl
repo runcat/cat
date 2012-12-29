@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<@head title="${appTitle}">
+<@head title="${cfg.webTitle}">
 <meta name="keywords" content="${metaKeywords}"/>
 <meta name="description" content=""/>
 </@head>
