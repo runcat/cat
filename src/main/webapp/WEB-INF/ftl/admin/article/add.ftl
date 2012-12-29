@@ -46,6 +46,7 @@
 			<h1>更新成功</h1>
 			<p>
 			<a id="show_article">查看</a>
+			<a href="${contextPath}/admin/articles/create">继续添加</a>
 			<a id="edit_article">继续编辑</a>
 			</p>
 			</section>
@@ -65,10 +66,11 @@ KindEditor.ready(function(K) {
 			resizeType : 1,
 			allowPreviewEmoticons : false,
 			allowImageUpload : false,
+			allowFlashUpload: false,
 			items : [
 				'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
 				'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
-				'insertunorderedlist', '|', 'emoticons', 'image', 'link']
+				'insertunorderedlist', '|', 'emoticons', 'image', 'flash', 'link','code','|','clearhtml','quickformat','source']
 		});
 });
 $('#article-form').ajaxForm({
