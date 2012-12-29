@@ -16,9 +16,13 @@
 package net.noday.cat.service;
 
 import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
 
 import net.noday.cat.dao.ArticleDao;
 import net.noday.cat.model.Article;
+import net.noday.core.model.App;
 import net.noday.core.pagination.Page;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +40,7 @@ public class ArticleService {
 
 	@Autowired private ArticleDao dao;
 	@Autowired private TagService tagService;
-//	@Resource private Map<String, Object> appCache;
+	@Resource private Map<String, Object> appCache;
 	
 	public Article get(long id) {
 		return dao.get(id);
@@ -74,7 +78,7 @@ public class ArticleService {
 	}
 	
 	public Page<Article> listPage(int index) {
-		Page<Article> page = new Page<Article>(index, Page.DEFAULTSIZE);
+		Page<Article> page = new Page<Article>(index, getCfgs().getListArticles()>0?getCfgs().getListArticles():Page.DEFAULTSIZE);
 		page.setRowCount(dao.findCount());
 		page.setRows(dao.findByPage(page.getPageIndex(), page.getSize()));
 		return page;
@@ -111,5 +115,9 @@ public class ArticleService {
 	 */
 	public List<Article> findMostReply(int amount) {
 		return dao.findMostReply(amount);
+	}
+	
+	protected App getCfgs() {
+		return (App) appCache.get("cfg");
 	}
 }
