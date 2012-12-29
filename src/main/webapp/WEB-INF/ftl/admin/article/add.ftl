@@ -29,6 +29,10 @@
 					<span id="msg-content" class="help-block"></span>
 					</div>
 					<div class="control-group">
+					<textarea name="description" placeholder="文章简要描述" rows="3" class="span9">${(article.description)!}</textarea>
+					<span id="msg-description" class="help-block"></span>
+					</div>
+					<div class="control-group">
 					<label class="control-label" for="captcha">标签</label>
 					<input type="text" name="tags" placeholder="随便" class="span9" value="${(article.tags)!}">
 					<span id="msg-tag" class="help-block"></span>
