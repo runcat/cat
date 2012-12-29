@@ -29,8 +29,8 @@
 					<span id="msg-url" class="help-block"></span>
 					</div>
 					<div class="control-group">
-					<label class="control-label" for="rank">排序</label>
-					<input type="text" name="rank" placeholder="数字，越小越靠前" value="${(link.rank)!}" class="span9" />
+					<label class="control-label" for="rank">排序 <small> (数字，越小越靠前)</small></label>
+					<input type="text" name="rank" value="${(link.rank)!'0'}" class="span9" />
 					<span id="msg-rank" class="help-block"></span>
 					</div>
 					<div class="control-group">
@@ -46,7 +46,8 @@
 			<section class="succ-toggle" style="display: none;">
 			<h1>更新成功</h1>
 			<p>
-			<a id="show_link">查看</a>
+			<a href="${contextPath}/admin/links/p/1">查看</a>
+			<a href="${contextPath}/admin/links/create">继续添加</a>
 			<a id="edit_link">继续编辑</a>
 			</p>
 			</section>
@@ -80,7 +81,6 @@ $('#link-form').ajaxForm({
 		} else if (data) {
 			if (data.result) {
 				$("#msg-submit").html("更新成功").show();
-				$("#show_link").attr("href", "${contextPath}/admin/links/p/1");
 				$("#edit_link").attr("href", "${contextPath}/admin/links/"+data.data+"/edit");
 				$(".succ-toggle").toggle();
 			} else {
