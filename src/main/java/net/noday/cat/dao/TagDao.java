@@ -100,7 +100,8 @@ public class TagDao {
 	}
 	
 	public void updateTagRefCount4DelRef(Long tid, int type) {
-		String sql = "UPDATE tag a SET a.ref_count=a.ref_count-1 WHERE id IN (SELECT tag_id FROM tag_ref WHERE target_id=1 AND TYPE=1)";
+		String sql = "UPDATE tag a SET a.ref_count=a.ref_count-1 WHERE id IN" +
+				" (SELECT tag_id FROM tag_ref WHERE target_id=1 AND TYPE=1) AND a.ref_count>0";
 		jdbc.update(sql, tid, type);
 	}
 }
