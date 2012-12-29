@@ -73,25 +73,25 @@
         </div>
         <div class="well well-side">
 	        <ul class="nav nav-list">
-	        	<li class="nav-header">广告</li>
+	        	<li class="nav-header">鸣谢</li>
 	        	<li>
 					<div class="media">
 						<a class="thumbnail">
-							<img src="holder.js/188x80" alt="">
+							<img src="http://static.oschina.net/uploads/space/2012/1212/162844_dIZn_179699.gif" alt="">
 						</a>
 					</div>
 	        	</li>
 	        	<li>
 					<div class="media">
 						<a class="thumbnail">
-							<img src="holder.js/188x80" alt="">
+							<img src="http://www.cloudfoundry.cn/images/logo_header_cloudfoundry.png" alt="">
 						</a>
 					</div>
 	        	</li>
 	        	<li>
 					<div class="media">
 						<a class="thumbnail">
-							<img src="holder.js/188x80" alt="">
+							<img src="http://www.oschina.net/img/logo.gif" alt="">
 						</a>
 					</div>
 	        	</li>
