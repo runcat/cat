@@ -147,6 +147,14 @@ CREATE TABLE `user_role` (
 
 insert  into `user_role`(`user_id`,`role_id`) values (1,1);
 
+CREATE TABLE `nav`(  
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(10) NOT NULL COMMENT '名称',
+  `url` VARCHAR(200) NOT NULL COMMENT '链接地址',
+  `rank` TINYINT NOT NULL DEFAULT 0 COMMENT '排序',
+  `pid` INT(11) COMMENT '上级id',
+  PRIMARY KEY (`id`)
+) ENGINE=INNODB CHARSET=utf8;
 
 ALTER TABLE `article`  
   ADD CONSTRAINT `pk_article_user` FOREIGN KEY (`author_id`) REFERENCES `user` (`id`);

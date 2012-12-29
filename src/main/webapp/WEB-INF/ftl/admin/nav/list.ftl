@@ -22,7 +22,7 @@
 		                <tr>
 		                  <th colspan="5">
 								  <div class="btn-group">
-								  	<a href="${contextPath}/admin/nav/create" class="btn btn-link btn-small">新增</a>
+								  	<a href="${contextPath}/admin/navs/create" class="btn btn-link btn-small">新增</a>
 								  </div>
 		                  </th>
 		                </tr>

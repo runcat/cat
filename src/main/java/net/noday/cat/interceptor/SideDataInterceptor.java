@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.noday.cat.service.ArticleService;
 import net.noday.cat.service.LinkService;
+import net.noday.cat.service.NavService;
 import net.noday.cat.service.TagService;
 import net.noday.core.model.App;
 
@@ -44,6 +45,7 @@ public class SideDataInterceptor extends HandlerInterceptorAdapter {
 	@Autowired private TagService tagService;
 	@Autowired private ArticleService articleService;
 	@Autowired private LinkService linkService;
+	@Autowired private NavService navService;
 	@Resource protected Map<String, Object> appCache;
 	
 	@Override
@@ -56,6 +58,7 @@ public class SideDataInterceptor extends HandlerInterceptorAdapter {
 			modelAndView.addObject("mostReplyArticles", articleService.findMostReply(getCfgs().getMostReplyArticles()));
 			modelAndView.addObject("recentArticles", articleService.findRecent(getCfgs().getRecentArticles()));
 			modelAndView.addObject("links", linkService.findAll());
+			modelAndView.addObject("navs", navService.findAll());
 		}
 		super.postHandle(request, response, handler, modelAndView);
 	}

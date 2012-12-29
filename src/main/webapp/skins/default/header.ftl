@@ -23,11 +23,14 @@
               <ul class="nav">
                 <li id="home"><a href="${contextPath}/"><i class="icon-home"></i>Home</a></li>
                 <li id="tags"><a href="${contextPath}/tags">标签墙</a></li>
-                <li><a href="http://www.noday.net" target="_blank">我的博客</a></li>
-                <li><a href="http://symphony.b3log.org" target="_blank">B3log社区</a></li>
+                <#list navs as nav>
+                <li><a href="${nav.url}">${nav.name}</a></li>
+                </#list>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">跟踪我 <b class="caret"></b></a>
                   <ul class="dropdown-menu">
+	                <li><a href="http://www.noday.net" target="_blank">我的博客</a></li>
+	                <li><a href="http://symphony.b3log.org" target="_blank">B3log社区</a></li>
                     <li class="nav-header">微博</li>
                     <li><a href="#">腾讯微博</a></li>
                     <li><a href="#">新浪微博</a></li>
