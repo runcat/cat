@@ -15,6 +15,8 @@
  */
 package net.noday.cat.service;
 
+import java.util.List;
+
 import net.noday.cat.dao.LinkDao;
 import net.noday.cat.model.Link;
 import net.noday.core.pagination.Page;
@@ -49,6 +51,10 @@ public class LinkService {
 	
 	public void delete(Long id) {
 		dao.delete(id);
+	}
+	
+	public List<Link> findAll() {
+		return dao.findAll();
 	}
 	
 	public Page<Link> listPage(int index) {

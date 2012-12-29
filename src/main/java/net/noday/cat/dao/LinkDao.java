@@ -65,6 +65,12 @@ public class LinkDao {
 		jdbc.update(sql, id);
 	}
 	
+	public List<Link> findAll() {
+		String sql = "select * from link a order by rank";
+		List<Link> list = jdbc.query(sql, new BeanPropertyRowMapper<Link>(Link.class));
+		return list;
+	}
+	
 	public List<Link> findByPage(int index, int size) {
 		String sql = "select * from link a order by rank limit ?,?";
 		List<Link> list = jdbc.query(sql, new BeanPropertyRowMapper<Link>(Link.class), (index-1)*size, size);
