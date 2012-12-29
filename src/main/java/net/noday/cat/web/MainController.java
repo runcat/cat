@@ -63,10 +63,6 @@ public class MainController extends BaseController {
 	@RequestMapping(value = "/p/{index}", method = RequestMethod.GET)
 	public String page(@PathVariable("index") int index, Model model) {
 		model.addAttribute(articleService.listPage(index));
-		// TODO 有侧边栏的地方都应该有，还要考虑缓存处理
-		model.addAttribute("mostViewArticles", articleService.findMostView(getCfgs().getMostViewArticles()));
-		model.addAttribute("mostReplyArticles", articleService.findMostReply(getCfgs().getMostReplyArticles()));
-		model.addAttribute("recentArticles", articleService.findRecent(getCfgs().getRecentArticles()));
 		return "index";
 	}
 	

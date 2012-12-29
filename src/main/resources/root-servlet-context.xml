@@ -112,6 +112,13 @@
 		<property name="maxUploadSize" value="2097152" />
 		<property name="uploadTempDir" value="/temp/" />
 	</bean>
+	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<bean class="net.noday.cat.interceptor.SideDataInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
 
 	<!-- <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" 
 		/> <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver"> 

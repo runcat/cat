@@ -57,10 +57,6 @@ public class TagController extends BaseController {
 		try {
 			name = new String(name.getBytes("iso8859-1"), "utf-8");
 			m.addAttribute(articleService.listPage4Tag(index, name));
-			// TODO 下面的多处用到，要处理
-			m.addAttribute("mostViewArticles", articleService.findMostView(getCfgs().getMostViewArticles()));
-			m.addAttribute("mostReplyArticles", articleService.findMostReply(getCfgs().getMostReplyArticles()));
-			m.addAttribute("recentArticles", articleService.findRecent(getCfgs().getRecentArticles()));
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}

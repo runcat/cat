@@ -43,10 +43,6 @@ public class ArticleController extends BaseController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public String show(@PathVariable("id") long id, Model model) {
 		model.addAttribute(service.show(id));
-
-		model.addAttribute("mostViewArticles", service.findMostView(getCfgs().getMostViewArticles()));
-		model.addAttribute("mostReplyArticles", service.findMostReply(getCfgs().getMostReplyArticles()));
-		model.addAttribute("recentArticles", service.findRecent(getCfgs().getRecentArticles()));
 		return "article";
 	}
 }
