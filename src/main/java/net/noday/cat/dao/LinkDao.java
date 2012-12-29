@@ -41,17 +41,17 @@ public class LinkDao {
 	@Autowired private JdbcTemplate jdbc;
 	@Autowired private NamedParameterJdbcTemplate namedJdbc;
 	
-	public long save(Link l) {
-		String sql = "insert into link(name,url,description,category_id)" +
-				" values(:name,:url,:description,:categoryId)";
+	public long save(Link obj) {
+		String sql = "insert into link(name,url,description,rank,category_id)" +
+				" values(:name,:url,:description,:rank,:categoryId)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
-        namedJdbc.update(sql, new BeanPropertySqlParameterSource(l), keyHolder);
+        namedJdbc.update(sql, new BeanPropertySqlParameterSource(obj), keyHolder);
         return keyHolder.getKey().longValue();
 	}
 	
-	public void update(Link l) {
-		String sql = "update link set name=?,url=?,description=? where id=?";
-		jdbc.update(sql, l.getName(), l.getUrl(), l.getDescription(), l.getId());
+	public void update(Link obj) {
+		String sql = "update link set name=?,url=?,rank=?,description=? where id=?";
+		jdbc.update(sql, obj.getName(), obj.getUrl(), obj.getRank(), obj.getDescription(), obj.getId());
 	}
 	
 	public Link get(Long id) {
@@ -66,7 +66,7 @@ public class LinkDao {
 	}
 	
 	public List<Link> findByPage(int index, int size) {
-		String sql = "select * from link a order by rank desc limit ?,?";
+		String sql = "select * from link a order by rank limit ?,?";
 		List<Link> list = jdbc.query(sql, new BeanPropertyRowMapper<Link>(Link.class), (index-1)*size, size);
 		return list;
 	}

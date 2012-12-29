@@ -29,8 +29,13 @@
 					<span id="msg-url" class="help-block"></span>
 					</div>
 					<div class="control-group">
+					<label class="control-label" for="rank">排序</label>
+					<input type="text" name="rank" placeholder="数字，越小越靠前" value="${(link.rank)!}" class="span9" />
+					<span id="msg-rank" class="help-block"></span>
+					</div>
+					<div class="control-group">
 					<label class="control-label" for="description">描述</label>
-					<textarea name="description" placeholder="简单介绍一下" rows="5" class="span9">${(link.url)!}</textarea>
+					<textarea name="description" placeholder="简单介绍一下" rows="5" class="span9">${(link.description)!}</textarea>
 					<span id="msg-description" class="help-block"></span>
 					</div>
 					<button type="submit" class="btn btn-primary">发布</button>
@@ -41,7 +46,7 @@
 			<section class="succ-toggle" style="display: none;">
 			<h1>更新成功</h1>
 			<p>
-			<a id="show_links">查看</a>
+			<a id="show_link">查看</a>
 			<a id="edit_link">继续编辑</a>
 			</p>
 			</section>

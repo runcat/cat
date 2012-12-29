@@ -15,6 +15,8 @@
  */
 package net.noday.cat.web.admin;
 
+import javax.validation.Valid;
+
 import net.noday.cat.model.Link;
 import net.noday.cat.service.LinkService;
 import net.noday.core.web.GeneralController;
@@ -47,7 +49,7 @@ public class LinkManager extends GeneralController<Link> {
 	}
 
 	@Override
-	public String save(Link obj, BindingResult result, Model m) {
+	public String save(@Valid Link obj, BindingResult result, Model m) {
 		if (result.hasErrors()) {
 			m.addAttribute(result.getFieldErrors());
 		} else {
@@ -81,8 +83,18 @@ public class LinkManager extends GeneralController<Link> {
 	}
 
 	@Override
-	public String modify(@PathVariable("id") long id, Link obj, BindingResult result, Model m) {
-		
+	public String modify(@PathVariable("id") long id, @Valid Link obj, BindingResult result, Model m) {
+		if (result.hasErrors()) {
+			m.addAttribute(result.getFieldErrors());
+		} else {
+			try {
+				service.update(obj);
+				responseData(m, id);
+			} catch (Exception e) {
+				log.error(e.getMessage(), e);
+				responseMsg(m, false, e.getMessage());
+			}
+		}
 		return "admin/link/add-success";
 	}
 

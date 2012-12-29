@@ -17,6 +17,9 @@ package net.noday.cat.model;
 
 import java.io.Serializable;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+
 /**
  * cat Link
  *
@@ -30,12 +33,17 @@ public class Link implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	public static final int DEFAULT_CATEGORY = 2;//默认链接分类
 
 	private Long id;
+	@NotEmpty @Length(max = 50)
 	private String name;
+	@NotEmpty @Length(max = 100)
 	private String url;
+	@Length(max = 100)
 	private String description;
 	private Long categoryId;
+	private int rank;
 	public Long getId() {
 		return id;
 	}
@@ -61,9 +69,15 @@ public class Link implements Serializable {
 		this.description = description;
 	}
 	public Long getCategoryId() {
-		return categoryId;
+		return categoryId!=null?categoryId:DEFAULT_CATEGORY;
 	}
 	public void setCategoryId(Long categoryId) {
 		this.categoryId = categoryId;
+	}
+	public int getRank() {
+		return rank;
+	}
+	public void setRank(int rank) {
+		this.rank = rank;
 	}
 }

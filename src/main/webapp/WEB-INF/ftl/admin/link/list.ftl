@@ -30,7 +30,8 @@
 		                  <th>#</th>
 		                  <th>名称</th>
 		                  <th>地址</th>
-		                  <th style="width: 115px;">操作</th>
+		                  <th>排序号</th>
+		                  <th style="width: 40px;">操作</th>
 		                </tr>
 		              </thead>
 	              <tbody>
@@ -39,11 +40,14 @@
 	                  <td></td>
 	                  <td>${row.name }</td>
 	                  <td>${row.url }</td>
+	                  <td>${row.rank }</td>
 	                  <td>
+	               <!-- 
 					  	<a title="顶部" data-id="${row.id }" class="icon-chevron-up" href="javascript:void(0)" rel="tooltip"></a>
-	                  	<a title="上移" data-id="${row.id }" class="icon-arrow-up" href="javascript:void(0)" rel="tooltip"></a>
+	               <a title="上移" data-id="${row.id }" class="icon-arrow-up" href="javascript:void(0)" rel="tooltip"></a>
 					  	<a title="下移" data-id="${row.id }" class="icon-arrow-down" href="javascript:void(0)" rel="tooltip"></a>
 					  	<a title="底部" data-id="${row.id }" class="icon-chevron-down" href="javascript:void(0)" rel="tooltip"></a>
+	                -->
 					  	<a title="编辑" class="icon-edit" href="${contextPath}/admin/links/${row.id }/edit" rel="tooltip"></a>
 					  	<a title="删除" data-id="${row.id }" class="delete icon-remove" href="javascript:void(0)" rel="tooltip"></a>
 					  </td>

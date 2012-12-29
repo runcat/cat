@@ -38,13 +38,13 @@ public class LinkService {
 		return dao.get(id);
 	}
 	
-	public long save(Link a) {
-		long aid = dao.save(a);
+	public long save(Link obj) {
+		long aid = dao.save(obj);
 		return aid;
 	}
 	
-	public void update(Link a) {
-		dao.update(a);
+	public void update(Link obj) {
+		dao.update(obj);
 	}
 	
 	public void delete(Long id) {
