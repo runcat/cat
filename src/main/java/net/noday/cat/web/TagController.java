@@ -56,6 +56,7 @@ public class TagController extends BaseController {
 	public String show(@PathVariable("name") String name, @PathVariable("index") int index, Model m) {
 		try {
 			name = new String(name.getBytes("iso8859-1"), "utf-8");
+			m.addAttribute("tagName", name);
 			m.addAttribute(articleService.listPage4Tag(index, name));
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();

@@ -12,6 +12,9 @@
 		<#include "header.ftl">
 		<div class="row">
 			<div class="span9">
+			<blockquote>
+			  <p>标签：${tagName}</p>
+			</blockquote>
 				<#if cfg.listStyle==1>
 				<#include "style/simple.ftl">
 				<#elseif cfg.listStyle==2>
