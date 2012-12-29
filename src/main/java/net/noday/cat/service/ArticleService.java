@@ -66,6 +66,7 @@ public class ArticleService {
 	
 	public void delete(Long id) {
 		dao.delete(id);
+		tagService.deleteRefByArticleId(id);
 	}
 	
 	public void updateTopable(Long id, boolean topable) {

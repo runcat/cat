@@ -94,4 +94,13 @@ public class TagDao {
 		}
 	}
 	
+	public void deleteRefByTargetId(Long tid, int type) {
+		String sql = "delete from tag_ref where target_id=? and type=?";
+		jdbc.update(sql, tid, type);
+	}
+	
+	public void updateTagRefCount4DelRef(Long tid, int type) {
+		String sql = "UPDATE tag a SET a.ref_count=a.ref_count-1 WHERE id IN (SELECT tag_id FROM tag_ref WHERE target_id=1 AND TYPE=1)";
+		jdbc.update(sql, tid, type);
+	}
 }

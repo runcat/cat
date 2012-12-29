@@ -64,4 +64,9 @@ public class TagService {
 			}
 		}
 	}
+	
+	public void deleteRefByArticleId(Long aid) {
+		dao.updateTagRefCount4DelRef(aid, 1);
+		dao.deleteRefByTargetId(aid, 1);
+	}
 }
