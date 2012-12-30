@@ -4,7 +4,7 @@
 <head>
 <@head title="${article.title } - ${cfg.webTitle}">
 <meta name="keywords" content="${article.tags}"/>
-<meta name="description" content=""/>
+<meta name="description" content="${article.tags}"/>
 </@head>
 </head>
 <body>

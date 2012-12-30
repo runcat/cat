@@ -47,3 +47,4 @@ $(function() {
 	$('.carousel').carousel()
 });
 </script>
+<div style="display: none;">${cfg.hiddenSource}</div>

@@ -3,8 +3,8 @@
 <html>
 <head>
 <@head title="${cfg.webTitle}">
-<meta name="keywords" content="${metaKeywords}"/>
-<meta name="description" content=""/>
+<meta name="keywords" content="${cfg.metaKeywords}"/>
+<meta name="description" content="${cfg.metaDescription}"/>
 </@head>
 </head>
 <body>

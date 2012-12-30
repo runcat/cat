@@ -1,8 +1,8 @@
     <header class="jumbotron subhead" id="overview">
       <div class="row">
         <div class="span6">
-          <h1>Noday.net</h1>
-          <p>分享…</p>
+          <h1>${cfg.webTitle}</h1>
+          <p>${cfg.subTitle}</p>
         </div>
         <!-- 
         <div class="span3">

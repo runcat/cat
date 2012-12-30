@@ -51,7 +51,7 @@
 	                  	<#else>
 					  	<a title="置顶" data-id="${row.id }" class="topable icon-chevron-up" href="javascript:void(0)" rel="tooltip"></a>
 	                  	</#if>
-					  	<a title="查看评论" data-id="${row.id }" class="icon-comment" href="javascript:void(0)" rel="tooltip"></a>
+					  	<a title="查看评论" class="icon-comment" href="${contextPath}/articles/${row.id }#comments" target="_blank" rel="tooltip"></a>
 					  	<a title="编辑" class="icon-edit" href="${contextPath}/admin/articles/${row.id }/edit" rel="tooltip"></a>
 					  	<a title="删除" data-id="${row.id }" class="delete icon-remove" href="javascript:void(0)" rel="tooltip"></a>
 					  </td>
