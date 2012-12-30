@@ -81,6 +81,6 @@ public class AdminController extends BaseController {
 			log.error(e.getMessage(), e);
 			responseMsg(m, false, e.getMessage());
 		}
-		return "";
+		return "admin/index";
 	}
 }
