@@ -28,7 +28,6 @@
 		<#include "footer.ftl">
 	</div>
 <script type="text/javascript">
-$("#tags").addClass("active");
 </script>
 </body>
 </html>
