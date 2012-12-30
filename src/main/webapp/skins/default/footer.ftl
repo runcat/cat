@@ -23,7 +23,6 @@
  </footer>
 <script src="${contextPath}/js/jquery-1.8.2.js"></script>
 <script src="${contextPath}/js/bootstrap.js"></script>
-<script src="https://raw.github.com/imsky/holder/master/holder.js"></script>
 <script src="${contextPath}/js/utils.js"></script>
 <script type="text/javascript">
 <!-- Duoshuo Comment BEGIN -->
