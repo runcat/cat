@@ -28,6 +28,7 @@
 		<@shiro.hasPermission name="oper">
 		<h5>如果你有超级权限，那么你就可以重置所有内容数据</h5>
 		<a href="${contextPath}/admin/dev/resetData">reset</a>
+		${(result)!}
 		</@shiro.hasPermission>
 		</p>
 	</div>
