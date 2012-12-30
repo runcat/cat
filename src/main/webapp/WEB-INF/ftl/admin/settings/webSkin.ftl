@@ -23,7 +23,7 @@ a.thumbnail.select {
 			<section>
 				<legend>皮肤</legend>
             <ul class="thumbnails skin" style="text-align: center;">
-              <#list skins as skinName>
+              <#list cfg.skins as skinName>
               <li>
                 <a class="thumbnail" title="${skinName}">
                   <img alt="${skinName}" src="${contextPath}/skins/${skinName}/preview.png">
