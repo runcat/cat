@@ -22,10 +22,10 @@
             <div class="nav-collapse">
               <ul class="nav">
                 <li id="home"><a href="${contextPath}/"><i class="icon-home"></i>Home</a></li>
-                <li id="tags"><a href="${contextPath}/tags">标签墙</a></li>
                 <#list navs as nav>
                 <li><a href="${nav.url}">${nav.name}</a></li>
                 </#list>
+                <li id="tags"><a href="${contextPath}/tags">标签墙</a></li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">跟踪我 <b class="caret"></b></a>
                   <ul class="dropdown-menu">
@@ -68,7 +68,7 @@
                 </@shiro.guest>
                 <@shiro.user>
                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="label label-inverse">noday</span><span class="caret"></span></a>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="label label-inverse"><@shiro.principal/></span><span class="caret"></span></a>
                   <ul class="dropdown-menu">
                     <li><a href="${contextPath}/admin">管理后台</a></li>
                     <li><a href="${contextPath}/logout">退出</a></li>
