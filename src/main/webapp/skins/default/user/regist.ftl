@@ -67,7 +67,9 @@
 				  </div>
 				  <div class="control-group">
 				    <div class="controls">
+				    <@shiro.hasPermission name="oper">
 				      <button type="submit" class="btn btn-large btn-primary span2">注  册</button>
+				    </@shiro.hasPermission>
 				    </div>
 				  </div>
 				  <div class="control-group">
