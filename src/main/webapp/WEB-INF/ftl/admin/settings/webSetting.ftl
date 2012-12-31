@@ -90,7 +90,7 @@
 			</section>
 		</div>
 	</div>
-	<#include "footer.ftl">
+	<#include "admin/footer.ftl">
 </div>
 <script type="text/javascript" src="${contextPath}/js/form/jquery.form.js"></script>
 <script type="text/javascript">

@@ -94,7 +94,7 @@
 				</section>
 			</div>
 		</div>
-		<#include "footer.ftl">
+		<#include "admin/footer.ftl">
 	</div>
 <script type="text/javascript">
 $("#nav-article-list").addClass("active");
