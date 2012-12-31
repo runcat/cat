@@ -70,7 +70,7 @@ KindEditor.ready(function(K) {
 			items : [
 				'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
 				'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
-				'insertunorderedlist', '|', 'emoticons', 'image', 'flash', 'link','code','|','clearhtml','quickformat','source']
+				'insertunorderedlist', '|', 'emoticons', 'image', 'flash', 'link','code','|','clearhtml','quickformat','source','about']
 		});
 });
 $('#article-form').ajaxForm({
