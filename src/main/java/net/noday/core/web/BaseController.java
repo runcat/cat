@@ -37,6 +37,9 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * cat BaseController
@@ -109,5 +112,10 @@ public abstract class BaseController {
 	}
 	protected void responseValidError(Model m, BindingResult r) {
 		m.addAttribute(r.getFieldErrors());
+	}
+	
+	@ExceptionHandler
+	public ModelAndView resolveException(Exception ex, WebRequest req) {
+		return null;
 	}
 }

@@ -21,11 +21,14 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import net.noday.cat.dao.ArticleDao;
+import net.noday.cat.event.ArticleSaveEvent;
 import net.noday.cat.model.Article;
 import net.noday.core.model.App;
 import net.noday.core.pagination.Page;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.context.ApplicationEventPublisherAware;
 import org.springframework.stereotype.Service;
 
 /**
@@ -36,7 +39,7 @@ import org.springframework.stereotype.Service;
  * @since 
  */
 @Service
-public class ArticleService {
+public class ArticleService implements ApplicationEventPublisherAware {
 
 	@Autowired private ArticleDao dao;
 	@Autowired private TagService tagService;
@@ -60,6 +63,7 @@ public class ArticleService {
 		long aid = dao.save(a);
 		String tagStr = a.getTags();
 		tagService.save(aid, tagStr);
+		publisher.publishEvent(new ArticleSaveEvent(this, a));// TODO 把id放进去
 		return aid;
 	}
 	
@@ -119,5 +123,11 @@ public class ArticleService {
 	
 	protected App getCfgs() {
 		return (App) appCache.get("cfg");
+	}
+
+	private ApplicationEventPublisher publisher;
+	@Override
+	public void setApplicationEventPublisher(ApplicationEventPublisher arg0) {
+		this.publisher = arg0;
 	}
 }
