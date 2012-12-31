@@ -27,6 +27,15 @@ import java.util.Locale;
 import net.noday.cat.model.ext.Dwz;
 import net.noday.core.web.BaseController;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.ResponseHandler;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.BasicResponseHandler;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.log4j.Logger;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.stereotype.Controller;
@@ -81,5 +90,29 @@ public class DwzManager extends BaseController {
 			responseMsg(m, false, e.getMessage());
 		}
 		return m;
+	}
+	
+	public void gendwz(String url, String alias) {
+		HttpClient client = new DefaultHttpClient();
+		HttpPost post = new HttpPost("http://dwz.cn/create.php");
+		post.getParams()
+			.setParameter("url", url)
+			.setParameter("alias", alias);
+		try {
+			ResponseHandler<String> responseHandler = new BasicResponseHandler();
+			String responseBody = client.execute(post, responseHandler);
+			System.out.println(responseBody);
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			client.getConnectionManager().shutdown();
+		}
+	}
+	
+	public static void main(String[] args) {
+		DwzManager m = new DwzManager();
+		m.gendwz("http://www.hao123.com/", "");
 	}
 }
