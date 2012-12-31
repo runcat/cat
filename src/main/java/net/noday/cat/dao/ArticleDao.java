@@ -88,7 +88,7 @@ public class ArticleDao {
 	}
 	
 	public List<Article> findByPage4Tag(int index, int size, String tagName) {
-		String sql = "select * from article a,tag_ref b,tag c where a.id=b.target_id and b.tag_id=c.id and c.name=? order by topable desc,create_time desc limit ?,?";
+		String sql = "select a.* from article a,tag_ref b,tag c where a.id=b.target_id and b.tag_id=c.id and c.name=? order by topable desc,create_time desc limit ?,?";
 		List<Article> list = jdbc.query(sql, new BeanPropertyRowMapper<Article>(Article.class), tagName, (index-1)*size, size);
 		return list;
 	}
