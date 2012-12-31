@@ -16,7 +16,7 @@
 		</div>
 		<div class="span9">
 			<section>
-				<legend>网站参数</legend>
+				<h4>网站参数</h4>
 				<form id="signs-form" class="form-horizontal" action="${contextPath}/admin/settings/webSign.json" method="post">
 					<div class="control-group">
 						<label class="control-label" for="sign1">签名档1：</label>

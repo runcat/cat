@@ -21,7 +21,7 @@ a.thumbnail.select {
 		</div>
 		<div class="span9">
 			<section>
-				<legend>皮肤</legend>
+				<h4>皮肤</h4>
             <ul class="thumbnails skin" style="text-align: center;">
               <#list cfg.skins as skinName>
               <li>

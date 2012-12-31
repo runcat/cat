@@ -16,7 +16,7 @@
 		</div>
 		<div class="span9">
 			<section>
-				<legend>网站信息</legend>
+				<h4>网站信息</h4>
 				<form id="webInfo-form" class="form-horizontal" action="${contextPath}/admin/settings/webInfo.json" method="post">
 					<div class="control-group">
 						<label class="control-label" for="webTitle">网站标题：</label>

@@ -15,8 +15,8 @@
 				<#include "admin/side.ftl">
 			</div>
 			<div class="span9">
-				<section class="data-table-grid">
-					<legend>友链管理</legend>
+				<h4>友链管理</h4>
+				<div class="data-table-grid">
 					<table class="table table-condensed table-bordered table-striped table-hover">
 		              <thead>
 		                <tr>
@@ -87,7 +87,7 @@
 	                </tr>
 	              </tfoot>
 	            </table>
-				</section>
+				</div>
 			</div>
 		</div>
 		<#include "admin/footer.ftl">

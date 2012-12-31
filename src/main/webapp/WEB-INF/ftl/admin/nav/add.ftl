@@ -15,8 +15,8 @@
 			<#include "admin/side.ftl">
 		</div>
 		<div class="span9">
-			<legend>导航发布</legend>
-			<section class="succ-toggle">
+			<h4>导航发布</h4>
+			<div class="succ-toggle">
 				<form id="nav-form" action='${contextPath}/admin/navs<#if (nav.id)??>/${nav.id}</#if>.json' method="post">
 					<div class="control-group">
 					<label class="control-label" for="name">导航名称</label>
@@ -37,15 +37,15 @@
 					<div id="msg-submit" class="alert alert-info line-alert help-inline" style="display: none;">
 				    </div>
 				</form>
-			</section>
-			<section class="succ-toggle" style="display: none;">
+			</div>
+			<div class="succ-toggle" style="display: none;">
 			<h1>更新成功</h1>
 			<p>
 			<a href="${contextPath}/admin/navs/p/1">查看</a>
 			<a href="${contextPath}/admin/navs/create">继续添加</a>
 			<a id="edit_nav">继续编辑</a>
 			</p>
-			</section>
+			</div>
 		</div>
 	</div>
 	<#include "admin/footer.ftl">

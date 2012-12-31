@@ -15,8 +15,8 @@
 			<#include "admin/side.ftl">
 		</div>
 		<div class="span9">
-			<legend>短网址</legend>
-			<section class="succ-toggle">
+			<h4>短网址</h4>
+			<div class="succ-toggle">
 				<form id="dwz-form" action='${contextPath}/admin/tools/dwz.json' method="post">
 					<div class="control-group">
 					<label class="control-label" for="url">原网址</label>
@@ -26,7 +26,7 @@
 					<div class="control-group">
 					<label class="control-label" for="content">自定义(可选)</label>
 					<div class="input-prepend">
-						<button class="btn disabled">http://dwz.cn/</button>
+						<button class="btn disabled" disabled="disabled">http://dwz.cn/</button>
 					    <input type="text" name="alias" placeholder="字母、数字和破折号" class="span2">
 					</div>
 					<span id="msg-content" class="help-block"></span>
@@ -35,14 +35,14 @@
 					<div id="msg-submit" class="alert alert-info line-alert help-inline" style="display: none;">
 				    </div>
 				</form>
-			</section>
-			<section class="succ-toggle" style="display: none;">
+			</div>
+			<div class="succ-toggle" style="display: none;">
 			<h1>更新成功</h1>
 			<p>
 			<a id="show_article">查看</a>
 			<a id="edit_article">继续编辑</a>
 			</p>
-			</section>
+			</div>
 		</div>
 	</div>
 	<#include "admin/footer.ftl">
