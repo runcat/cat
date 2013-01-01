@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 the original author or authors.
+ * Copyright 2013 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,56 +15,24 @@
  */
 package net.noday.cat.service;
 
-import java.util.Map;
-
-import javax.annotation.Resource;
-
-import net.noday.cat.dao.SettingsDao;
-import net.noday.core.model.App;
 import net.noday.core.model.AppWebInfo;
 import net.noday.core.model.AppWebSetting;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 /**
  * cat SettingsService
  *
  * @author <a href="http://www.noday.net">Noday</a>
- * @version , 2012-12-20
+ * @version , 2013-1-1
  * @since 
  */
-@Service
-public class SettingsService {
-	
-	@Autowired private SettingsDao dao;
-	@Resource private Map<String, Object> appCache;
+public interface SettingsService {
 
-	public void modifyWebInfo(AppWebInfo app) {
-		dao.updateWebInfo(app);
-		getCfgs().update(app);
-	}
-	
-	public void modifyWebSetting(AppWebSetting app) {
-		dao.updateWebSetting(app);
-		getCfgs().update(app);
-	}
-	
-	public String modifyWebSkin(String skinName) {
-		if (!getCfgs().hasSkin(skinName)) {
-			skinName = getCfgs().getSkins().get(0);
-		}
-		dao.updateWebSkin(skinName);
-		getCfgs().setSkin(skinName);
-		return skinName;
-	}
-	
-	public void modifyUserSign(Object... sign) {
-		dao.updateUserSign(sign);
-		// TODO 更新缓存签名档
-	}
-	
-	protected App getCfgs() {
-		return (App) appCache.get("cfg");
-	}
+	public abstract void modifyWebInfo(AppWebInfo app);
+
+	public abstract void modifyWebSetting(AppWebSetting app);
+
+	public abstract String modifyWebSkin(String skinName);
+
+	public abstract void modifyUserSign(Object... sign);
+
 }

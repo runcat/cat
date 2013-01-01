@@ -17,6 +17,8 @@ package net.noday.cat.model;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Min;
+
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -43,6 +45,7 @@ public class Link implements Serializable {
 	@Length(max = 100)
 	private String description;
 	private Long categoryId;
+	@Min(0)
 	private int rank;
 	public Long getId() {
 		return id;

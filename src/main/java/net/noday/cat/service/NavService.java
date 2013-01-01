@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 the original author or authors.
+ * Copyright 2013 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,42 +17,25 @@ package net.noday.cat.service;
 
 import java.util.List;
 
-import net.noday.cat.dao.NavDao;
 import net.noday.cat.model.Nav;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 /**
  * cat NavService
  *
  * @author <a href="http://www.noday.net">Noday</a>
- * @version , 2012-12-29
+ * @version , 2013-1-1
  * @since 
  */
-@Service
-public class NavService {
+public interface NavService {
 
-	@Autowired private NavDao dao;
-	
-	public Nav get(long id) {
-		return dao.get(id);
-	}
-	
-	public long save(Nav obj) {
-		long aid = dao.save(obj);
-		return aid;
-	}
-	
-	public void update(Nav obj) {
-		dao.update(obj);
-	}
-	
-	public void delete(Long id) {
-		dao.delete(id);
-	}
-	
-	public List<Nav> findAll() {
-		return dao.findAll();
-	}
+	public abstract Nav get(long id);
+
+	public abstract long save(Nav obj);
+
+	public abstract void update(Nav obj);
+
+	public abstract void delete(Long id);
+
+	public abstract List<Nav> findAll();
+
 }

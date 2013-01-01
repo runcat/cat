@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 the original author or authors.
+ * Copyright 2013 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,118 +16,59 @@
 package net.noday.cat.service;
 
 import java.util.List;
-import java.util.Map;
 
-import javax.annotation.Resource;
-
-import net.noday.cat.dao.ArticleDao;
-import net.noday.cat.event.ArticleSaveEvent;
 import net.noday.cat.model.Article;
-import net.noday.core.model.App;
 import net.noday.core.pagination.Page;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.context.ApplicationEventPublisherAware;
-import org.springframework.stereotype.Service;
 
 /**
  * cat ArticleService
  *
  * @author <a href="http://www.noday.net">Noday</a>
- * @version , 2012-11-25
+ * @version , 2013-1-1
  * @since 
  */
-@Service
-public class ArticleService implements ApplicationEventPublisherAware {
+public interface ArticleService {
 
-	@Autowired private ArticleDao dao;
-	@Autowired private TagService tagService;
-	@Resource private Map<String, Object> appCache;
-	
-	public Article get(long id) {
-		return dao.get(id);
-	}
-	
+	public abstract Article get(long id);
+
 	/**
 	 * 显示文章，会增加阅读量
 	 * @param id
 	 * @return
 	 */
-	public Article show(long id) {
-		dao.updateViewCount(id);
-		return dao.get(id);
-	}
-	
-	public long save(Article a) {
-		long aid = dao.save(a);
-		String tagStr = a.getTags();
-		tagService.save(aid, tagStr);
-		publisher.publishEvent(new ArticleSaveEvent(this, a));// TODO 把id放进去
-		return aid;
-	}
-	
-	public void update(Article a) {
-		dao.update(a);
-		tagService.update(a.getId(), a.getTags());
-	}
-	
-	public void delete(Long id) {
-		dao.delete(id);
-		tagService.deleteRefByArticleId(id);
-	}
-	
-	public void updateTopable(Long id, boolean topable) {
-		dao.updateTopable(id, topable);
-	}
-	
-	public Page<Article> listPage(int index) {
-		Page<Article> page = new Page<Article>(index, getCfgs().getListArticles()>0?getCfgs().getListArticles():Page.DEFAULTSIZE);
-		page.setRowCount(dao.findCount());
-		page.setRows(dao.findByPage(page.getPageIndex(), page.getSize()));
-		return page;
-	}
-	
-	public Page<Article> listPage4Tag(int index, String tagName) {
-		Page<Article> page = new Page<Article>(index, Page.DEFAULTSIZE);
-		page.setRowCount(dao.findCount4Tag(tagName));
-		page.setRows(dao.findByPage4Tag(page.getPageIndex(), page.getSize(), tagName));
-		return page;
-	}
-	
+	public abstract Article show(long id);
+
+	public abstract long save(Article a);
+
+	public abstract void update(Article a);
+
+	public abstract void delete(Long id);
+
+	public abstract void updateTopable(Long id, boolean topable);
+
+	public abstract Page<Article> listPage(int index);
+
+	public abstract Page<Article> listPage4Tag(int index, String tagName);
 
 	/**
 	 * 浏览量最多
 	 * @param amount
 	 * @return
 	 */
-	public List<Article> findMostView(int amount) {
-		return dao.findMostView(amount);
-	}
+	public abstract List<Article> findMostView(int amount);
+
 	/**
 	 * 最新
 	 * @param amount
 	 * @return
 	 */
-	public List<Article> findRecent(int amount) {
-		return dao.findRecent(amount);
-	}
+	public abstract List<Article> findRecent(int amount);
+
 	/**
 	 * 回复最多
 	 * @param amount
 	 * @return
 	 */
-	public List<Article> findMostReply(int amount) {
-		return dao.findMostReply(amount);
-	}
-	
-	protected App getCfgs() {
-		return (App) appCache.get("cfg");
-	}
+	public abstract List<Article> findMostReply(int amount);
 
-	private ApplicationEventPublisher publisher;
-	@Override
-	public void setApplicationEventPublisher(ApplicationEventPublisher arg0) {
-		this.publisher = arg0;
-	}
 }

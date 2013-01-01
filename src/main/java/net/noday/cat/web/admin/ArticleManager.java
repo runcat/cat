@@ -19,7 +19,7 @@ import javax.validation.Valid;
 
 import net.noday.cat.model.Article;
 import net.noday.cat.service.ArticleService;
-import net.noday.core.web.BaseController;
+import net.noday.core.web.GeneralController;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,48 +39,53 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @since 
  */
 @Controller @RequestMapping("/admin/articles")
-public class ArticleManager extends BaseController {
+public class ArticleManager extends GeneralController<Article> {
 
 	private static final Logger log = Logger.getLogger(ArticleManager.class);
 	
 	@Autowired private ArticleService service;
 	
-	@RequestMapping(value = "create", method = RequestMethod.GET)
+	@Override
 	public String create() {
-		
 		return "admin/article/add";
 	}
 	
-	@RequestMapping(method = RequestMethod.POST)
-	public String create(@Valid Article article, BindingResult result, Model m) {
+	@Override
+	public String save(@Valid Article article, BindingResult result, Model m) {
 		if (result.hasErrors()) {
 			m.addAttribute(result.getFieldErrors());
 		} else {
-			try {
-				article.setAuthorId(getUser().getId());
-				long id = service.save(article);
-				responseData(m, id);
-			} catch (Exception e) {
-				log.error(e.getMessage(), e);
-				responseMsg(m, false, e.getMessage());
-			}
+			article.setAuthorId(getUser().getId());
+			long id = service.save(article);
+			responseData(m, id);
+//			try {
+//			} catch (Exception e) {
+//				log.error(e.getMessage(), e);
+//				responseMsg(m, false, e.getMessage());
+//			}
 		}
 		return "admin/article/add-success";
 	}
-	
-	@RequestMapping(value = "p/{index}", method = RequestMethod.GET)
-	public String list(@PathVariable("index") int index, Model model) {
-		model.addAttribute(service.listPage(index));
-		return "admin/article/list";
+
+	@Override
+	public String delete(@PathVariable("id") long id, Model m) {
+		try {
+			service.delete(id);
+			responseResult(m, true);
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			responseMsg(m, false, e.getMessage());
+		}
+		return "";
 	}
 	
-	@RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
+	@Override
 	public String edit(@PathVariable("id") long id, Model model) {
 		model.addAttribute(service.get(id));
 		return "admin/article/add";
 	}
 	
-	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
+	@Override
 	public String modify(@PathVariable("id") long id, @Valid Article article, BindingResult result, Model m) {
 		try {
 			service.update(article);
@@ -92,6 +97,12 @@ public class ArticleManager extends BaseController {
 		return "admin/article/add-success";
 	}
 	
+	@Override
+	public String list(@PathVariable("index") int index, Model model) {
+		model.addAttribute(service.listPage(index));
+		return "admin/article/list";
+	}
+	
 	@RequestMapping(value = "tops", method = RequestMethod.POST)
 	public Model topable(@RequestParam("id") Long id, @RequestParam("topable") boolean topable, Model m) {
 		service.updateTopable(id, topable);
@@ -99,15 +110,4 @@ public class ArticleManager extends BaseController {
 		return m;
 	}
 	
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public Model delete(@PathVariable("id") long id, Model m) {
-		try {
-			service.delete(id);
-			responseResult(m, true);
-		} catch (Exception e) {
-			log.error(e.getMessage(), e);
-			responseMsg(m, false, e.getMessage());
-		}
-		return m;
-	}
 }

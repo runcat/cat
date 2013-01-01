@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 the original author or authors.
+ * Copyright 2013 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,56 +17,23 @@ package net.noday.cat.service;
 
 import java.util.List;
 
-import net.noday.cat.dao.TagDao;
 import net.noday.cat.model.Tag;
-
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 /**
  * cat TagService
  *
  * @author <a href="http://www.noday.net">Noday</a>
- * @version , 2012-12-25
+ * @version , 2013-1-1
  * @since 
  */
-@Service
-public class TagService {
+public interface TagService {
 
-	@Autowired private TagDao dao;
-	
-	public List<Tag> findAll() {
-		return dao.findAll();
-	}
-	
-	public void save(long aid, String tagStr) {
-		String[] ts = StringUtils.split(tagStr, ",");
-		for (String tag : ts) {
-			Tag obj = dao.getByName(tag);
-			if (obj != null) {
-				dao.saveRef(aid, obj.getId(), 1);
-				dao.updateTagRefCount(tag);
-			} else {
-				dao.saveTagAndRef(aid, tag);
-			}
-		}
-	}
-	
-	public void update(long aid, String tagStr) {
-		String[] ts = StringUtils.split(tagStr, ",");
-		for (String tag : ts) {
-			Tag obj = dao.getByName(tag);
-			if (obj != null) {
-				dao.updateTagRef(aid, obj.getId(),tag);
-			} else {
-				dao.saveTagAndRef(aid, tag);
-			}
-		}
-	}
-	
-	public void deleteRefByArticleId(Long aid) {
-		dao.updateTagRefCount4DelRef(aid, 1);
-		dao.deleteRefByTargetId(aid, 1);
-	}
+	public abstract List<Tag> findAll();
+
+	public abstract void save(long aid, String tagStr);
+
+	public abstract void update(long aid, String tagStr);
+
+	public abstract void deleteRefByArticleId(Long aid);
+
 }
