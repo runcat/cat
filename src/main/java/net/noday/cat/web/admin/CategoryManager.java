@@ -17,7 +17,6 @@ package net.noday.cat.web.admin;
 
 import net.noday.cat.model.Category;
 import net.noday.cat.service.CategoryService;
-import net.noday.core.web.BaseController;
 import net.noday.core.web.GeneralController;
 
 import org.apache.log4j.Logger;
