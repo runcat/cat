@@ -35,6 +35,7 @@ import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -113,9 +114,19 @@ public abstract class BaseController {
 	protected void responseValidError(Model m, BindingResult r) {
 		m.addAttribute(r.getFieldErrors());
 	}
+	protected void responseMsg(ModelAndView m, boolean succ, String message) {
+		m.addObject("result", succ);
+		m.addObject("message", message);
+	}
 	
 	@ExceptionHandler
-	public ModelAndView resolveException(Exception ex, WebRequest req) {
-		return null;
+	public ModelAndView resolveException(EmptyResultDataAccessException e, WebRequest req) {
+		return new ModelAndView("404").addObject("msg", e.getMessage());
+	}
+	@ExceptionHandler
+	public ModelAndView resolveException(Exception e, WebRequest req) {
+		ModelAndView m = new ModelAndView("500");
+		responseMsg(m, false, e.getMessage());
+		return m;
 	}
 }
