@@ -1,4 +1,4 @@
-<#include "macro-head.ftl">
+<#include "admin/macro-head.ftl">
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +9,6 @@
 </head>
 <body>
 	<div class="container body-container">
-		<#include "header.ftl">
 		<div class="row">
 			<div class="span12">
 				<h1>404 notfound</h1>
@@ -17,7 +16,7 @@
 				<p>${msg}</p>
 			</div>
 		</div>
-		<#include "footer.ftl">
+		<#include "admin/footer.ftl">
 	</div>
 </body>
 </html>

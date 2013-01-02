@@ -82,7 +82,7 @@ $('#signs-form').ajaxForm({
 		}
 	},
 	error:function(jqXHR, textStatus, errorThrown) {
-		$("#msg-submit").html(textStatus+jqXHR.responseText).parent().show();
+		$("#msg-submit").html(textStatus+jqXHR.status).parent().show();
 	}
 });
 </script>

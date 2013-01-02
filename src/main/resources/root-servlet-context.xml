@@ -120,6 +120,8 @@
 		</mvc:interceptor>
 	</mvc:interceptors>
 
+	<mvc:view-controller path="404" view-name="error/404" />
+	<mvc:view-controller path="500" view-name="error/500" />
 	<!-- <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" 
 		/> <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver"> 
 		<property name="defaultErrorView"> <value>error</value> </property> <property 
