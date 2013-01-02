@@ -21,7 +21,6 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import net.noday.cat.dao.ArticleDao;
-import net.noday.cat.event.ArticleSaveEvent;
 import net.noday.cat.model.Article;
 import net.noday.cat.service.ArticleService;
 import net.noday.cat.service.TagService;
@@ -72,7 +71,7 @@ public class ArticleServiceImpl implements ApplicationEventPublisherAware, Artic
 		long aid = dao.save(a);
 		String tagStr = a.getTags();
 		tagService.save(aid, tagStr);
-		publisher.publishEvent(new ArticleSaveEvent(this, a));// TODO 把id放进去
+//		publisher.publishEvent(new ArticleSaveEvent(this, a));// TODO 把id放进去，同步完成后启用
 		return aid;
 	}
 	
@@ -151,9 +150,10 @@ public class ArticleServiceImpl implements ApplicationEventPublisherAware, Artic
 		return (App) appCache.get("cfg");
 	}
 
+	@SuppressWarnings("unused")
 	private ApplicationEventPublisher publisher;
 	@Override
-	public void setApplicationEventPublisher(ApplicationEventPublisher arg0) {
-		this.publisher = arg0;
+	public void setApplicationEventPublisher(ApplicationEventPublisher applicationEventPublisher) {
+		this.publisher = applicationEventPublisher;
 	}
 }
