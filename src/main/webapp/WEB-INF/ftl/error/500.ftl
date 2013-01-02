@@ -9,13 +9,14 @@
 </head>
 <body>
 	<div class="container body-container">
+		<#include "error/header.ftl">
 		<div class="row">
 			<div class="span12">
 				<h1>出错了</h1>
 				<p>${msg}</p>
 			</div>
 		</div>
-		<#include "admin/footer.ftl">
+		<#include "error/footer.ftl">
 	</div>
 </body>
 </html>

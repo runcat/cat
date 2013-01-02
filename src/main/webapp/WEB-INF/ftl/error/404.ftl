@@ -9,6 +9,7 @@
 </head>
 <body>
 	<div class="container body-container">
+		<#include "error/header.ftl">
 		<div class="row">
 			<div class="span12">
 				<h1>404 notfound</h1>
