@@ -14,7 +14,7 @@ a.thumbnail.select {
 </head>
 <body>
 <div class="container body-container">
-	<#include "header.ftl">
+	<#include "admin/header.ftl">
 	<div class="row">
 		<div class="span3">
 			<#include "admin/side.ftl">
