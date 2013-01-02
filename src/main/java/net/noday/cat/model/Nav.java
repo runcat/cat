@@ -37,7 +37,7 @@ public class Nav implements Serializable {
 	private Long id;
 	@NotEmpty @Length(max = 10)
 	private String name;
-	@Length(max = 200)
+	@Length(max = 200) //@Pattern(regexp = "^(http|https|ftp|rtsp|mms){1}://[.u4e00-u9fa5]")
 	private String url;
 	private int rank;
 	private Long pid;
