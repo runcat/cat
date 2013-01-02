@@ -20,7 +20,6 @@ import net.noday.cat.service.ArticleService;
 import net.noday.core.dao.AppDao;
 import net.noday.core.web.BaseController;
 
-import org.apache.log4j.Logger;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,14 +38,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller @RequestMapping("/admin")
 public class AdminController extends BaseController {
 	
-	private static final Logger log = Logger.getLogger(AdminController.class);
+//	private static final Logger log = Logger.getLogger(AdminController.class);
 	
 	@Autowired private ArticleService service;
 	@Autowired private AppDao appDao;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String main() {
-		
 		return "admin/index";
 	}
 	
@@ -74,13 +72,8 @@ public class AdminController extends BaseController {
 	
 	@RequestMapping("dev/resetData") @RequiresPermissions("oper")
 	public String resetData(Model m) {
-		try {
-			appDao.resetData();
-			responseResult(m, true);
-		} catch (Exception e) {
-			log.error(e.getMessage(), e);
-			responseMsg(m, false, e.getMessage());
-		}
+		appDao.resetData();
+		responseResult(m, true);
 		return "admin/index";
 	}
 }

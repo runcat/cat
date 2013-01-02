@@ -21,7 +21,6 @@ import net.noday.cat.model.Article;
 import net.noday.cat.service.ArticleService;
 import net.noday.core.web.GeneralController;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,7 +40,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller @RequestMapping("/admin/articles")
 public class ArticleManager extends GeneralController<Article> {
 
-	private static final Logger log = Logger.getLogger(ArticleManager.class);
+//	private static final Logger log = Logger.getLogger(ArticleManager.class);
 	
 	@Autowired private ArticleService service;
 	
@@ -58,24 +57,14 @@ public class ArticleManager extends GeneralController<Article> {
 			article.setAuthorId(getUser().getId());
 			long id = service.save(article);
 			responseData(m, id);
-//			try {
-//			} catch (Exception e) {
-//				log.error(e.getMessage(), e);
-//				responseMsg(m, false, e.getMessage());
-//			}
 		}
 		return "admin/article/add-success";
 	}
 
 	@Override
 	public String delete(@PathVariable("id") long id, Model m) {
-		try {
-			service.delete(id);
-			responseResult(m, true);
-		} catch (Exception e) {
-			log.error(e.getMessage(), e);
-			responseMsg(m, false, e.getMessage());
-		}
+		service.delete(id);
+		responseResult(m, true);
 		return "";
 	}
 	
@@ -87,13 +76,8 @@ public class ArticleManager extends GeneralController<Article> {
 	
 	@Override
 	public String modify(@PathVariable("id") long id, @Valid Article article, BindingResult result, Model m) {
-		try {
-			service.update(article);
-			responseData(m, id);
-		} catch (Exception e) {
-			log.error(e.getMessage(), e);
-			responseMsg(m, false, e.getMessage());
-		}
+		service.update(article);
+		responseData(m, id);
 		return "admin/article/add-success";
 	}
 	

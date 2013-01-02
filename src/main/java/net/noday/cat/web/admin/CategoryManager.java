@@ -19,7 +19,6 @@ import net.noday.cat.model.Category;
 import net.noday.cat.service.CategoryService;
 import net.noday.core.web.GeneralController;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,7 +35,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller @RequestMapping("/admin/category")
 public class CategoryManager extends GeneralController<Category> {
 
-	private static final Logger log = Logger.getLogger(CategoryManager.class);
+//	private static final Logger log = Logger.getLogger(CategoryManager.class);
 	
 	@Autowired private CategoryService service;
 

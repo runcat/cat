@@ -17,7 +17,6 @@ package net.noday.cat.web.admin;
 
 import javax.validation.Valid;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,7 +38,7 @@ import net.noday.core.web.GeneralController;
 @Controller @RequestMapping("/admin/navs")
 public class NavManager extends GeneralController<Nav> {
 
-	private static final Logger log = Logger.getLogger(NavManager.class);
+//	private static final Logger log = Logger.getLogger(NavManager.class);
 	
 	@Autowired private NavService service;
 	
@@ -59,13 +58,8 @@ public class NavManager extends GeneralController<Nav> {
 		if (result.hasErrors()) {
 			responseValidError(m, result);
 		} else {
-			try {
-				long id = service.save(obj);
-				responseData(m, id);
-			} catch (Exception e) {
-				log.error(e.getMessage(), e);
-				responseMsg(m, false, e.getMessage());
-			}
+			long id = service.save(obj);
+			responseData(m, id);
 		}
 		return "admin/nav/add-success";
 	}
@@ -75,13 +69,8 @@ public class NavManager extends GeneralController<Nav> {
 	 */
 	@Override
 	public String delete(@PathVariable("id") long id, Model m) {
-		try {
-			service.delete(id);
-			responseResult(m, true);
-		} catch (Exception e) {
-			log.error(e.getMessage(), e);
-			responseMsg(m, false, e.getMessage());
-		}
+		service.delete(id);
+		responseResult(m, true);
 		return "admin/nav/add-success";
 	}
 
@@ -102,13 +91,8 @@ public class NavManager extends GeneralController<Nav> {
 		if (result.hasErrors()) {
 			responseValidError(m, result);
 		} else {
-			try {
-				service.update(obj);
-				responseData(m, id);
-			} catch (Exception e) {
-				log.error(e.getMessage(), e);
-				responseMsg(m, false, e.getMessage());
-			}
+			service.update(obj);
+			responseData(m, id);
 		}
 		return "admin/nav/add-success";
 	}

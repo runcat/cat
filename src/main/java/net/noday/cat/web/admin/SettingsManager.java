@@ -22,7 +22,6 @@ import net.noday.core.model.AppWebInfo;
 import net.noday.core.model.AppWebSetting;
 import net.noday.core.web.BaseController;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,7 +40,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller @RequestMapping("/admin/settings")
 public class SettingsManager extends BaseController {
 
-	private static final Logger log = Logger.getLogger(SettingsManager.class);
+//	private static final Logger log = Logger.getLogger(SettingsManager.class);
 	
 	@Autowired private SettingsService service;
 	
@@ -55,13 +54,8 @@ public class SettingsManager extends BaseController {
 		if (result.hasErrors()) {
 			m.addAttribute(result.getFieldErrors());
 		} else {
-			try {
-				service.modifyWebInfo(settings);
-				responseResult(m, true);
-			} catch (Exception e) {
-				log.error(e.getMessage(), e);
-				responseMsg(m, false, e.getMessage());
-			}
+			service.modifyWebInfo(settings);
+			responseResult(m, true);
 		}
 		return m;
 	}
@@ -76,13 +70,8 @@ public class SettingsManager extends BaseController {
 		if (result.hasErrors()) {
 			m.addAttribute(result.getFieldErrors());
 		} else {
-			try {
-				service.modifyWebSetting(settings);
-				responseResult(m, true);
-			} catch (Exception e) {
-				log.error(e.getMessage(), e);
-				responseMsg(m, false, e.getMessage());
-			}
+			service.modifyWebSetting(settings);
+			responseResult(m, true);
 		}
 		return m;
 	}
@@ -94,12 +83,7 @@ public class SettingsManager extends BaseController {
 	
 	@RequestMapping(value = "webSkin", method = RequestMethod.POST)
 	public Model modifyWebSkin(@RequestParam("skin") String skinName, Model m) {
-		try {
-			responseMsg(m, true, service.modifyWebSkin(skinName));
-		} catch (Exception e) {
-			log.error(e.getMessage(), e);
-			responseMsg(m, false, e.getMessage());
-		}
+		responseMsg(m, true, service.modifyWebSkin(skinName));
 		return m;
 	}
 	
@@ -110,13 +94,8 @@ public class SettingsManager extends BaseController {
 	
 	@RequestMapping(value = "userSign", method = RequestMethod.POST)
 	public Model modifyUserSign(Object[] signs, Model m) {
-		try {
-			service.modifyUserSign(signs);
-			responseResult(m, true);
-		} catch (Exception e) {
-			log.error(e.getMessage(), e);
-			responseMsg(m, false, e.getMessage());
-		}
+		service.modifyUserSign(signs);
+		responseResult(m, true);
 		return m;
 	}
 	

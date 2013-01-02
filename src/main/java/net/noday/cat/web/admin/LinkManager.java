@@ -21,7 +21,6 @@ import net.noday.cat.model.Link;
 import net.noday.cat.service.LinkService;
 import net.noday.core.web.GeneralController;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,7 +38,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller @RequestMapping("/admin/links")
 public class LinkManager extends GeneralController<Link> {
 
-	private static final Logger log = Logger.getLogger(LinkManager.class);
+//	private static final Logger log = Logger.getLogger(LinkManager.class);
 	
 	@Autowired private LinkService service;
 
@@ -53,26 +52,16 @@ public class LinkManager extends GeneralController<Link> {
 		if (result.hasErrors()) {
 			responseValidError(m, result);
 		} else {
-			try {
-				long id = service.save(obj);
-				responseData(m, id);
-			} catch (Exception e) {
-				log.error(e.getMessage(), e);
-				responseMsg(m, false, e.getMessage());
-			}
+			long id = service.save(obj);
+			responseData(m, id);
 		}
 		return "admin/link/add-success";
 	}
 
 	@Override
 	public String delete(@PathVariable("id") long id, Model m) {
-		try {
-			service.delete(id);
-			responseResult(m, true);
-		} catch (Exception e) {
-			log.error(e.getMessage(), e);
-			responseMsg(m, false, e.getMessage());
-		}
+		service.delete(id);
+		responseResult(m, true);
 		return "admin/link/add-success";
 	}
 
@@ -87,13 +76,8 @@ public class LinkManager extends GeneralController<Link> {
 		if (result.hasErrors()) {
 			responseValidError(m, result);
 		} else {
-			try {
-				service.update(obj);
-				responseData(m, id);
-			} catch (Exception e) {
-				log.error(e.getMessage(), e);
-				responseMsg(m, false, e.getMessage());
-			}
+			service.update(obj);
+			responseData(m, id);
 		}
 		return "admin/link/add-success";
 	}
