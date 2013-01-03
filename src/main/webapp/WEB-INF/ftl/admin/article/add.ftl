@@ -39,10 +39,19 @@
 					</div>
 					<div class="control-group">
 					<label class="control-label" for="signName">签名档</label>
-					<select name="signName" placeholder="随便" value="${(article.signName)!}">
+					<select name="signName">
 						<option></option>
-						<option value="sign1" <#if ((article.signName)!"")=="sign1">selected</#if>>签名档1</option>
-						<option value="sign2" <#if ((article.signName)!"")=="sign2">selected</#if>>签名档2</option>
+						<#--freemarker标签真蛋疼,写到html标签里编辑器报错-->
+						<#if ((article.signName)!"")=="sign1">
+						<option value="sign1" selected>签名档1</option>
+						<#else>
+						<option value="sign1">签名档1</option>
+						</#if>
+						<#if ((article.signName)!"")=="sign2">
+						<option value="sign2" selected>签名档2</option>
+						<#else>
+						<option value="sign2">签名档2</option>
+						</#if>
 					</select>
 					<span id="msg-signName" class="help-block"></span>
 					</div>
