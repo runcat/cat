@@ -25,7 +25,7 @@
 		            </ul>
 		            <div class="description">${article.content}</div>
 		            <#if (article.signName)??>
-		            <div class="alert alert-info">
+		            <div class="alert alert-error">
 		            <#if article.signName == "sign1">
 		            ${cfg.sign1}
 		            <#else>
