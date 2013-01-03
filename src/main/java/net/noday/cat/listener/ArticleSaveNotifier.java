@@ -58,6 +58,7 @@ public class ArticleSaveNotifier implements ApplicationListener<ArticleSaveEvent
     private static final String ADD_ARTICLE_URL = B3LOG_RHYTHM_ADDRESS + "/add-article.do";
 	@Override
 	public void onApplicationEvent(ArticleSaveEvent e) {
+		//https://github.com/b3log/b3log-symphony/blob/master/src/main/java/org/b3log/symphony/processor/ArticleProcessor.java
 		// TODO https://github.com/b3log/b3log-solo/blob/master/core/src/main/java/org/b3log/solo/event/rhythm/ArticleSender.java
 		System.out.println(e.getArticle().getTitle());
 		try {
