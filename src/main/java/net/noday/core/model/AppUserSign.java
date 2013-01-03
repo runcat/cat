@@ -13,27 +13,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.noday.cat.service;
+package net.noday.core.model;
 
-import net.noday.core.model.AppUserSign;
-import net.noday.core.model.AppWebInfo;
-import net.noday.core.model.AppWebSetting;
+import java.io.Serializable;
 
 /**
- * cat SettingsService
+ * cat AppUserSign
  *
  * @author <a href="http://www.noday.net">Noday</a>
- * @version , 2013-1-1
+ * @version , 2013-1-3
  * @since 
  */
-public interface SettingsService {
+public class AppUserSign implements Serializable {
 
-	public abstract void modifyWebInfo(AppWebInfo app);
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
-	public abstract void modifyWebSetting(AppWebSetting app);
-
-	public abstract String modifyWebSkin(String skinName);
-
-	public abstract void modifyUserSign(AppUserSign sign);
-
+	private String sign1;
+	private String sign2;
+	public String getSign1() {
+		return sign1;
+	}
+	public void setSign1(String sign1) {
+		this.sign1 = sign1;
+	}
+	public String getSign2() {
+		return sign2;
+	}
+	public void setSign2(String sign2) {
+		this.sign2 = sign2;
+	}
 }

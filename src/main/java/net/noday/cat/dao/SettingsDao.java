@@ -15,6 +15,7 @@
  */
 package net.noday.cat.dao;
 
+import net.noday.core.model.AppUserSign;
 import net.noday.core.model.AppWebInfo;
 import net.noday.core.model.AppWebSetting;
 
@@ -36,14 +37,15 @@ public class SettingsDao {
 
 	@Autowired private JdbcTemplate jdbc;
 	@Autowired private NamedParameterJdbcTemplate namedJdbc;
+	
 	private static final String sql1 = "UPDATE app_config a SET a.web_title=?,a.sub_title=?,a.host_url=?" +
 			",a.meta_keywords=?,a.meta_description=?,a.board_source=?,a.hidden_source=?";
 	private static final String sql2 = "UPDATE app_config a SET a.list_articles=:listArticles" +
 			",a.recent_articles=:recentArticles,a.most_view_articles=:mostViewArticles" +
 			",a.most_reply_articles=:mostReplyArticles,a.recent_comments=:recentComments" +
 			",a.most_used_tags=:mostUsedTags,a.registable=:registable,a.commentable=:commentable";
-	private static final String sql3 = "UPDATE app_config a WHERE a.skin=?";
-	private static final String sql4 = "";
+	private static final String sql3 = "UPDATE app_config a SET a.skin=?";
+	private static final String sql4 = "UPDATE app_config a SET a.sign1=?,a.sign2=?";
 
 	public void updateWebInfo(AppWebInfo app) {
 		jdbc.update(sql1, app.getWebTitle(), app.getSubTitle(), app.getHostUrl(), app.getMetaKeywords()
@@ -58,7 +60,7 @@ public class SettingsDao {
 		jdbc.update(sql3, skinName);
 	}
 	
-	public void updateUserSign(Object... sign) {
-		jdbc.update(sql4, sign);
+	public void updateUserSign(AppUserSign sign) {
+		jdbc.update(sql4, sign.getSign1(), sign.getSign2());
 	}
 }

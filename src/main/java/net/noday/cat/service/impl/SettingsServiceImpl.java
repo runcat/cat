@@ -22,6 +22,7 @@ import javax.annotation.Resource;
 import net.noday.cat.dao.SettingsDao;
 import net.noday.cat.service.SettingsService;
 import net.noday.core.model.App;
+import net.noday.core.model.AppUserSign;
 import net.noday.core.model.AppWebInfo;
 import net.noday.core.model.AppWebSetting;
 
@@ -76,9 +77,9 @@ public class SettingsServiceImpl implements SettingsService {
 	 * @see net.noday.cat.service.impl.SettingsService#modifyUserSign(java.lang.Object)
 	 */
 	@Override
-	public void modifyUserSign(Object... sign) {
+	public void modifyUserSign(AppUserSign sign) {
 		dao.updateUserSign(sign);
-		// TODO 更新缓存签名档
+		getCfgs().update(sign);
 	}
 	
 	protected App getCfgs() {

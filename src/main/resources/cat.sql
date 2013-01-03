@@ -20,6 +20,8 @@ CREATE TABLE `app_config` (
   `list_style` tinyint(2) DEFAULT '1' COMMENT '首页文章列表样式',
   `registable` tinyint(1) DEFAULT '1' COMMENT '是否开放注册',
   `commentable` tinyint(1) DEFAULT '1' COMMENT '是否开放评论',
+  `sign1` TEXT NULL  COMMENT '签名档1',
+  `sign2` TEXT NULL  COMMENT '签名档2',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

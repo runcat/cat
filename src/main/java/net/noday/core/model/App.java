@@ -51,6 +51,8 @@ public class App implements Serializable {
 	private int listStyle;
 	private boolean registable;
 	private boolean commentable;
+	private String sign1;
+	private String sign2;
 	private List<String> skins;// TODO 也许换成skin类
 
 	public String getVersion() {
@@ -197,6 +199,20 @@ public class App implements Serializable {
 		this.skins.addAll(skins);
 		return this;
 	}
+	public String getSign1() {
+		return sign1;
+	}
+	public App setSign1(String sign1) {
+		this.sign1 = sign1;
+		return this;
+	}
+	public String getSign2() {
+		return sign2;
+	}
+	public App setSign2(String sign2) {
+		this.sign2 = sign2;
+		return this;
+	}
 	public App update(AppWebInfo info) {
 		this.setWebTitle(info.getWebTitle())
 			.setSubTitle(info.getSubTitle())
@@ -216,6 +232,11 @@ public class App implements Serializable {
 			.setMostUsedTags(setting.getMostUsedTags())
 			.setRegistable(setting.isRegistable())
 			.setCommentable(setting.isCommentable());
+		return this;
+	}
+	public App update(AppUserSign sign) {
+		this.setSign1(sign.getSign1())
+			.setSign2(sign.getSign2());
 		return this;
 	}
 }

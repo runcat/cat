@@ -17,26 +17,23 @@
 		<div class="span9">
 			<section>
 				<h4>网站参数</h4>
-				<form id="signs-form" class="form-horizontal" action="${contextPath}/admin/settings/webSign.json" method="post">
+				<form id="signs-form" class="form-horizontal" action="${contextPath}/admin/settings/userSign.json" method="post">
 					<div class="control-group">
 						<label class="control-label" for="sign1">签名档1：</label>
 						<div class="controls">
-						<textarea id="sign1" name="signs" rows="5">还没开发呐</textarea>
+						<textarea id="sign1" name="sign1" rows="5">${cfg.sign1 }</textarea>
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="sign2">签名档2：</label>
 						<div class="controls">
-						<textarea id="sign2" name="signs" rows="5">还没开发呐</textarea>
+						<textarea id="sign2" name="sign2" rows="5">${cfg.sign2 }</textarea>
 						</div>
 					</div>
 					<div class="control-group">
 						<div class="controls">
 						<button type="submit" class="btn btn-primary">更改</button>
 						<div class="alert alert-info line-alert help-inline" style="display: none;">
-				      	<!-- 
-				      	<button type="button" class="close" data-dismiss="alert">×</button>
-				      	 -->
 							<span id="msg-submit" class="">
 							</span>
 				      </div>
