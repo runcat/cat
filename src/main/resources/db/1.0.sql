@@ -20,8 +20,6 @@ CREATE TABLE `app_config` (
   `list_style` tinyint(2) DEFAULT '1' COMMENT '首页文章列表样式',
   `registable` tinyint(1) DEFAULT '1' COMMENT '是否开放注册',
   `commentable` tinyint(1) DEFAULT '1' COMMENT '是否开放评论',
-  `sign1` TEXT NULL  COMMENT '签名档1',
-  `sign2` TEXT NULL  COMMENT '签名档2',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -45,7 +43,6 @@ CREATE TABLE `article` (
   `category_id` int(11) DEFAULT NULL COMMENT '分类id',
   `tags` TINYTEXT NULL  COMMENT '标签',
   `topable` TINYINT(0) NOT NULL DEFAULT 0 COMMENT '置顶',
-  `sign_name` VARCHAR(5) NULL  COMMENT '签名档',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

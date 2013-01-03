@@ -42,16 +42,16 @@ public class ArticleDao {
 	@Autowired private NamedParameterJdbcTemplate namedJdbc;
 	
 	public long save(Article article) {
-		String sql = "insert into article(title,description,content,alias,url,author_id,cover,category_id,tags)" +
-				" values(:title,:description,:content,:alias,:url,:authorId,:cover,:categoryId,:tags)";
+		String sql = "insert into article(title,description,content,alias,url,author_id,cover,category_id,tags,sign_name)" +
+				" values(:title,:description,:content,:alias,:url,:authorId,:cover,:categoryId,:tags,:signName)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         namedJdbc.update(sql, new BeanPropertySqlParameterSource(article), keyHolder);
         return keyHolder.getKey().longValue();
 	}
 	
 	public void update(Article a) {
-		String sql = "update article set title=?,content=?,tags=? where id=?";
-		jdbc.update(sql, a.getTitle(), a.getContent(), a.getTags(), a.getId());
+		String sql = "update article set title=?,content=?,tags=?,sign_name=? where id=?";
+		jdbc.update(sql, a.getTitle(), a.getContent(), a.getTags(), a.getSignName(), a.getId());
 	}
 	
 	public Article get(Long id) {

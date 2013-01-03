@@ -24,6 +24,15 @@
 		            	 -->
 		            </ul>
 		            <div class="description">${article.content}</div>
+		            <#if (article.signName)??>
+		            <div class="alert alert-info">
+		            <#if article.signName == "sign1">
+		            ${cfg.sign1}
+		            <#else>
+		            ${cfg.sign2}
+		            </#if>
+		            </div>
+		            </#if>
 						<ul class="inline small">
 							<li>
 								<i class="icon-tags"></i>

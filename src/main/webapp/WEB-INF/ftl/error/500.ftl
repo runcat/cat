@@ -16,7 +16,7 @@
 				<p>${msg}</p>
 			</div>
 		</div>
-		<#include "error/footer.ftl">
+		<#include "admin/footer.ftl">
 	</div>
 </body>
 </html>

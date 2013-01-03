@@ -52,6 +52,7 @@ public class Article implements Serializable{
 	private Long categoryId;
 	private String tags;
 	private boolean topable;
+	private String signName;
 	public Long getId() {
 		return id;
 	}
@@ -141,5 +142,11 @@ public class Article implements Serializable{
 	}
 	public void setTopable(boolean topable) {
 		this.topable = topable;
+	}
+	public String getSignName() {
+		return signName;
+	}
+	public void setSignName(String signName) {
+		this.signName = signName;
 	}
 }

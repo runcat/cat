@@ -33,13 +33,22 @@
 					<span id="msg-description" class="help-block"></span>
 					</div>
 					<div class="control-group">
-					<label class="control-label" for="captcha">标签</label>
+					<label class="control-label" for="tags">标签</label>
 					<input type="text" name="tags" placeholder="随便" class="span9" value="${(article.tags)!}">
 					<span id="msg-tag" class="help-block"></span>
 					</div>
+					<div class="control-group">
+					<label class="control-label" for="signName">签名档</label>
+					<select name="signName" placeholder="随便" value="${(article.signName)!}">
+						<option></option>
+						<option value="sign1" <#if ((article.signName)!"")=="sign1">selected</#if>>签名档1</option>
+						<option value="sign2" <#if ((article.signName)!"")=="sign2">selected</#if>>签名档2</option>
+					</select>
+					<span id="msg-signName" class="help-block"></span>
+					</div>
 					<button type="submit" class="btn btn-primary">发布</button>
 					<div id="msg-submit" class="alert alert-info line-alert help-inline" style="display: none;">
-				    </div>
+				   </div>
 				</form>
 			</div>
 			<div class="succ-toggle" style="display: none;">
