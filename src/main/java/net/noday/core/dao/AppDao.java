@@ -50,8 +50,8 @@ public class AppDao {
 		executeSql("cat.sql");
 	}
 	public void updateDB() {
-		//executeSql("");
-		throw new AppStartupException("更新数据库脚本还没有呐");
+		executeSql("db/update.sql");
+//		throw new AppStartupException("更新数据库脚本还没有呐");
 	}
 	/**
 	 * 执行sql脚本方法
@@ -63,18 +63,18 @@ public class AppDao {
 			throw new AppStartupException("执行的sql路径["+sqlFilePath+"]不对啊");
 		}
 		try {
-			log.info("加载初始化脚本["+sqlFilePath+"]");
+			log.info("加载脚本["+sqlFilePath+"]");
 			Resource sqlRes = new ClassPathResource(sqlFilePath);
 			EncodedResource encRes = new EncodedResource(sqlRes, "UTF-8");
 			String sqls = null;
 			sqls = FileCopyUtils.copyToString(encRes.getReader());
 			String[] sqlArr = sqls.split(";");
-			log.info("开始初始化数据库");
+			log.info("开始执行脚本");
 			for (String sql : sqlArr) {
 				log.info(sql);
 				jdbc.execute(sql);
 			}
-			log.info("初始化数据库完成");
+			log.info("执行脚本完成");
 		} catch (IOException e) {
 			log.error("读取["+sqlFilePath+"]文件失败", e);
 			throw new AppStartupException("读取["+sqlFilePath+"]文件失败", e);
@@ -90,7 +90,7 @@ public class AppDao {
 			initDB();
 		} else {
 			String version = jdbc.queryForObject("select a.version from app_config a limit 1", String.class);
-			if (!"1".equalsIgnoreCase(version)) {
+			if (!"1.1".equalsIgnoreCase(version)) {
 				updateDB();
 			}
 		}
