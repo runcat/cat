@@ -26,8 +26,8 @@
 					<div class="control-group">
 					<label class="control-label" for="content">自定义(可选)</label>
 					<div class="input-prepend">
-						<button class="btn disabled" disabled="disabled">http://dwz.cn/</button>
-					    <input type="text" name="alias" placeholder="字母、数字和破折号" class="span2">
+						<span class="add-on">http://dwz.cn/</span>
+					   <input type="text" name="alias" placeholder="字母、数字和破折号" class="span2">
 					</div>
 					<span id="msg-content" class="help-block"></span>
 					</div>
