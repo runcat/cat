@@ -22,14 +22,15 @@
 						<i class="icon-tags"></i>
 						<#if row.tags!=null>
 						<#list row.tags?split(",") as articleTag>
-						<a href="${contextPath}/tags/${articleTag?url('UTF-8')}">${articleTag}</a><#if articleTag_has_next>, </#if>
+						<span class="badge badge-info tag">
+						<a href="${contextPath}/tags/${articleTag?url('UTF-8')}">${articleTag}</a>
+						</span>
 						</#list>
 						</#if>
 					</li>
 				</ul>
 			</div>
 		</div>
-      <hr>
       </#list>
         <div class="row">
         	<div class="pagination pagination-small pagination-centered">

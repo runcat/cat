@@ -19,7 +19,7 @@
 		            </ul>
 		            <div style="min-height: 350px;">
 		            <#list tags as tag>
-		            <span class="label label-warning">
+		            <span class="badge badge-warning tag">
 		            	<a href="${contextPath}/tags/${tag.name?url('UTF-8')}">${tag.name}</a>[${tag.refCount}]
 		            </span>
 		            </#list>

@@ -38,7 +38,9 @@
 								<i class="icon-tags"></i>
 								<#if article.tags!=null>
 								<#list article.tags?split(",") as articleTag>
-								<a href="${contextPath}/tags/${articleTag?url('UTF-8')}">${articleTag}</a><#if articleTag_has_next>, </#if>
+								<span class="badge badge-info tag">
+								<a href="${contextPath}/tags/${articleTag?url('UTF-8')}">${articleTag}</a>
+								</span>
 								</#list>
 								</#if>
 							</li>

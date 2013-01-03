@@ -87,6 +87,9 @@ margin: 0 0;
 }
 **/
 /**  **/
+.article {
+	border-bottom: 1px solid #F1F1F1;
+}
 .article h3 {
 	margin: 0px 0;
 }
@@ -95,6 +98,7 @@ margin: 0 0;
 }
 .article .description {
 	margin-left: 5px;
+	margin-bottom: 10px;
 }
 /** TODO 带图片文章 **/
 .article h4 {
@@ -126,6 +130,6 @@ margin: 0 0;
 	width: 280px;
 	height: 160px;
 }
-.label a {
+.tag a {
 	color: white;
 }
