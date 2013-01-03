@@ -38,7 +38,7 @@
 								<i class="icon-tags"></i>
 								<#if article.tags!=null>
 								<#list article.tags?split(",") as articleTag>
-								<span class="badge badge-info tag">
+								<span class="badge badge-tag tag">
 								<a href="${contextPath}/tags/${articleTag?url('UTF-8')}">${articleTag}</a>
 								</span>
 								</#list>

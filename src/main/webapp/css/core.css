@@ -133,3 +133,6 @@ margin: 0 0;
 .tag a {
 	color: white;
 }
+.label-tag, .badge-tag {
+	background-color: #69bfe9;
+}
