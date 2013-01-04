@@ -24,7 +24,7 @@
 		            	 -->
 		            </ul>
 		            <div class="description">${article.content}</div>
-		            <#if (article.signName)??>
+		            <#if (article.signName)??&&article.signName!="">
 		            <div class="alert alert-error">
 		            ${cfg[article.signName]}
 		            </div>
