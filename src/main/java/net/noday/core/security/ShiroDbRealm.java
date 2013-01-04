@@ -174,6 +174,10 @@ public class ShiroDbRealm extends AuthorizingRealm {
 		public String getName() {
 			return name;
 		}
+		
+		public String getLoginName() {
+			return loginName;
+		}
 
 		/**
 		 * 本函数输出将作为默认的<shiro:principal/>输出.

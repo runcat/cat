@@ -53,6 +53,9 @@ public class Article implements Serializable{
 	private String tags;
 	private boolean topable;
 	private String signName;
+	
+	private boolean pub2Rhythm;//发布到Rhythm，不持久化
+	
 	public Long getId() {
 		return id;
 	}
@@ -148,5 +151,11 @@ public class Article implements Serializable{
 	}
 	public void setSignName(String signName) {
 		this.signName = signName;
+	}
+	public boolean isPub2Rhythm() {
+		return pub2Rhythm;
+	}
+	public void setPub2Rhythm(boolean pub2Rhythm) {
+		this.pub2Rhythm = pub2Rhythm;
 	}
 }
