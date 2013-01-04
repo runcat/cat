@@ -49,8 +49,8 @@ public class AppDao {
 		// TODO 也许要加上数据库类型判断
 		executeSql("cat.sql");
 	}
-	public void updateDB() {
-		executeSql("db/update.sql");
+	public void updateDB(String version) {
+		executeSql("db/update"+version+".sql");
 //		throw new AppStartupException("更新数据库脚本还没有呐");
 	}
 	/**
@@ -91,7 +91,7 @@ public class AppDao {
 		} else {
 			String version = jdbc.queryForObject("select a.version from app_config a limit 1", String.class);
 			if (!"1.1".equalsIgnoreCase(version)) {
-				updateDB();
+				updateDB("1_1");
 			}
 		}
 		String sql = "select * from app_config limit 1";
