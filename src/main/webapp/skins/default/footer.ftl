@@ -9,7 +9,7 @@
  <footer class="footer">
    <p class="pull-right"><a href="#">Back to top</a></p>
    <p>
-   	<a href="#" target="_blank">Cat</a> 的诞生要感谢众多软件和开源项目.
+   	<a href="#" target="_blank">Cat ${cfg.version}</a> 的诞生要感谢众多软件和开源项目.
    	<a href="http://www.java.com" target="_blank">java</a>, 
    	<a href="http://cloudfoundry.com" target="_blank">cloudfoundry</a>, 
    	<a href="http://www.springsource.org/spring-framework" target="_blank">springframework</a>, 
