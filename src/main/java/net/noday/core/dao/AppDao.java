@@ -16,6 +16,8 @@
 package net.noday.core.dao;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
 import net.noday.core.exception.AppStartupException;
@@ -26,8 +28,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.EncodedResource;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.FileCopyUtils;
 
@@ -86,13 +90,22 @@ public class AppDao {
 	
 	public App getAppConfig() {
 		List<String> tables = jdbc.queryForList("show tables", String.class);
-		if (tables == null || tables.size() == 0 || !tables.contains("app_config")) {
-			initDB();
-		} else {
-			String version = jdbc.queryForObject("select a.version from app_config a limit 1", String.class);
-			if (!"1.1".equalsIgnoreCase(version)) {
-				updateDB("1_1");
+		Connection conn = DataSourceUtils.getConnection(jdbc.getDataSource());
+		try {
+			conn.setAutoCommit(false);
+			if (tables == null || tables.size() == 0 || !tables.contains("app_config")) {
+				initDB();
+			} else {
+				String version = jdbc.queryForObject("select a.version from app_config a limit 1", String.class);
+				if (!"1.2".equalsIgnoreCase(version)) {
+					updateDB("1_2");
+				}
 			}
+			conn.commit();
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		String sql = "select * from app_config limit 1";
 		App cfg = jdbc.queryForObject(sql, new BeanPropertyRowMapper<App>(App.class));
