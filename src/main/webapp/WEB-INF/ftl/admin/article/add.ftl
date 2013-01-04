@@ -55,7 +55,15 @@
 					</select>
 					<span id="msg-signName" class="help-block"></span>
 					</div>
-					<button type="submit" class="btn btn-primary">发布</button>
+					<div class="control-group">
+					<button type="submit" class="btn btn-primary pull-right">发布</button>
+					<label>
+						<input type="checkbox" value="1" name="pub2Rhythm">
+						同步到
+						<a href="http://symphony.b3log.org/" target="_blank">社区</a>
+						<abbr title="同步社区需要1.在设置-网站信息中正确设置“网站地址”。2.发布文章人email和社区注册的email一致。3.同步key与社区中一致。4.同步version设置为b3log的版本。" class="initialism"><i class="icon-question-sign"></i></abbr>
+					</label>
+					</div>
 					<div id="msg-submit" class="alert alert-info line-alert help-inline" style="display: none;">
 				   </div>
 				</form>
