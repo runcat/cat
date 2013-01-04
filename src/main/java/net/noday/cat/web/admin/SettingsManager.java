@@ -18,6 +18,7 @@ package net.noday.cat.web.admin;
 import javax.validation.Valid;
 
 import net.noday.cat.service.SettingsService;
+import net.noday.core.model.AppRhythmSetting;
 import net.noday.core.model.AppUserSign;
 import net.noday.core.model.AppWebInfo;
 import net.noday.core.model.AppWebSetting;
@@ -96,6 +97,18 @@ public class SettingsManager extends BaseController {
 	@RequestMapping(value = "userSign", method = RequestMethod.POST)
 	public Model modifyUserSign(AppUserSign sign, Model m) {
 		service.modifyUserSign(sign);
+		responseResult(m, true);
+		return m;
+	}
+	
+	@RequestMapping(value = "socialSetting", method = RequestMethod.GET)
+	public String editSocialSetting() {
+		return "admin/settings/socialSetting";
+	}
+	
+	@RequestMapping(value = "socialSetting", method = RequestMethod.POST)
+	public Model modifySocialSetting(AppRhythmSetting obj, Model m) {
+		service.modifySocialSetting(obj);
 		responseResult(m, true);
 		return m;
 	}

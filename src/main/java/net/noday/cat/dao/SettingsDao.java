@@ -15,6 +15,7 @@
  */
 package net.noday.cat.dao;
 
+import net.noday.core.model.AppRhythmSetting;
 import net.noday.core.model.AppUserSign;
 import net.noday.core.model.AppWebInfo;
 import net.noday.core.model.AppWebSetting;
@@ -46,6 +47,7 @@ public class SettingsDao {
 			",a.most_used_tags=:mostUsedTags,a.registable=:registable,a.commentable=:commentable";
 	private static final String sql3 = "UPDATE app_config a SET a.skin=?";
 	private static final String sql4 = "UPDATE app_config a SET a.sign1=?,a.sign2=?";
+	private static final String sql5 = "UPDATE app_config a SET a.rhythm_key=?,a.rhythm_version=?";
 
 	public void updateWebInfo(AppWebInfo app) {
 		jdbc.update(sql1, app.getWebTitle(), app.getSubTitle(), app.getHostUrl(), app.getMetaKeywords()
@@ -62,5 +64,9 @@ public class SettingsDao {
 	
 	public void updateUserSign(AppUserSign sign) {
 		jdbc.update(sql4, sign.getSign1(), sign.getSign2());
+	}
+	
+	public void modifySocialSetting(AppRhythmSetting obj) {
+		jdbc.update(sql5, obj.getRhythmKey(), obj.getRhythmVersion());
 	}
 }

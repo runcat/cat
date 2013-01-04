@@ -15,6 +15,7 @@
  */
 package net.noday.cat.service;
 
+import net.noday.core.model.AppRhythmSetting;
 import net.noday.core.model.AppUserSign;
 import net.noday.core.model.AppWebInfo;
 import net.noday.core.model.AppWebSetting;
@@ -35,5 +36,7 @@ public interface SettingsService {
 	public abstract String modifyWebSkin(String skinName);
 
 	public abstract void modifyUserSign(AppUserSign sign);
+	
+	public abstract void modifySocialSetting(AppRhythmSetting obj);
 
 }
