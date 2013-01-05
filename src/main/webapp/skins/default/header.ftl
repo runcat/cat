@@ -27,6 +27,12 @@
                 </#list>
                 <li id="tags"><a href="${contextPath}/tags">标签墙</a></li>
                 <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">工具集 <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+	                <li><a href="${contextPath}/tools/dwz">生成短网址</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">跟踪我 <b class="caret"></b></a>
                   <ul class="dropdown-menu">
 	                <li><a href="http://www.noday.net" target="_blank">我的博客</a></li>
