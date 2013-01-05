@@ -26,9 +26,10 @@
 <script src="${contextPath}/js/jquery.qrcode.min.js"></script>
 <script src="${contextPath}/js/utils.js"></script>
 <script type="text/javascript">
+<#if (cfg.duoshuoKey)!""=="">
 <!-- Duoshuo Comment BEGIN -->
 	var duoshuoQuery = {
-		short_name:"noday"
+		short_name:"${cfg.duoshuoKey}"
 		,sso:{
 			login:"${cfg.hostUrl}${contextPath}/dsLogin",
 			logout:"${cfg.hostUrl}${contextPath}/logout"
@@ -43,6 +44,7 @@
 		|| document.getElementsByTagName('body')[0]).appendChild(ds);
 	})();
 <!-- Duoshuo Comment END -->
+</#if>
 $(function() {
 	$('.carousel').carousel();
 	$('#qrcode').qrcode({width: 188,height: 188,text: window.location.href});

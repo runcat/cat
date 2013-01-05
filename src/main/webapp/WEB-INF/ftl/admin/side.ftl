@@ -15,6 +15,7 @@
    <li id="nav-settings-webSkin"><a href="${contextPath}/admin/settings/webSkin">皮肤</a></li>
    <li id="nav-settings-userSign"><a href="${contextPath}/admin/settings/userSign">签名档</a></li>
    <li id="nav-settings-socialSetting"><a href="${contextPath}/admin/settings/socialSetting">同步设置</a></li>
+   <li id="nav-settings-duoshuoSetting"><a href="${contextPath}/admin/settings/duoshuoSetting">评论设置</a></li>
    <li class="nav-header">工具</li>
    <li id="nav-tools-dwz"><a href="${contextPath}/admin/tools/dwz">短网址</a></li>
  </ul>

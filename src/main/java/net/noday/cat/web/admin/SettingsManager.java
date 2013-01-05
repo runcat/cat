@@ -113,5 +113,17 @@ public class SettingsManager extends BaseController {
 		return m;
 	}
 	
+	@RequestMapping(value = "duoshuoSetting", method = RequestMethod.GET)
+	public String editDuoshuoSetting() {
+		return "admin/settings/duoshuoSetting";
+	}
+	
+	@RequestMapping(value = "duoshuoSetting", method = RequestMethod.POST)
+	public Model modifyDuoshuoSetting(@RequestParam("key") String key, Model m) {
+		service.modifyDuoshuoSetting(key);
+		responseResult(m, true);
+		return m;
+	}
+	
 	//-------------------
 }

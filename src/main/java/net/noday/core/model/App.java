@@ -55,6 +55,7 @@ public class App implements Serializable {
 	private String sign2;
 	private String rhythmKey;
 	private String rhythmVersion;// TODO 为了迎合接口
+	private String duoshuoKey;
 	private List<String> skins;// TODO 也许换成skin类
 
 	public String getVersion() {
@@ -227,6 +228,13 @@ public class App implements Serializable {
 	}
 	public App setRhythmVersion(String rhythmVersion) {
 		this.rhythmVersion = rhythmVersion;
+		return this;
+	}
+	public String getDuoshuoKey() {
+		return duoshuoKey;
+	}
+	public App setDuoshuoKey(String duoshuoKey) {
+		this.duoshuoKey = duoshuoKey;
 		return this;
 	}
 	public App update(AppWebInfo info) {

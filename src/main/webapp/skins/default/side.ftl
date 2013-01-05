@@ -67,11 +67,13 @@
 	        	</li>
 	        </ul>
         </div>
+        <#if (cfg.duoshuoKey)!""=="">
         <div class="well well-side">
 	        <ul class="nav nav-list ds-recent-comments">
 	        	<li class="nav-header">最新评论</li>
 	        </ul>
         </div>
+        </#if>
         <div class="well well-side">
 	        <ul class="nav nav-list">
 	        	<li class="nav-header">鸣谢</li>

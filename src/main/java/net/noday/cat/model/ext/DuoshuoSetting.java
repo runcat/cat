@@ -13,32 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.noday.cat.service;
+package net.noday.cat.model.ext;
 
-import net.noday.core.model.AppRhythmSetting;
-import net.noday.core.model.AppUserSign;
-import net.noday.core.model.AppWebInfo;
-import net.noday.core.model.AppWebSetting;
+import java.io.Serializable;
 
 /**
- * cat SettingsService
+ * cat DuoshuoSetting
  *
  * @author <a href="http://www.noday.net">Noday</a>
- * @version , 2013-1-1
+ * @version , 2013-1-5
  * @since 
  */
-public interface SettingsService {
+public class DuoshuoSetting implements Serializable {
 
-	public abstract void modifyWebInfo(AppWebInfo app);
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
-	public abstract void modifyWebSetting(AppWebSetting app);
+	private String duoshuoKey;
 
-	public abstract String modifyWebSkin(String skinName);
+	public String getDuoshuoKey() {
+		return duoshuoKey;
+	}
 
-	public abstract void modifyUserSign(AppUserSign sign);
-	
-	public abstract void modifySocialSetting(AppRhythmSetting obj);
-	
-	public void modifyDuoshuoSetting(String obj);
-
+	public void setDuoshuoKey(String duoshuoKey) {
+		this.duoshuoKey = duoshuoKey;
+	}
 }

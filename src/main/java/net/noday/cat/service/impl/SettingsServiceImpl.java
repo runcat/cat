@@ -92,6 +92,15 @@ public class SettingsServiceImpl implements SettingsService {
 		getCfgs().update(obj);
 	}
 	
+	/* (non-Javadoc)
+	 * @see net.noday.cat.service.impl.SettingsService#modifyDuoshuoSetting(java.lang.String)
+	 */
+	@Override
+	public void modifyDuoshuoSetting(String obj) {
+		dao.modifySocialSetting(obj);
+		getCfgs().setDuoshuoKey(obj);
+	}
+	
 	protected App getCfgs() {
 		return (App) appCache.get("cfg");
 	}

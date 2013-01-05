@@ -24,6 +24,7 @@ CREATE TABLE `app_config` (
   `sign2` TEXT NULL  COMMENT '签名档2',
   `rhythm_key` VARCHAR(100) NULL  COMMENT 'rhythm同步key',
   `rhythm_version` VARCHAR(20) NULL  COMMENT 'rhythm同步版本',
+  `duoshuo_key` VARCHAR(20) NULL  COMMENT '多说评论域名',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

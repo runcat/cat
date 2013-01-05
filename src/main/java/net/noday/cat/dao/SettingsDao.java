@@ -48,6 +48,7 @@ public class SettingsDao {
 	private static final String sql3 = "UPDATE app_config a SET a.skin=?";
 	private static final String sql4 = "UPDATE app_config a SET a.sign1=?,a.sign2=?";
 	private static final String sql5 = "UPDATE app_config a SET a.rhythm_key=?,a.rhythm_version=?";
+	private static final String sql6 = "UPDATE app_config a SET a.duoshuo_key=?";
 
 	public void updateWebInfo(AppWebInfo app) {
 		jdbc.update(sql1, app.getWebTitle(), app.getSubTitle(), app.getHostUrl(), app.getMetaKeywords()
@@ -68,5 +69,9 @@ public class SettingsDao {
 	
 	public void modifySocialSetting(AppRhythmSetting obj) {
 		jdbc.update(sql5, obj.getRhythmKey(), obj.getRhythmVersion());
+	}
+	
+	public void modifySocialSetting(String obj) {
+		jdbc.update(sql6, obj);
 	}
 }
