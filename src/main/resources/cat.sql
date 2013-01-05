@@ -22,6 +22,8 @@ CREATE TABLE `app_config` (
   `commentable` tinyint(1) DEFAULT '1' COMMENT '是否开放评论',
   `sign1` TEXT NULL  COMMENT '签名档1',
   `sign2` TEXT NULL  COMMENT '签名档2',
+  `rhythm_key` VARCHAR(100) NULL  COMMENT 'rhythm同步key',
+  `rhythm_version` VARCHAR(20) NULL  COMMENT 'rhythm同步版本',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
