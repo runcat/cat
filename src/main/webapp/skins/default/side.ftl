@@ -1,8 +1,4 @@
 <#--
-        <div class="thumbnail">
-          <h6>avg power</h6>
-          <img src="holder.js/190x140" alt="">
-        </div>
         <div class="carousel slide">
         	<div class="carousel-inner">
         		<div class="active item">
@@ -64,6 +60,11 @@
 					</div>
 	        	</li>
 	        	-->
+	        	<li class="nav-header">本页二维码</li>
+	        	<li>
+			        <div id="qrcode" class="thumbnail">
+			        </div>
+	        	</li>
 	        </ul>
         </div>
         <div class="well well-side">

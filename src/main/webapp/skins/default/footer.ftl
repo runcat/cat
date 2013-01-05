@@ -23,6 +23,7 @@
  </footer>
 <script src="${contextPath}/js/jquery-1.8.2.js"></script>
 <script src="${contextPath}/js/bootstrap.js"></script>
+<script src="${contextPath}/js/jquery.qrcode.min.js"></script>
 <script src="${contextPath}/js/utils.js"></script>
 <script type="text/javascript">
 <!-- Duoshuo Comment BEGIN -->
@@ -43,7 +44,8 @@
 	})();
 <!-- Duoshuo Comment END -->
 $(function() {
-	$('.carousel').carousel()
+	$('.carousel').carousel();
+	$('#qrcode').qrcode({width: 188,height: 188,text: window.location.href});
 });
 </script>
 <div style="display: none;">${cfg.hiddenSource}</div>
