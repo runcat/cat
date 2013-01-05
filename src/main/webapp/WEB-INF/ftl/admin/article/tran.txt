@@ -1,0 +1,34 @@
+    function translateOver(json){
+        var str = json.translation[0];
+        str = translateStripscript(str);
+        str = str.replace(/\s+/g, "-");
+        str += ".html";
+        $("#permalink").val(str);
+        $("#translateWaiting").hide();
+    }
+    function translateBtnClick(){
+        var title = $("#title").val();
+        if(title){
+            var urlStr = "http://fanyi.youdao.com/openapi.do?keyfrom=B3logblog&key=1761387&type=data&doctype=jsonp&callback=translateOver&version=1.1&q=" + title;
+            $.ajax({
+                type:"get",
+                dataType:"jsonp",
+                jsonp: "callBack",
+                url: urlStr,
+                beforeSend: function(){
+                    $("#translateWaiting").show();
+                }
+            });
+        }else{
+            alert("No Title!");
+        }
+    }
+    function translateStripscript(s)
+    {
+        var pattern = new RegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？]");
+        var rs = "";
+        for (var i = 0; i < s.length; i++) {
+            rs = rs+s.substr(i, 1).replace(pattern, '');
+        }
+        return rs;
+    }
