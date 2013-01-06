@@ -32,6 +32,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import freemarker.cache.MultiTemplateLoader;
+
 /**
  * cat SettingsManager
  *
@@ -45,6 +47,7 @@ public class SettingsManager extends BaseController {
 //	private static final Logger log = Logger.getLogger(SettingsManager.class);
 	
 	@Autowired private SettingsService service;
+	@Autowired private org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer freemarkerConfig;
 	
 	@RequestMapping(value = "webInfo", method = RequestMethod.GET)
 	public String editWebInfo() {
@@ -86,6 +89,7 @@ public class SettingsManager extends BaseController {
 	@RequestMapping(value = "webSkin", method = RequestMethod.POST)
 	public Model modifyWebSkin(@RequestParam("skin") String skinName, Model m) {
 		responseMsg(m, true, service.modifyWebSkin(skinName));
+		freemarkerConfig.getConfiguration();
 		return m;
 	}
 	
