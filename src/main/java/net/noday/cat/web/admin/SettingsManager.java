@@ -15,6 +15,10 @@
  */
 package net.noday.cat.web.admin;
 
+import java.io.File;
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import net.noday.cat.service.SettingsService;
@@ -25,12 +29,16 @@ import net.noday.core.model.AppWebSetting;
 import net.noday.core.web.BaseController;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.freemarker.FreeMarkerConfigurationFactory;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.support.ServletContextResource;
 
 import freemarker.cache.MultiTemplateLoader;
 
@@ -87,9 +95,14 @@ public class SettingsManager extends BaseController {
 	}
 	
 	@RequestMapping(value = "webSkin", method = RequestMethod.POST)
-	public Model modifyWebSkin(@RequestParam("skin") String skinName, Model m) {
+	public Model modifyWebSkin(@RequestParam("skin") String skinName, Model m, HttpServletRequest req) {
 		responseMsg(m, true, service.modifyWebSkin(skinName));
-		freemarkerConfig.getConfiguration();
+		try {
+			Resource ftl = new ServletContextResource(req.getSession().getServletContext(), "/skins/"+skinName);
+			freemarkerConfig.getConfiguration().setDirectoryForTemplateLoading(ftl.getFile());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		return m;
 	}
 	
