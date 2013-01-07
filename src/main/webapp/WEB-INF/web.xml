@@ -6,7 +6,7 @@
 	
 	<context-param>
 		<param-name>webAppRootKey</param-name>
-		<param-value>industrywords.root</param-value>
+		<param-value>cat.root</param-value>
 	</context-param>
 	
 	<context-param>
@@ -81,7 +81,7 @@
 	</error-page>
 	<error-page>
 		<error-code>500</error-code>
-		<location>/404</location>
+		<location>/500</location>
 	</error-page>
 	<error-page>
 		<exception-type>java.lang.Exception</exception-type>
