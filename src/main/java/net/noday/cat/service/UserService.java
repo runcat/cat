@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 the original author or authors.
+ * Copyright 2013 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,28 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.noday.cat.web;
+package net.noday.cat.service;
 
 import net.noday.cat.model.User;
-import net.noday.core.web.BaseController;
-
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import net.noday.core.pagination.Page;
 
 /**
- * cat UserController
+ * cat UserService
  *
  * @author <a href="http://www.noday.net">Noday</a>
- * @version , 2012-11-24
+ * @version , 2013-3-2
  * @since 
  */
-@Controller @RequestMapping("/u")
-public class UserController extends BaseController {
+public interface UserService {
 
-	@RequestMapping(method = RequestMethod.POST)
-	public String create(User u) {
-		
-		return "";
-	}
+	public abstract void findPage(User condition, Page<User> pageData);
+
+	public abstract void regist(User u);
+
+	public abstract User findUserByDuoshuo(String duoshuoUserId);
+
+	public abstract boolean checkLogin(User u);
+
 }

@@ -13,7 +13,7 @@
 
 	<!-- 項目自定义的Realm, 所有accountService依赖的dao都需要用depends-on声明 -->
 	<bean id="shiroDbRealm" class="net.noday.core.security.ShiroDbRealm">
-		<property name="service" ref="securityServiceImpl"/>
+		<property name="service" ref="userServiceImpl"/>
 	</bean>
 	
 	<!-- Shiro Filter -->

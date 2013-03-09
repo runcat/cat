@@ -25,8 +25,8 @@ import java.net.URLConnection;
 import java.util.Locale;
 
 import net.noday.cat.model.Duoshuo;
+import net.noday.cat.model.User;
 import net.noday.cat.service.ArticleService;
-import net.noday.core.model.User;
 import net.noday.core.utils.Captcha;
 import net.noday.core.web.BaseController;
 

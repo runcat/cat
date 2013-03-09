@@ -22,7 +22,7 @@ import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
 
-import net.noday.core.model.User;
+import net.noday.cat.model.User;
 import net.noday.core.security.CaptchaUsernamePasswordToken;
 import net.noday.core.security.IncorrectCaptchaException;
 import net.noday.core.service.SecurityService;
@@ -61,11 +61,11 @@ public class ShiroDbRealm extends AuthorizingRealm {
 
 	public static final String LOGINFAILEDCOUNTKEY = "longin_failed_count";
 	
-	protected SecurityService service;
+	protected SecurityService<Loginable<Long>> service;
 	private CredentialsMatcher  hashedCredentialsMatcher;
 	private CredentialsMatcher  allowAllCredentialsMatcher;
 
-	public void setService(SecurityService service) {
+	public void setService(SecurityService<Loginable<Long>> service) {
 		this.service = service;
 	}
 
@@ -88,17 +88,18 @@ public class ShiroDbRealm extends AuthorizingRealm {
 				throw new IncorrectCaptchaException("验证码错误");
 			}
 			
-			User user = service.findUserByLoginName(token.getUsername());
+			Loginable<Long> user = service.findUserByLoginName(token.getUsername());
 			if (user != null) {
-				return new SimpleAuthenticationInfo(new ShiroUser(user.getId(), user.getEmail(), user.getName()),// 为什么不直接用User呐？
+				return new SimpleAuthenticationInfo(new ShiroUser(user.getId(), user.getLoginName(), user.getName()),// 为什么不直接用User呐？
 						user.getPassword(), ByteSource.Util.bytes(Base64.decode(user.getSalt())), getName());
 			}
 		} else {
 			setCredentialsMatcher(allowAllCredentialsMatcher);
 			UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
 			// TODO 验证 根据token
-			User user = service.findUserByLoginName(token.getUsername());
-			return new SimpleAuthenticationInfo(new ShiroUser(user.getId(), user.getEmail(), user.getName()), user.getPassword(), getName());
+			Loginable<Long> user = service.findUserByLoginName(token.getUsername());
+			return new SimpleAuthenticationInfo(new ShiroUser(user.getId(), user.getLoginName(), user.getName()),
+					user.getPassword(), getName());
 		}
 		return null;
 	}
@@ -109,10 +110,10 @@ public class ShiroDbRealm extends AuthorizingRealm {
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		ShiroUser shiroUser = (ShiroUser) principals.getPrimaryPrincipal();
-		User user = service.findUserByLoginName(shiroUser.loginName);
+		Loginable<Long> user = service.findUserByLoginName(shiroUser.loginName);
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 		info.addRole(user.getRole());
-		if ("admin@noday.net".equalsIgnoreCase(user.getEmail())) {
+		if ("admin@noday.net".equalsIgnoreCase(user.getLoginName())) {
 			info.addStringPermission("oper");
 		}
 //		info.addRoles(user.getRoles());

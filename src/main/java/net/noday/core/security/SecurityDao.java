@@ -17,7 +17,7 @@ package net.noday.core.security;
 
 import java.util.List;
 
-import net.noday.core.model.User;
+import net.noday.cat.model.User;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

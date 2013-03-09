@@ -13,10 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.noday.core.service.impl;
+package net.noday.cat.service.impl;
 
-import net.noday.core.model.User;
+import net.noday.cat.model.User;
+import net.noday.cat.service.UserService;
 import net.noday.core.pagination.Page;
+import net.noday.core.security.Loginable;
 import net.noday.core.security.SecurityDao;
 import net.noday.core.security.ShiroDbRealm.ShiroUser;
 import net.noday.core.service.SecurityService;
@@ -35,7 +37,7 @@ import org.springframework.stereotype.Service;
  * @since 
  */
 @Service
-public class SecurityServiceImpl implements SecurityService {
+public class UserServiceImpl implements SecurityService<Loginable<Long>>, UserService {
 
 	@Autowired private SecurityDao dao;
 	
@@ -62,7 +64,7 @@ public class SecurityServiceImpl implements SecurityService {
 	 * @see net.noday.core.service.SecurityService#findUserByLoginName(java.lang.String)
 	 */
 	@Override
-	public User findUserByLoginName(String email) {
+	public Loginable<Long> findUserByLoginName(String email) {
 		User u = dao.findUserByLoginName(email);
 		return u;
 	}
@@ -80,8 +82,8 @@ public class SecurityServiceImpl implements SecurityService {
 	 * @see net.noday.core.service.SecurityService#getUserByToken(java.lang.String)
 	 */
 	@Override
-	public User getUserByToken(String token) {
-		User u = new User();
+	public Loginable<Long> getUserByToken(String token) {
+		Loginable<Long> u = new User();
 		return u;
 	}
 	
@@ -97,14 +99,14 @@ public class SecurityServiceImpl implements SecurityService {
 	/**
 	 * 判断是否超级管理员.
 	 */
-	protected boolean isSupervisor(Long id) {
+	public boolean isSupervisor(Long id) {
 		return id == 1;
 	}
 
 	/**
 	 * 取出Shiro中的当前用户LoginName.
 	 */
-	protected String getCurrentUserName() {
+	public String getCurrentUserName() {
 		ShiroUser user = (ShiroUser) SecurityUtils.getSubject().getPrincipal();
 		return user.loginName;
 	}
@@ -118,5 +120,14 @@ public class SecurityServiceImpl implements SecurityService {
 
 		String hashPassword = Digests.sha256Hash(user.getPlainPassword(), salt, 1024);
 		user.setPassword(hashPassword);
+	}
+
+	/* (non-Javadoc)
+	 * @see net.noday.core.service.SecurityService#checkLogin(java.lang.Object)
+	 */
+	@Override
+	public boolean checkLogin(Loginable<Long> u) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

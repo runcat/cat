@@ -38,7 +38,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @since 
  */
 @Controller @RequestMapping("/admin/articles")
-public class ArticleManager extends GeneralController<Article> {
+public class ArticleManager extends GeneralController<Article, Long> {
 
 //	private static final Logger log = Logger.getLogger(ArticleManager.class);
 	
@@ -62,20 +62,20 @@ public class ArticleManager extends GeneralController<Article> {
 	}
 
 	@Override
-	public String delete(@PathVariable("id") long id, Model m) {
+	public String delete(@PathVariable("id") Long id, Model m) {
 		service.delete(id);
 		responseResult(m, true);
 		return "";
 	}
 	
 	@Override
-	public String edit(@PathVariable("id") long id, Model model) {
+	public String edit(@PathVariable("id") Long id, Model model) {
 		model.addAttribute(service.get(id));
 		return "admin/article/add";
 	}
 	
 	@Override
-	public String modify(@PathVariable("id") long id, @Valid Article article, BindingResult result, Model m) {
+	public String modify(@PathVariable("id") Long id, @Valid Article article, BindingResult result, Model m) {
 		service.update(article);
 		responseData(m, id);
 		return "admin/article/add-success";

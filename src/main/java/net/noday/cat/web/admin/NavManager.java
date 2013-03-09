@@ -36,7 +36,7 @@ import net.noday.core.web.GeneralController;
  * @since 
  */
 @Controller @RequestMapping("/admin/navs")
-public class NavManager extends GeneralController<Nav> {
+public class NavManager extends GeneralController<Nav, Long> {
 
 //	private static final Logger log = Logger.getLogger(NavManager.class);
 	
@@ -68,7 +68,7 @@ public class NavManager extends GeneralController<Nav> {
 	 * @see net.noday.core.web.GeneralController#delete(long, org.springframework.ui.Model)
 	 */
 	@Override
-	public String delete(@PathVariable("id") long id, Model m) {
+	public String delete(@PathVariable("id") Long id, Model m) {
 		service.delete(id);
 		responseResult(m, true);
 		return "admin/nav/add-success";
@@ -78,7 +78,7 @@ public class NavManager extends GeneralController<Nav> {
 	 * @see net.noday.core.web.GeneralController#edit(long, org.springframework.ui.Model)
 	 */
 	@Override
-	public String edit(@PathVariable("id") long id, Model m) {
+	public String edit(@PathVariable("id") Long id, Model m) {
 		m.addAttribute(service.get(id));
 		return "admin/nav/add";
 	}
@@ -87,7 +87,7 @@ public class NavManager extends GeneralController<Nav> {
 	 * @see net.noday.core.web.GeneralController#modify(long, java.lang.Object, org.springframework.validation.BindingResult, org.springframework.ui.Model)
 	 */
 	@Override
-	public String modify(@PathVariable("id") long id, @Valid Nav obj, BindingResult result, Model m) {
+	public String modify(@PathVariable("id") Long id, @Valid Nav obj, BindingResult result, Model m) {
 		if (result.hasErrors()) {
 			responseValidError(m, result);
 		} else {

@@ -36,7 +36,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @since 
  */
 @Controller @RequestMapping("/admin/links")
-public class LinkManager extends GeneralController<Link> {
+public class LinkManager extends GeneralController<Link, Long> {
 
 //	private static final Logger log = Logger.getLogger(LinkManager.class);
 	
@@ -59,20 +59,20 @@ public class LinkManager extends GeneralController<Link> {
 	}
 
 	@Override
-	public String delete(@PathVariable("id") long id, Model m) {
+	public String delete(@PathVariable("id") Long id, Model m) {
 		service.delete(id);
 		responseResult(m, true);
 		return "admin/link/add-success";
 	}
 
 	@Override
-	public String edit(@PathVariable("id") long id, Model m) {
+	public String edit(@PathVariable("id") Long id, Model m) {
 		m.addAttribute(service.get(id));
 		return "admin/link/add";
 	}
 
 	@Override
-	public String modify(@PathVariable("id") long id, @Valid Link obj, BindingResult result, Model m) {
+	public String modify(@PathVariable("id") Long id, @Valid Link obj, BindingResult result, Model m) {
 		if (result.hasErrors()) {
 			responseValidError(m, result);
 		} else {

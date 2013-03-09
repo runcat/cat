@@ -15,9 +15,6 @@
  */
 package net.noday.core.service;
 
-import net.noday.core.model.User;
-import net.noday.core.pagination.Page;
-
 /**
  * cat SecurityService
  *
@@ -25,18 +22,20 @@ import net.noday.core.pagination.Page;
  * @version , 2013-1-1
  * @since 
  */
-public interface SecurityService {
+public interface SecurityService<T> {
 
-	public abstract void findPage(User condition, Page<User> pageData);
+	public abstract T findUserByLoginName(String loginName);
 
-	public abstract void regist(User u);
+	public abstract T getUserByToken(String token);
 
-	public abstract User findUserByLoginName(String email);
+	public abstract boolean checkLogin(T u);
+	/**
+	 * 判断是否超级管理员.
+	 */
+	public abstract boolean isSupervisor(Long id);
 
-	public abstract User findUserByDuoshuo(String duoshuoUserId);
-
-	public abstract User getUserByToken(String token);
-
-	public abstract boolean checkLogin(User u);
-
+	/**
+	 * 取出Shiro中的当前用户LoginName.
+	 */
+	public abstract String getCurrentUserName();
 }

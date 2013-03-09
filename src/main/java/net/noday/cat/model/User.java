@@ -13,13 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.noday.core.model;
+package net.noday.cat.model;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 import net.noday.core.enumeration.Gender;
+import net.noday.core.security.Loginable;
 
 /**
  * cat User
@@ -28,7 +29,7 @@ import net.noday.core.enumeration.Gender;
  * @version , 2012-10-21
  * @since 
  */
-public class User implements Serializable {
+public class User implements Loginable<Long>, Serializable {
 
 	/**
 	 * 
@@ -160,5 +161,12 @@ public class User implements Serializable {
 	}
 	public void setPermissions(List<String> permissions) {
 		this.permissions = permissions;
+	}
+	/* (non-Javadoc)
+	 * @see net.noday.core.security.Loginable#getLoginName()
+	 */
+	@Override
+	public String getLoginName() {
+		return email;
 	}
 }

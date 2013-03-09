@@ -15,6 +15,8 @@
  */
 package net.noday.core.web;
 
+import java.io.Serializable;
+
 import javax.validation.Valid;
 
 import org.springframework.ui.Model;
@@ -32,7 +34,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @version , 2012-12-31
  * @since 
  */
-public abstract class GeneralController<T> extends BaseController {
+public abstract class GeneralController<T, PK extends Serializable> extends BaseController {
 
 	/**
 	 * url:{mapping on class}/create
@@ -64,7 +66,7 @@ public abstract class GeneralController<T> extends BaseController {
 	 * @return view
 	 */
 	@RequestMapping(value = "{id}", method = RequestMethod.DELETE)
-	public abstract String delete(@PathVariable("id") long id, Model m);
+	public abstract String delete(@PathVariable("id") PK id, Model m);
 	
 	/**
 	 * url:{mapping on class}/{id}/edit
@@ -75,7 +77,7 @@ public abstract class GeneralController<T> extends BaseController {
 	 * @return view
 	 */
 	@RequestMapping(value = "{id}/edit", method = RequestMethod.GET)
-	public abstract String edit(@PathVariable("id") long id, Model m);
+	public abstract String edit(@PathVariable("id") PK id, Model m);
 	
 	/**
 	 * url:{mapping on class}/{id}
@@ -88,7 +90,7 @@ public abstract class GeneralController<T> extends BaseController {
 	 * @return view
 	 */
 	@RequestMapping(value = "{id}", method = RequestMethod.POST)//put收不到数据
-	public abstract String modify(@PathVariable("id") long id, @Valid T obj, BindingResult result, Model m);
+	public abstract String modify(@PathVariable("id") PK id, @Valid T obj, BindingResult result, Model m);
 	
 	/**
 	 * url:{mapping on class}/

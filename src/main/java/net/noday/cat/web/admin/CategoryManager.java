@@ -33,7 +33,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @since 
  */
 @Controller @RequestMapping("/admin/category")
-public class CategoryManager extends GeneralController<Category> {
+public class CategoryManager extends GeneralController<Category, Long> {
 
 //	private static final Logger log = Logger.getLogger(CategoryManager.class);
 	
@@ -61,7 +61,7 @@ public class CategoryManager extends GeneralController<Category> {
 	 * @see net.noday.core.web.GeneralController#delete(long, org.springframework.ui.Model)
 	 */
 	@Override
-	public String delete(long id, Model m) {
+	public String delete(Long id, Model m) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -70,7 +70,7 @@ public class CategoryManager extends GeneralController<Category> {
 	 * @see net.noday.core.web.GeneralController#edit(long, org.springframework.ui.Model)
 	 */
 	@Override
-	public String edit(long id, Model m) {
+	public String edit(Long id, Model m) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -79,7 +79,7 @@ public class CategoryManager extends GeneralController<Category> {
 	 * @see net.noday.core.web.GeneralController#modify(long, java.lang.Object, org.springframework.validation.BindingResult, org.springframework.ui.Model)
 	 */
 	@Override
-	public String modify(long id, Category obj, BindingResult result, Model m) {
+	public String modify(Long id, Category obj, BindingResult result, Model m) {
 		// TODO Auto-generated method stub
 		return null;
 	}
