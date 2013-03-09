@@ -9,17 +9,33 @@
 		<#list page.rows as row>
 		<div class="media article">
 			<div class="media-body">
-				<h4 class="media-heading muted"><a href="${contextPath}/articles/${row.id }">${row.title }</a></h4>
+				<h4 class="media-heading"><a href="${contextPath}/articles/${row.id }">${row.title }</a></h4>
+				<!-- 
             <ul class="inline small">
             	<li><i class="icon-time"></i><a>${row.createTime }</a></li>
             	<li><i class="icon-user"></i><a>noday</a></li>
             	<li><a><i class="icon-eye-open"></i>${row.viewCount}</a></li>
             	<li><a><i class="icon-comment"></i>0</a></li>
             </ul>
+				 -->
+            <ul class="inline small muted">
+            	<li><span>noday 发表于 ${row.createTime }</span></li>
+            	<li><span>|</span></li>
+            	<li><span>${row.viewCount}次阅读</span></li>
+            	<li><span>|</span></li>
+            	<li><span>0条评论</span></li>
+            </ul>
+            <dl class="dl-horizontal">
+            	<#if row.cover>
+            	<dt><img class="img-polaroid cover" src="row.cover" alt=""></dt>
+            	</#if>
+            	<dd>${row.description}</dd>
+            </dl>
+            <!-- 
             <div class="description">${row.description}</div>
+             -->
 				<ul class="inline small">
 					<li>
-						<i class="icon-tags"></i>
 						<#if row.tags!=null>
 						<#list row.tags?split(",") as articleTag>
 						<span class="badge badge-tag tag">

@@ -104,6 +104,18 @@ margin: 0 0;
 .article h4 {
 	margin: 2px 0;
 }
+.article .dl-horizontal dt {
+	overflow: visible;
+	margin-right: 10px;
+}
+.article .dl-horizontal dd {
+	margin-left: 0px;
+	color: #666;
+}
+.article .cover {
+	width: 150px;
+	height: 150px;
+}
 /** grid **/
 .table {
 	margin-bottom: 10px;
@@ -131,8 +143,9 @@ margin: 0 0;
 	height: 160px;
 }
 .tag a {
-	color: white;
+	color: #333;
+	font-weight: normal;
 }
 .label-tag, .badge-tag {
-	background-color: #69bfe9;
+	background-color: #f3f3f3;
 }
