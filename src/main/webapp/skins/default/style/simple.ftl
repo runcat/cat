@@ -27,7 +27,7 @@
             </ul>
             <dl class="dl-horizontal">
             	<#if row.cover>
-            	<dt><img class="img-polaroid cover" src="row.cover" alt=""></dt>
+            	<dt><img class="img-polaroid cover" src="${row.cover}" alt=""></dt>
             	</#if>
             	<dd>${row.description}</dd>
             </dl>

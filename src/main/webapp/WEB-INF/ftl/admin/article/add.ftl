@@ -33,6 +33,15 @@
 					<span id="msg-description" class="help-block"></span>
 					</div>
 					<div class="control-group">
+					<label class="control-label" for="cover">封面</label>
+					<#-- 
+					<div class="input-prepend">
+						<span class="add-on">http://</span>
+					</div>-->
+						<input type="text" name="cover" placeholder="封面图片完整url地址" class="span9" value="${(article.cover)!}">
+					<span id="msg-cover" class="help-block"></span>
+					</div>
+					<div class="control-group">
 					<label class="control-label" for="tags">标签</label>
 					<input type="text" name="tags" placeholder="随便" class="span9" value="${(article.tags)!}">
 					<span id="msg-tag" class="help-block"></span>
